@@ -112,7 +112,6 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		priceGroups =  select.query(sql, new PriceGroupRowMapper());
 		return priceGroups;
 	}
-
 	
 	public List<TblFld> getTblFldEntries(String sql, String server) throws Exception {	
 
@@ -143,7 +142,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 
-		zones =  select.query(sql, new StoreRowMapper());
+		zones =  select.query(sql, new ZoneRowMapper());
 		return zones;
 	}
 

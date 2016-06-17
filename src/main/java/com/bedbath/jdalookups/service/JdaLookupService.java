@@ -41,7 +41,7 @@ public interface JdaLookupService {
 	public String formatZonesCriteria(int zoneNumber, String zoneName);
 	public String formatStatesCriteria(String country);
 		
-	public List<TblFld> getTblFldEntries(String key, String server) throws Exception;
+	public List<TblFld> getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, String resultType, String server, int start, int limit) throws Exception;
 	public String formatProductGroupLookupCriteria(Long groupNumber, String description);	
 	public String getHierarchyName(String hierarchyLevel, int department, int subDepartment, int classa, String server) throws Exception;
 	public String getVendorName(int vendorNumber, String server) throws Exception;

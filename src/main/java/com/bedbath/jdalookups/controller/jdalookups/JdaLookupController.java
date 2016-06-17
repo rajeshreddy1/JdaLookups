@@ -91,22 +91,58 @@ public class JdaLookupController {
 
 	}
 
+	@RequestMapping(value = "/jdalookups/getstorename.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getStoreName(@RequestParam int storeNumber,
+			@RequestParam String server) throws Exception {
+
+		try {
+
+			String storeName = jdaLookupService.getStoreName(storeNumber, server);
+
+			Map<String, Object> modelMap = new HashMap<String, Object>(3);
+			modelMap.put("storeName", storeName);
+			modelMap.put("success", true);
+			modelMap.put("exception", "");
+			return modelMap;			
+
+		} catch(Exception e) {
+
+			Map<String, Object> modelMap = new HashMap<String, Object>(3);
+			modelMap.put("storeName", "");
+			modelMap.put("success", false);
+			modelMap.put("exception", e.getClass() + " - " + e.getMessage());
+			return modelMap;
+
+		}
+
+	}
+	
 	@RequestMapping(value = "/jdalookups/gettblfldentries.action")
 	public @ResponseBody 
-	Map<String, ? extends Object> getTblFldEntries(@RequestParam String key,
+	Map<String, ? extends Object> getTblFldEntries(@RequestParam String keyValue,
+			@RequestParam String searchValue,
+			@RequestParam String searchDescription,
+			@RequestParam String ignoreBlankValue,
+			@RequestParam String sortField,
 			@RequestParam String server,
 			@RequestParam int limit,
-			@RequestParam int page,
 			@RequestParam int start
 			) throws Exception {
 
 		try {
-
+			
+			Map<String, Object> modelMap = new HashMap<String, Object>(3);
 			List<TblFld> tblFld = new ArrayList();												
-			tblFld = jdaLookupService.getTblFldEntries(key, server);			
+			tblFld = jdaLookupService.getTblFldEntries(keyValue,searchValue,searchDescription,ignoreBlankValue,sortField,"R", server,start,limit);			
 
-			return getTblFldMap(tblFld, key, server);																					
+			start++;
+			
+			modelMap.put("success", true);
+			modelMap.put("data", tblFld);
+			modelMap.put("total", jdaLookupService.getRowCount("Call Usp_Tblfld_Result_Set('" + keyValue + "','" + searchValue + "','" + searchDescription + "','" + ignoreBlankValue + "'," + (start + 1) + "," + limit + ",'" + sortField + "','C')", server));
 
+			return modelMap;																					
 		} catch(Exception e) {
 			return createMap.getExceptionMap(e);
 		}
@@ -183,14 +219,6 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 	}	
-
-	private Map<String, Object> getTblFldMap(List<TblFld> tblFld, String key, String server) {
-		Map<String, Object> modelMap = new HashMap<String, Object>(2);
-
-		modelMap.put("data", tblFld);
-		modelMap.put("success", true);
-		return modelMap;
-	}
 
 	private Map<String, Object> getLookupSkusMap(List<SkuLookup> skuLookup, Long groupNumber, int department, int subDepartment, int classa, int vendor, String partNumber, Long skuNumber, Long upcNumber, String skuDescription, String shortDescription, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup , String itemStatus, String server) throws Exception {
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);

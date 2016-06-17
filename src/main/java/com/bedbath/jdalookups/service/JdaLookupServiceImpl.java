@@ -225,12 +225,11 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}		
 	
-	public List<TblFld> getTblFldEntries(String key, String server) throws Exception	{
-
-		String sql="Select TBLNAM , Trim(TBLVAL) TBLVAL , Trim(TBLDSC) TBLDSC, TBLDEF From TBLFLD Where TBLNAM = '" + key + "' And TBLVAL <> '' Order By TBLDSC "; 	   
-						
+	public List<TblFld> getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, String resultType, String server, int start, int limit) throws Exception	{
+	
+		String sql="Call Usp_Tblfld_Result_Set('" + keyValue + "','" + searchValue + "','" + searchDescription + "','" + ignoreBlankValue + "'," + (start + 1) + "," + limit + ",'" + sortField + "','" + resultType + "')";		 	   						
 		return jdaLookupDAO.getTblFldEntries(sql,server);
-
+		
 	}	
 	
 	public String getHierarchyName(String hierarchyLevel, int department, int subDepartment, int classa, String server) throws Exception {
@@ -533,8 +532,7 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		} else {
 			sql = formatSql(sql, " Order By ZonNum " , start, limit);	
 		}
-		
-		
+				
 		return jdaLookupDAO.getZones(sql,server);
 
 	}	
