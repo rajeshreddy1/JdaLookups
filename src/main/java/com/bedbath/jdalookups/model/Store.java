@@ -15,6 +15,8 @@ public class Store {
 	private Long phoneNumber;
 	private int region;
 	private int district;
+	private String storeType;
+	private String storeOrOffice;
 	
 	public int getStoreNumber() {
 		return storeNumber;
@@ -93,6 +95,18 @@ public class Store {
 	}
 	public void setDistrict(int district) {
 		this.district = district;
+	}
+	public String getStoreType() {
+		return storeType;
+	}
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
+	}
+	public String getStoreOrOffice() {
+		return storeOrOffice;
+	}
+	public void setStoreOrOffice(String storeOrOffice) {
+		this.storeOrOffice = storeOrOffice;
 	}			
 	
 }

@@ -1,5 +1,6 @@
 package com.bedbath.jdalookups.service;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -224,11 +225,10 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getPriceGroups(sql, server);
 		
 	}		
-	
-	public List<TblFld> getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, String resultType, String server, int start, int limit) throws Exception	{
-	
-		String sql="Call Usp_Tblfld_Result_Set('" + keyValue + "','" + searchValue + "','" + searchDescription + "','" + ignoreBlankValue + "'," + (start + 1) + "," + limit + ",'" + sortField + "','" + resultType + "')";		 	   						
-		return jdaLookupDAO.getTblFldEntries(sql,server);
+	 
+	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception	{
+
+		return jdaLookupDAO.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 		
 	}	
 	
@@ -414,9 +414,15 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 				
 	}
 	
+	public Map getPriceEvents(String eventTypes,int eventNumber,String eventDescription,int startDate,	String eventStatuses,String sortFields,	int start,int limit,String server)	throws Exception {
+
+		return jdaLookupDAO.getPriceEvents(eventTypes, eventNumber, eventDescription, startDate, eventStatuses, sortFields, start, limit, server);
+		
+	}
+			
 	public List<Store> getStores(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception	{
 
-		String sql="Select StrNum, Trim(StrNam) StrNam, Trim(StAdd1) StAdd1, Trim(StAdd2) StAdd2, Trim(StAdd3) StAdd3, StPvSt, StZip, StPhon, StCtry, RegNum, StrDst, ZonNum, StCmp From TblStr Inner Join StpCmp On StrNum=StStor  " +	   
+		String sql="Select StrNum, Trim(StrNam) StrNam, Trim(StAdd1) StAdd1, Trim(StAdd2) StAdd2, Trim(StAdd3) StAdd3, StPvSt, StZip, StPhon, StCntr, RegNum, StrDst, ZonNum, StCmp, StrTyp, StrHdo From TblStr Inner Join StpCmp On StrNum=StStor  " +	   
 				   
 				   formatStoresCriteria(storeType, storeNumber, storeName, city, state, zoneNumber);
 				
@@ -426,6 +432,15 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 
 	}	
 
+	public List<Store> getEventStores(int priceEvent, String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception	{ 
+		
+		String sql="Call Usp_Store_Search(" + zoneNumber + ",0," + storeNumber + ",'" + storeName + "','','" + state + "','" + city + "','" + storeType + "'," + priceEvent + ",'STRNUM'," + (start+1) + "," + limit + ",'R')";
+		System.out.println(sql);
+		
+		return jdaLookupDAO.getStores(sql, server);
+		
+	}
+	
 	public String formatStoresCriteria(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber) {
 		
 		String sqlWhere="";

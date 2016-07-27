@@ -18,7 +18,7 @@ public class StoreResultSetExtractor implements ResultSetExtractor{
 		store.setAddress2(rs.getString("STADD2"));
 		store.setCity(rs.getString("STADD3"));
 		store.setCompanyNumber(rs.getInt("STCMP"));
-		store.setCountry(rs.getString("STCTRY"));
+		store.setCountry(rs.getString("STCNTR"));
 		store.setDistrict(rs.getInt("STRDST"));
 		store.setName(rs.getString("STRNAM"));
 		store.setPhoneNumber(rs.getLong("STPHON"));
@@ -27,6 +27,8 @@ public class StoreResultSetExtractor implements ResultSetExtractor{
 		store.setStoreNumber(rs.getInt("STRNUM"));
 		store.setZipCode(rs.getString("STZIP"));
 		store.setZoneNumber(rs.getInt("ZONNUM"));
+		store.setStoreOrOffice(rs.getString("STRHDO"));
+		store.setStoreType(rs.getString("STRTYP"));
 		
 		return store;		
 	}				

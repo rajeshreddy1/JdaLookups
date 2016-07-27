@@ -113,15 +113,15 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return priceGroups;
 	}
 	
-	public List<TblFld> getTblFldEntries(String sql, String server) throws Exception {	
+	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception {	
 
-		List<TblFld> tblFld = new ArrayList();
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
-
-		tblFld =  select.query(sql, new TblFldRowMapper());
-		return tblFld;
+		 
+		Usp_Tblfld_Result_Set tblfld = new Usp_Tblfld_Result_Set(select);
+		return tblfld.getResults(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
+				
 	}
 		
 	public List<Store> getStores(String sql, String server) throws Exception {	
@@ -130,8 +130,9 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
-
-		stores =  select.query(sql, new StoreRowMapper());
+						
+        stores =  select.query(sql, new StoreRowMapper());		
+		
 		return stores;
 	}
 	
@@ -146,6 +147,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return zones;
 	}
 
+	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Price_Event_Search priceEventSearch = new Usp_Price_Event_Search(select);
+		return priceEventSearch.getResults(eventType, eventNumber, eventDescription, startDate, eventStatus, sortFields, start, limit, server);
+				
+	}
+	
 	public List<StateProvince> getStates(String sql, String server) throws Exception {	
 
 		List<StateProvince> states = new ArrayList();

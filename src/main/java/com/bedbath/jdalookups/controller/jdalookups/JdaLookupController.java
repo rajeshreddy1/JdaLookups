@@ -1,6 +1,7 @@
 package com.bedbath.jdalookups.controller.jdalookups;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
@@ -130,24 +132,86 @@ public class JdaLookupController {
 			@RequestParam int start
 			) throws Exception {
 
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
 		try {
 			
-			Map<String, Object> modelMap = new HashMap<String, Object>(3);
-			List<TblFld> tblFld = new ArrayList();												
-			tblFld = jdaLookupService.getTblFldEntries(keyValue,searchValue,searchDescription,ignoreBlankValue,sortField,"R", server,start,limit);			
+			Map map = jdaLookupService.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 
-			start++;
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
-			modelMap.put("success", true);
-			modelMap.put("data", tblFld);
-			modelMap.put("total", jdaLookupService.getRowCount("Call Usp_Tblfld_Result_Set('" + keyValue + "','" + searchValue + "','" + searchDescription + "','" + ignoreBlankValue + "'," + (start + 1) + "," + limit + ",'" + sortField + "','C')", server));
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getTblFldEntries" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<TblFld> tblfld = new ArrayList();
+				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", tblfld);						
+				modelMap.put("total", map.get("p_result_Count"));
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
 
-			return modelMap;																					
 		} catch(Exception e) {
 			return createMap.getExceptionMap(e);
 		}
 	}	
 
+	
+	@RequestMapping(value = "/jdalookups/getpriceevents.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getPriceEvents(@RequestParam String eventTypes,
+			@RequestParam String eventDescription,
+			@RequestParam String eventStatuses,
+			@RequestParam int startDate,
+			@RequestParam int eventNumber,
+			@RequestParam String sortFields,
+			@RequestParam String server,
+			@RequestParam int limit,
+			@RequestParam int start
+			) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);				
+		
+		try {
+			
+			Map map = jdaLookupService.getPriceEvents(eventTypes,eventNumber,eventDescription,startDate,eventStatuses,sortFields,start,limit,server);
+			
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());  
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getPriceEvents" + " - " + sqlErrText);
+				return modelMap;
+								
+			} else {
+
+				List<PriceEvent> priceEvents = new ArrayList();		
+				priceEvents.addAll((Collection<? extends PriceEvent>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", priceEvents);						
+				modelMap.put("total", map.get("p_result_Count"));
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+	
 	@RequestMapping(value = "/jdalookups/getlookupskus.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> getLookupSkus(@RequestParam Long groupNumber,
@@ -292,6 +356,39 @@ public class JdaLookupController {
 				
 	}
 
+	@RequestMapping(value = "/jdalookups/eventstorelookup.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getEventStores(@RequestParam int priceEvent,
+			                                     @RequestParam String storeType,
+			                                     @RequestParam int storeNumber,
+										         @RequestParam String storeName,
+										         @RequestParam String city,
+										         @RequestParam String state,
+										         @RequestParam int zoneNumber,
+										         @RequestParam String server,
+										         @RequestParam int start,
+										         @RequestParam int limit) {
+		
+		try {
+			
+			Map<String, Object> modelMap = new HashMap<String, Object>(3);
+			
+			List<Store> stores = new ArrayList();
+			stores = jdaLookupService.getEventStores(priceEvent, storeType, storeNumber, storeName, city, state, zoneNumber, server, start, limit);
+			
+			modelMap.put("data", stores);			
+			
+			modelMap.put("total", jdaLookupService.getRowCount("Call Usp_Store_Search(" + zoneNumber + ",0," + storeNumber + ",'" + storeName + "','','" + state + "','" + city + "','" + storeType + "'," + priceEvent + ",'STRNUM'," + (start+1) + "," + limit + ",'C')", server));
+			modelMap.put("success", true);
+			
+			return modelMap;
+			
+		} catch(Exception e) {		
+			return createMap.getExceptionMap(e);
+		}
+				
+	}
+	
 	@RequestMapping(value = "/jdalookups/zonelookup.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getZones(@RequestParam int zoneNumber,

@@ -1,6 +1,7 @@
 package com.bedbath.jdalookups.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
@@ -28,8 +29,10 @@ public interface JdaLookupService {
 	public List<MerchandiseGroup> getMerchandiseGroups(String merchandiseGroupCode, String merchandiseGroupDescription, String server, int start, int limit) throws Exception;
 	public List<PriceGroup> getPriceGroups(String priceGroupCode, String priceGroupDescription, String server, int start, int limit) throws Exception;
 	public List<Store> getStores(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception;
+	public List<Store> getEventStores(int priceEvent, String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception;	
 	public List<Zone> getZones(int zoneNumber, String zoneName, String server, int start, int limit) throws Exception;
-	public List<StateProvince> getStates(String country, String server, int start, int limit) throws Exception;
+	public List<StateProvince> getStates(String country, String server, int start, int limit) throws Exception;	
+	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatuses, String sortFields, int start, int limit, String server) throws Exception;
 	
 	public String formatHierarchyCriteria(String level, int department, int subDepartment, int classa, String description);	
 	public String formatVendorsCriteria(String vendorType, int vendorNumber, String vendorName);
@@ -40,8 +43,8 @@ public interface JdaLookupService {
 	public String formatStoresCriteria(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber);
 	public String formatZonesCriteria(int zoneNumber, String zoneName);
 	public String formatStatesCriteria(String country);
-		
-	public List<TblFld> getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, String resultType, String server, int start, int limit) throws Exception;
+	
+	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
 	public String formatProductGroupLookupCriteria(Long groupNumber, String description);	
 	public String getHierarchyName(String hierarchyLevel, int department, int subDepartment, int classa, String server) throws Exception;
 	public String getVendorName(int vendorNumber, String server) throws Exception;
