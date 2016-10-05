@@ -232,6 +232,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}	
 	
+	public Map getInvCal(String inputDate, String server) throws Exception	{
+
+		return jdaLookupDAO.getInvCal(inputDate, server);
+		
+	}	
+		
 	public String getHierarchyName(String hierarchyLevel, int department, int subDepartment, int classa, String server) throws Exception {
 				
 		String sql="";

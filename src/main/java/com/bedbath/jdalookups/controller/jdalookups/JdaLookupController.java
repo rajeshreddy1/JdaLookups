@@ -165,6 +165,45 @@ public class JdaLookupController {
 		}
 	}	
 
+	@RequestMapping(value = "/jdalookups/invcal.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getInvCal(@RequestParam String inputDate,
+											@RequestParam String server
+			) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getInvCal(inputDate, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getInvCal" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<TblFld> tblfld = new ArrayList();
+				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", tblfld);						
+				modelMap.put("total", map.get("p_result_Count"));
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+
 	
 	@RequestMapping(value = "/jdalookups/getpriceevents.action")
 	public @ResponseBody 

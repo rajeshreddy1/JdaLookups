@@ -124,6 +124,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}
 		
+	public Map getInvCal(String inputDate, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Get_Jda_InvCal invcal = new Usp_Get_Jda_InvCal(select);
+		return invcal.getResults(inputDate, server);
+				
+	}	
+	
 	public List<Store> getStores(String sql, String server) throws Exception {	
 
 		List<Store> stores = new ArrayList();

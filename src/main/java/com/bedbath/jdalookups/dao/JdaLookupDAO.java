@@ -28,6 +28,7 @@ public interface JdaLookupDAO {
 	public List<MerchandiseGroup> getMerchandiseGroups(String sql, String server) throws Exception;
 	public List<PriceGroup> getPriceGroups(String sql, String server) throws Exception;	
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
+	public Map getInvCal(String inputDate, String server) throws Exception;
 	public List<Store> getStores(String sql, String server) throws Exception;
 	public List<Zone> getZones(String sql, String server) throws Exception;
 	public List<StateProvince> getStates(String sql, String server) throws Exception;
