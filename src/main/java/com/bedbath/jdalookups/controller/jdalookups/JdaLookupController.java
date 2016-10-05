@@ -188,11 +188,8 @@ public class JdaLookupController {
 				return modelMap;
 				
 			} else {
-				
-				List<TblFld> tblfld = new ArrayList();
-				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
-				
-				modelMap.put("data", tblfld);						
+								
+				modelMap.put("data", map);						
 				modelMap.put("total", map.get("p_result_Count"));
 				modelMap.put("success", true);			
 				return modelMap;																					
