@@ -40,7 +40,10 @@ public class Usp_Get_Jda_InvCal  extends StoredProcedure {
 		declareParameter(new SqlOutParameter("o_previous_Fiscal_Day_Of_Year" , Types.NUMERIC));
 		declareParameter(new SqlOutParameter("o_previous_Day_Of_Week" , Types.NUMERIC));
 		declareParameter(new SqlOutParameter("o_previous_Long_Form" , Types.VARCHAR));
-		 		 		 		
+
+		declareParameter(new SqlOutParameter("o_invdat_Date" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_nextdate_Date" , Types.NUMERIC));
+		
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGID", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGTXT", Types.VARCHAR));
@@ -54,8 +57,29 @@ public class Usp_Get_Jda_InvCal  extends StoredProcedure {
 		
 		Map inParms = new HashMap();
 
-		inParms.put("p_input_Date"         , inputDate);
+		inParms.put("p_input_Date" , inputDate);
+    
+		inParms.put("o_current_Date" , 0);
+		inParms.put("o_current_Fiscal_Year" , 0);
+		inParms.put("o_current_Fiscal_Period" , 0);
+		inParms.put("o_current_Fiscal_Week_Of_Year" , 0);
+		inParms.put("o_current_Fiscal_Week_Of_Period" , 0);
+		inParms.put("o_current_Fiscal_Day_Of_Year" , 0);
+		inParms.put("o_current_Day_Of_Week" , 0);
+		inParms.put("o_current_Long_Form" , "");
+                                   
+		inParms.put("o_previous_Date" , 0);
+		inParms.put("o_previous_Fiscal_Year" , 0);
+		inParms.put("o_previous_Fiscal_Period" , 0);
+		inParms.put("o_previous_Fiscal_Week_Of_Year" , 0);
+		inParms.put("o_previous_Fiscal_Week_Of_Period" , 0);
+		inParms.put("o_previous_Fiscal_Day_Of_Year" , 0);
+		inParms.put("o_previous_Day_Of_Week" , 0);
+		inParms.put("o_previous_Long_Form" , "");
 
+		inParms.put("o_invdat_Date" , 0);
+		inParms.put("o_nextdate_Date" , 0);
+		
 		inParms.put("SQL_STATUS"          , 0);
 		inParms.put("SQL_MSGID"           , 0);
 		inParms.put("SQL_MSGTXT"          , "");
