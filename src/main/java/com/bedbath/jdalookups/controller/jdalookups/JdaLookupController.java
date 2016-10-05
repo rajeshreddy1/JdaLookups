@@ -165,7 +165,7 @@ public class JdaLookupController {
 		}
 	}	
 
-	@RequestMapping(value = "/jdalookups/invcal.action")
+	@RequestMapping(value = "/jdalookups/getinvcal.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> getInvCal(@RequestParam String inputDate,
 											@RequestParam String server
