@@ -80,9 +80,9 @@ public class Usp_Get_Jda_InvCal  extends StoredProcedure {
 		inParms.put("o_invdat_Date" , 0);
 		inParms.put("o_nextdate_Date" , 0);
 		
-		inParms.put("SQL_STATUS"          , 0);
-		inParms.put("SQL_MSGID"           , 0);
-		inParms.put("SQL_MSGTXT"          , "");
+		inParms.put("SQL_STATUS"  , 0);
+		inParms.put("SQL_MSGID"   , 0);
+		inParms.put("SQL_MSGTXT"  , "");
 		Map out = execute(inParms);
 		
 		return out;		

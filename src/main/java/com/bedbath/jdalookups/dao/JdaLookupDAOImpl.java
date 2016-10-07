@@ -134,6 +134,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return invcal.getResults(inputDate, server);
 				
 	}	
+
+	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Get_User_Level_BBSUSRM bbsusrm = new Usp_Get_User_Level_BBSUSRM(select);
+		return bbsusrm.getResults(user, applicationCode, store, server);
+				
+	}	
 	
 	public List<Store> getStores(String sql, String server) throws Exception {	
 
