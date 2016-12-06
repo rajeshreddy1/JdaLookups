@@ -231,7 +231,13 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 		
 	}	
-	
+
+	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception	{
+
+		return jdaLookupDAO.getUserLevelBbsUsrM(user, applicationCode, store, server);
+		
+	}	
+		
 	public Map getInvCal(String inputDate, String server) throws Exception	{
 
 		return jdaLookupDAO.getInvCal(inputDate, server);

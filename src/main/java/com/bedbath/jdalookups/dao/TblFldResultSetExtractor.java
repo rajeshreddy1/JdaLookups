@@ -18,6 +18,7 @@ public class TblFldResultSetExtractor implements ResultSetExtractor{
 		tblFld.setFieldValue(rs.getString("TBLVAL"));
 		tblFld.setDescription(rs.getString("TBLDSC"));
 		tblFld.setDefaultFlag(rs.getString("TBLDEF"));
+		tblFld.setTotalRows(rs.getDouble("Total_Rows"));
 		
 		return tblFld;		
 	}				

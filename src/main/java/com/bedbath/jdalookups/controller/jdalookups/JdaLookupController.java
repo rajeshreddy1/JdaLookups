@@ -152,9 +152,9 @@ public class JdaLookupController {
 				
 				List<TblFld> tblfld = new ArrayList();
 				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
-				
-				modelMap.put("data", tblfld);						
-				modelMap.put("total", map.get("p_result_Count"));
+								
+				modelMap.put("data", tblfld);
+				modelMap.put("total", tblfld.get(0).getTotalRows());
 				modelMap.put("success", true);			
 				return modelMap;																					
 								
@@ -201,6 +201,43 @@ public class JdaLookupController {
 		}
 	}	
 
+
+	@RequestMapping(value = "/jdalookups/getuserlevelfrombbsusrm.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getUserLevelFromBbsusrm(@RequestParam String user,
+			                                			  @RequestParam String applicationCode,
+			                                			  @RequestParam int storeNumber,
+			                                			  @RequestParam String server
+			) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(2);
+		
+		try {
+			
+			Map map = jdaLookupService.getUserLevelBbsUsrM(user, applicationCode, storeNumber, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getUserLevelFromBbsusrm" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+								
+				modelMap.put("data", map);						
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
 	
 	@RequestMapping(value = "/jdalookups/getpriceevents.action")
 	public @ResponseBody 
@@ -237,7 +274,7 @@ public class JdaLookupController {
 				priceEvents.addAll((Collection<? extends PriceEvent>) map.get("RESULT_LIST"));
 				
 				modelMap.put("data", priceEvents);						
-				modelMap.put("total", map.get("p_result_Count"));
+				modelMap.put("total", priceEvents.get(0).getTotalRows());
 				modelMap.put("success", true);			
 				return modelMap;																					
 								

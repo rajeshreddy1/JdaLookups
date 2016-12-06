@@ -31,10 +31,8 @@ public class Usp_Price_Event_Search  extends StoredProcedure {
 		declareParameter(new SqlParameter("p_event_Start_Date" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_event_Number" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_sort_Fields" , Types.VARCHAR));
-		declareParameter(new SqlParameter("p_start_Row" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_result_Type" , Types.CHAR));
-		declareParameter(new SqlInOutParameter("p_result_Count", Types.NUMERIC));		
+		declareParameter(new SqlParameter("p_offset_Row" , Types.NUMERIC));
+		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));		
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGID", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGTXT", Types.VARCHAR));
@@ -54,10 +52,8 @@ public class Usp_Price_Event_Search  extends StoredProcedure {
 		inParms.put("p_event_Start_Date"  , startDate);
 		inParms.put("p_event_Number"      , eventNumber);
 		inParms.put("p_sort_Fields"       , sortFields);
-		inParms.put("p_start_Row"         , start + 1);
+		inParms.put("p_offset_Row"        , start);
 		inParms.put("p_number_Of_Rows"    , limit);
-		inParms.put("p_result_Type"       , "B");
-		inParms.put("p_result_Count"      , 0);
 		inParms.put("SQL_STATUS"          , 0);
 		inParms.put("SQL_MSGID"           , 0);
 		inParms.put("SQL_MSGTXT"          , "");

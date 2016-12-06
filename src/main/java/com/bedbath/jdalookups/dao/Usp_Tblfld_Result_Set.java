@@ -30,10 +30,8 @@ public class Usp_Tblfld_Result_Set  extends StoredProcedure {
 		declareParameter(new SqlParameter("p_search_Description" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_ignore_Blank_Value" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_sort_Field" , Types.VARCHAR));
-		declareParameter(new SqlParameter("p_start_Row" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_result_Type" , Types.CHAR));
-		declareParameter(new SqlInOutParameter("p_result_Count", Types.NUMERIC));		
+		declareParameter(new SqlParameter("p_offset_Row" , Types.NUMERIC));
+		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));		
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGID", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGTXT", Types.VARCHAR));
@@ -52,14 +50,12 @@ public class Usp_Tblfld_Result_Set  extends StoredProcedure {
 		inParms.put("p_search_Description", searchDescription);
 		inParms.put("p_ignore_Blank_Value", ignoreBlankValue);
 		inParms.put("p_sort_Field"        , sortField);
-		inParms.put("p_start_Row"         , start + 1);
+		inParms.put("p_offset_Row"         , start);
 		inParms.put("p_number_Of_Rows"    , limit);
-		inParms.put("p_result_Type"       , "B");
-		inParms.put("p_result_Count"      , 0);
 		inParms.put("SQL_STATUS"          , 0);
 		inParms.put("SQL_MSGID"           , 0);
 		inParms.put("SQL_MSGTXT"          , "");
-		Map out = execute(inParms);
+		Map out = execute(inParms);				
 		
 		return out;		
 		

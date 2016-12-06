@@ -6,6 +6,7 @@ public class TblFld {
 	private String fieldValue;
 	private String description;
 	private String defaultFlag;
+	private Double totalRows;
 	
 	public String getFieldName() {
 		return fieldName;
@@ -19,6 +20,9 @@ public class TblFld {
 	public String getDefaultFlag() {
 		return defaultFlag;
 	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
@@ -31,5 +35,7 @@ public class TblFld {
 	public void setDefaultFlag(String defaultFlag) {
 		this.defaultFlag = defaultFlag;
 	}
-			
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
 }

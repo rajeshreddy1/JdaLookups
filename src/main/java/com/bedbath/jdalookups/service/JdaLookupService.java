@@ -46,6 +46,7 @@ public interface JdaLookupService {
 	
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
 	public Map getInvCal(String inputDate, String server) throws Exception;
+	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception;
 	public String formatProductGroupLookupCriteria(Long groupNumber, String description);	
 	public String getHierarchyName(String hierarchyLevel, int department, int subDepartment, int classa, String server) throws Exception;
 	public String getVendorName(int vendorNumber, String server) throws Exception;

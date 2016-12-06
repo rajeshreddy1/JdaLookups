@@ -23,6 +23,7 @@ public class PriceEvent {
 	private String comment4;
 	private String comment5;
 	private String clearanceSignage;
+	private Double totalRows;
 	
 	public String getEventReason() {
 		return eventReason;
@@ -138,5 +139,10 @@ public class PriceEvent {
 	public void setClearanceSignage(String clearanceSignage) {
 		this.clearanceSignage = clearanceSignage;
 	}
-	
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
 }
