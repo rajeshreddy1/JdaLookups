@@ -32,6 +32,7 @@ public class PriceEventResultSetExtractor implements ResultSetExtractor{
 		priceEvent.setPercentOff(rs.getInt("EVPERO"));
 		priceEvent.setPricingMethod(rs.getInt("EVMETH"));
 		priceEvent.setReasonDescription(rs.getString("TBLDSC"));
+		priceEvent.setTotalRows(rs.getDouble("TOTAL_ROWS"));
 		
 		return priceEvent;		
 	}				

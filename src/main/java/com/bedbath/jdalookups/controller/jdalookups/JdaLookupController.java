@@ -154,7 +154,13 @@ public class JdaLookupController {
 				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
 								
 				modelMap.put("data", tblfld);
-				modelMap.put("total", tblfld.get(0).getTotalRows());
+				
+				if(tblfld.size()>0) {
+					modelMap.put("total", tblfld.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
 				modelMap.put("success", true);			
 				return modelMap;																					
 								
@@ -273,8 +279,14 @@ public class JdaLookupController {
 				List<PriceEvent> priceEvents = new ArrayList();		
 				priceEvents.addAll((Collection<? extends PriceEvent>) map.get("RESULT_LIST"));
 				
-				modelMap.put("data", priceEvents);						
-				modelMap.put("total", priceEvents.get(0).getTotalRows());
+				modelMap.put("data", priceEvents);	
+				
+				if(priceEvents.size()>0) {
+					modelMap.put("total", priceEvents.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+				
 				modelMap.put("success", true);			
 				return modelMap;																					
 								
