@@ -10,7 +10,7 @@ public class ManagerRowMapper implements RowMapper {
 
 	@Override
 	public Object mapRow(ResultSet rs, int line) throws SQLException {
-		TitleResultSetExtractor extractor = new TitleResultSetExtractor();
+		ManagerResultSetExtractor extractor = new ManagerResultSetExtractor();
 	    return extractor.extractData(rs);
 	}	
 	
