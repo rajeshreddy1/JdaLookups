@@ -14,7 +14,7 @@ public class TitleResultSetExtractor implements ResultSetExtractor{
 
 		Title title = new Title();
 		
-		title.setTitle(rs.getString("Title"));
+		title.setTitle(rs.getString("Title").trim());
 		
 		return title;		
 	}				

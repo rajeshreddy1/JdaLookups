@@ -14,8 +14,8 @@ public class ManagerResultSetExtractor implements ResultSetExtractor{
 
 		Manager manager = new Manager();
 		
-		manager.setTitle(rs.getString("TITLE"));
-		manager.setManager(rs.getString("MANAGER"));
+		manager.setTitle(rs.getString("TITLE").trim());
+		manager.setManager(rs.getString("MANAGER").trim());
 		
 		return manager;		
 	}				

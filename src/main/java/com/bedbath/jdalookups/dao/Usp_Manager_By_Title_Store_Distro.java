@@ -17,11 +17,21 @@ import com.bedbath.jdalookups.dao.StoreRowMapper;
 public class Usp_Manager_By_Title_Store_Distro  extends StoredProcedure {
 
 	@SuppressWarnings("rawtypes")
-	public Usp_Manager_By_Title_Store_Distro(JdbcTemplate jdbcTemplate) {
+	public Usp_Manager_By_Title_Store_Distro(JdbcTemplate jdbcTemplate, String action) {
 		
 		super(jdbcTemplate, "Usp_Manager_By_Title_Store_Distro");
 		
-		RowMapper rowMapper = new PriceEventRowMapper();
+		RowMapper rowMapper=null;
+		
+		switch(action) {
+		
+		case "titles" :
+			rowMapper = new TitleRowMapper();
+			break;
+		case "managers" : 
+			rowMapper = new ManagerRowMapper();
+			break;		
+		}		
 		
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));
 		

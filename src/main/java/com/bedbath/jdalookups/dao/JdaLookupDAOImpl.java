@@ -130,7 +130,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		 
-		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select);
+		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select, action);
 		return manager.getResults(action); 
 				
 	}
@@ -141,7 +141,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		 
-		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select);
+		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select, action);
 		return manager.getResults(action, title); 
 				
 	}
