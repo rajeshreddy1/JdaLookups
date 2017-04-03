@@ -123,7 +123,29 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return tblfld.getResults(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 				
 	}
-		
+
+	public Map getTitles(String action, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select);
+		return manager.getResults(action); 
+				
+	}
+
+	public Map getManagers(String action, String title, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Manager_By_Title_Store_Distro manager = new Usp_Manager_By_Title_Store_Distro(select);
+		return manager.getResults(action, title); 
+				
+	}
+	
 	public Map getInvCal(String inputDate, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	

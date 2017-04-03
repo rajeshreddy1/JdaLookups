@@ -232,6 +232,19 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}	
 
+	public Map getTitles(String action, String server) throws Exception {
+		
+		return jdaLookupDAO.getTitles(action, server);
+		
+	}
+
+	public Map getManagers(String action, String title, String server) throws Exception {
+		
+		return jdaLookupDAO.getManagers(action, title, server);
+		
+	}
+
+	
 	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception	{
 
 		return jdaLookupDAO.getUserLevelBbsUsrM(user, applicationCode, store, server);

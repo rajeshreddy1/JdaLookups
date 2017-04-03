@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
@@ -24,6 +25,7 @@ import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.TblFld;
+import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
 import com.bedbath.jdalookups.service.JdaLookupService;
@@ -119,6 +121,95 @@ public class JdaLookupController {
 		}
 
 	}
+
+	@RequestMapping(value = "/jdalookups/titlelookup.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getTitles(@RequestParam String action,
+			                                       @RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getTitles(action, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getTitles" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Title> title = new ArrayList();
+				title.addAll((Collection<? extends Title>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", title);
+				
+				if(title.size()>0) {
+					modelMap.put("total", 0);	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+
+	@RequestMapping(value = "/jdalookups/managerlookup.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getManagers(@RequestParam String action,
+										      @RequestParam String title,
+			                                  @RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getManagers(action, title, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getManagers" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Manager> manager = new ArrayList();
+				manager.addAll((Collection<? extends Manager>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", manager);
+				
+				if(manager.size()>0) {
+					modelMap.put("total", 0);	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
 	
 	@RequestMapping(value = "/jdalookups/gettblfldentries.action")
 	public @ResponseBody 
@@ -233,7 +324,7 @@ public class JdaLookupController {
 				return modelMap;
 				
 			} else {
-								
+								 
 				modelMap.put("data", map);						
 				modelMap.put("success", true);			
 				return modelMap;																					
