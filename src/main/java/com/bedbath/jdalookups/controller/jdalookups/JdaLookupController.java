@@ -146,6 +146,11 @@ public class JdaLookupController {
 			} else {
 				
 				List<Title> title = new ArrayList();
+				
+				Title all = new Title();
+				all.setTitle("*ALL");
+				
+				title.add(all);								
 				title.addAll((Collection<? extends Title>) map.get("RESULT_LIST"));
 								
 				modelMap.put("data", title);
