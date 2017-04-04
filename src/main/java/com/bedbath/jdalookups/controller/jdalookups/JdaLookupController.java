@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.Color;
+import com.bedbath.jdalookups.model.Concept;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
@@ -201,6 +202,50 @@ public class JdaLookupController {
 				modelMap.put("data", manager);
 				
 				if(manager.size()>0) {
+					modelMap.put("total", 0);	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+
+
+	@RequestMapping(value = "/jdalookups/conceptlookup.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getConcepts(@RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getConcepts(server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getConcepts" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Concept> concepts = new ArrayList();
+				concepts.addAll((Collection<? extends Concept>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", concepts);
+				
+				if(concepts.size()>0) {
 					modelMap.put("total", 0);	
 				} else {
 					modelMap.put("total", 0);

@@ -244,6 +244,11 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 
+	public Map getConcepts(String server) throws Exception {
+		
+		return jdaLookupDAO.getConcepts(server);
+		
+	}
 	
 	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception	{
 

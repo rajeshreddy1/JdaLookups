@@ -157,6 +157,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}	
 
+	public Map getConcepts(String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Concept_Result_Set concepts = new Usp_Concept_Result_Set(select);
+		return concepts.getResults(); 
+				
+	}
+		
 	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	
