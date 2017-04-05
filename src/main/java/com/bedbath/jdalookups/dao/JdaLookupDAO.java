@@ -34,7 +34,7 @@ public interface JdaLookupDAO {
 	public Map getInvCal(String inputDate, String server) throws Exception;
 	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception;
 	public List<Store> getStores(String sql, String server) throws Exception;
-	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) throws Exception;
+	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public List<Zone> getZones(String sql, String server) throws Exception;
 	public List<StateProvince> getStates(String sql, String server) throws Exception;
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception;

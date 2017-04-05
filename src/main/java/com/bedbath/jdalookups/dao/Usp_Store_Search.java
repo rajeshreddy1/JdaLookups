@@ -47,23 +47,24 @@ public class Usp_Store_Search  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(int zoneNumber,int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) {
+	public Map getResults(int zoneNumber,int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) {
 		
 		Map inParms = new HashMap();
 
-		inParms.put("p_zone_Number"      , zoneNumber);
-		inParms.put("p_company_Number"   , 0);
-		inParms.put("p_store_Number"     , storeNumber);
-		inParms.put("p_store_Name"       , storeName);
-		inParms.put("p_country_Code"     , "");
-		inParms.put("p_state_Code"       , state);
-		inParms.put("p_city"             , city);
-		inParms.put("p_store_Type"       , storeType);
-		inParms.put("p_price_Event"      , priceEvent);
-		inParms.put("p_sort_Fields"      , sortFields);
-		inParms.put("p_existence_Column" , existenceColumn);
+		inParms.put("p_zone_Number"          , zoneNumber);
+		inParms.put("p_company_Number"       , 0);
+		inParms.put("p_store_Number"         , storeNumber);
+		inParms.put("p_store_Name"           , storeName);
+		inParms.put("p_country_Code"         , "");
+		inParms.put("p_state_Code"           , state);
+		inParms.put("p_city"                 , city);
+		inParms.put("p_store_Type"           , storeType);
+		inParms.put("p_price_Event"          , priceEvent);
+		inParms.put("p_sort_Fields"          , sortFields);
+		inParms.put("p_existence_Column"     , existenceColumn);
+		inParms.put("p_append_To_Whr_Clause" , existenceColumn);
 		
-		inParms.put("p_offset_Row"         , start);
+		inParms.put("p_offset_Row"        , start);
 		inParms.put("p_number_Of_Rows"    , limit);
 		inParms.put("SQL_STATUS"          , 0);
 		inParms.put("SQL_MSGID"           , 0);

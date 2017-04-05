@@ -593,7 +593,8 @@ public class JdaLookupController {
 											 @RequestParam String storeType,
 											 @RequestParam int priceEvent,
 											 @RequestParam String sortFields,
-											 @RequestParam String existenceColumn,											 
+											 @RequestParam String existenceColumn,	
+											 @RequestParam String appendToWhereClause,
 											 @RequestParam String server,
 											 @RequestParam int start,
 											 @RequestParam int limit) {
@@ -602,7 +603,7 @@ public class JdaLookupController {
 		
 		try {
 			
-			Map map = jdaLookupService.getStores(zoneNumber, storeNumber, storeName, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
+			Map map = jdaLookupService.getStores(zoneNumber, storeNumber, storeName, state, city, storeType, priceEvent, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
