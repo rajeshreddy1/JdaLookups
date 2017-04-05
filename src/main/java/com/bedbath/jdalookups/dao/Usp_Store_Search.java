@@ -36,6 +36,7 @@ public class Usp_Store_Search  extends StoredProcedure {
 		declareParameter(new SqlParameter("p_price_Event" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_sort_Fields" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_existence_Column" , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_append_To_Whr_Clause" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_offset_Row" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));		
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
@@ -62,7 +63,7 @@ public class Usp_Store_Search  extends StoredProcedure {
 		inParms.put("p_price_Event"          , priceEvent);
 		inParms.put("p_sort_Fields"          , sortFields);
 		inParms.put("p_existence_Column"     , existenceColumn);
-		inParms.put("p_append_To_Whr_Clause" , existenceColumn);
+		inParms.put("p_append_To_Whr_Clause" , appendToWhereClause);
 		
 		inParms.put("p_offset_Row"        , start);
 		inParms.put("p_number_Of_Rows"    , limit);
