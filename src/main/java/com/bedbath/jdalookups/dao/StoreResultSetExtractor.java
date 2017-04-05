@@ -30,6 +30,18 @@ public class StoreResultSetExtractor implements ResultSetExtractor{
 		store.setStoreOrOffice(rs.getString("STRHDO"));
 		store.setStoreType(rs.getString("STRTYP"));
 		
+		try{
+			store.setTotalRows(rs.getDouble("TOTAL_ROWS"));
+		} catch(Exception e) {
+			
+		}
+		
+		try{
+			store.setExistenceColumn(rs.getDouble("EXISTCT"));
+		} catch(Exception e) {
+			
+		}
+		
 		return store;		
 	}				
 	

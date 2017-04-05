@@ -582,6 +582,64 @@ public class JdaLookupController {
 				
 	}
 
+
+	@RequestMapping(value = "/jdalookups/storelookup.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getStores(@RequestParam int zoneNumber,
+			                                 @RequestParam int companyNumber,
+			                                 @RequestParam int storeNumber,
+											 @RequestParam String storeName,
+											 @RequestParam String country,
+											 @RequestParam String state,
+											 @RequestParam String city,
+											 @RequestParam String storeType,
+											 @RequestParam int priceEvent,
+											 @RequestParam String sortFields,
+											 @RequestParam String existenceColumn,											 
+											 @RequestParam String server,
+											 @RequestParam int start,
+											 @RequestParam int limit) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getStores(zoneNumber, companyNumber, storeNumber, storeName, country, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getTblFldEntries" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Store> stores = new ArrayList();
+				stores.addAll((Collection<? extends Store>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", stores);
+				
+				if(stores.size()>0) {
+					modelMap.put("total", stores.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+	
 	@RequestMapping(value = "/jdalookups/eventstorelookup.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getEventStores(@RequestParam int priceEvent,

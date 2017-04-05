@@ -17,6 +17,8 @@ public class Store {
 	private int district;
 	private String storeType;
 	private String storeOrOffice;
+	private Double totalRows;
+	private Double existenceColumn;
 	
 	public int getStoreNumber() {
 		return storeNumber;
@@ -107,6 +109,18 @@ public class Store {
 	}
 	public void setStoreOrOffice(String storeOrOffice) {
 		this.storeOrOffice = storeOrOffice;
+	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
+	public Double getExistenceColumn() {
+		return existenceColumn;
+	}
+	public void setExistenceColumn(Double existenceColumn) {
+		this.existenceColumn = existenceColumn;
 	}			
 	
 }
