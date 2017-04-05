@@ -585,11 +585,11 @@ public class JdaLookupController {
 
 	@RequestMapping(value = "/jdalookups/storelookupn.action")
 	public @ResponseBody
-	Map<String, ? extends Object> getStores(@RequestParam int zoneNumber,
-			                                 @RequestParam int storeNumber,
-											 @RequestParam String storeName,
+	Map<String, ? extends Object> getStores(@RequestParam int storeNumber,
+											@RequestParam String storeName,			                                 
+			                                 @RequestParam String city,
 											 @RequestParam String state,
-											 @RequestParam String city,
+											 @RequestParam int zoneNumber,
 											 @RequestParam String storeType,
 											 @RequestParam int priceEvent,
 											 @RequestParam String sortFields,
@@ -611,7 +611,7 @@ public class JdaLookupController {
 				String sqlMsgId   = map.get("SQL_STATUS").toString();
 				String sqlErrText = map.get("SQL_MSGTXT").toString();
 				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupContoller.getTblFldEntries" + " - " + sqlErrText);
+				modelMap.put("exception", "JdaLookupContoller.getStores" + " - " + sqlErrText);
 				return modelMap;
 				
 			} else {
