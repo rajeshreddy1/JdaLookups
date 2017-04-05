@@ -47,15 +47,15 @@ public class Usp_Store_Search  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(int zoneNumber,int companyNumber, int storeNumber, String storeName, String country, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) {
+	public Map getResults(int zoneNumber,int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) {
 		
 		Map inParms = new HashMap();
 
 		inParms.put("p_zone_Number"      , zoneNumber);
-		inParms.put("p_company_Number"   ,companyNumber);
+		inParms.put("p_company_Number"   , 0);
 		inParms.put("p_store_Number"     , storeNumber);
 		inParms.put("p_store_Name"       , storeName);
-		inParms.put("p_country_Code"     , country);
+		inParms.put("p_country_Code"     , "");
 		inParms.put("p_state_Code"       , state);
 		inParms.put("p_city"             , city);
 		inParms.put("p_store_Type"       , storeType);

@@ -30,7 +30,7 @@ public interface JdaLookupService {
 	public List<PriceGroup> getPriceGroups(String priceGroupCode, String priceGroupDescription, String server, int start, int limit) throws Exception;
 	public List<Store> getStores(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception;
 	public List<Store> getEventStores(int priceEvent, String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception;	
-	public Map getStores(int zoneNumber, int companyNumber, int storeNumber, String storeName, String country, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) throws Exception;
+	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) throws Exception;
 	public List<Zone> getZones(int zoneNumber, String zoneName, String server, int start, int limit) throws Exception;
 	public List<StateProvince> getStates(String country, String server, int start, int limit) throws Exception;	
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatuses, String sortFields, int start, int limit, String server) throws Exception;

@@ -179,14 +179,14 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}	
 	
-	public Map getStores(int zoneNumber, int companyNumber, int storeNumber, String storeName, String country, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) throws Exception {
+	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, int start, int limit, String server) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		 
 		Usp_Store_Search stores = new Usp_Store_Search(select);
-		return stores.getResults(zoneNumber, companyNumber, storeNumber, storeName, country, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
+		return stores.getResults(zoneNumber, storeNumber, storeName, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
 				
 	}
 	

@@ -583,13 +583,11 @@ public class JdaLookupController {
 	}
 
 
-	@RequestMapping(value = "/jdalookups/storelookup.action")
+	@RequestMapping(value = "/jdalookups/storelookupn.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getStores(@RequestParam int zoneNumber,
-			                                 @RequestParam int companyNumber,
 			                                 @RequestParam int storeNumber,
 											 @RequestParam String storeName,
-											 @RequestParam String country,
 											 @RequestParam String state,
 											 @RequestParam String city,
 											 @RequestParam String storeType,
@@ -604,7 +602,7 @@ public class JdaLookupController {
 		
 		try {
 			
-			Map map = jdaLookupService.getStores(zoneNumber, companyNumber, storeNumber, storeName, country, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
+			Map map = jdaLookupService.getStores(zoneNumber, storeNumber, storeName, state, city, storeType, priceEvent, sortFields, existenceColumn, start, limit, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
