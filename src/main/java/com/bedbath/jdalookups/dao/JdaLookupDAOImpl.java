@@ -17,7 +17,6 @@ import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
-import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
 
@@ -251,5 +250,18 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return name;			
 		
 	}
+	
+	public Map maintainApplicationTableValues(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String user, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Bbsappvalu_Maintenance appValue = new Usp_Bbsappvalu_Maintenance(select);
+		Map zz = appValue.getResults(action, applicationKey, charValue1, charValue2, charValue3, numValue1, numValue2, numValue3, documentPath, note1, note2, user, server);
+		
+		return zz;
+	}
+
 	
 }
