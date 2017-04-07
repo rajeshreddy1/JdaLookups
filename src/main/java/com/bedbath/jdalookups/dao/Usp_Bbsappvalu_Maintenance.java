@@ -32,9 +32,11 @@ public class Usp_Bbsappvalu_Maintenance  extends StoredProcedure {
 		declareParameter(new SqlParameter("p_document_Path"   , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_note_1"          , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_note_2"          , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_seq_Name"        , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_user"            , Types.VARCHAR));
 
 		declareParameter(new SqlOutParameter("p_count"        , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("p_nextSequence" , Types.NUMERIC));
 		
 		declareParameter(new SqlInOutParameter("SQL_STATUS"   , Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGID"    , Types.NUMERIC));
@@ -45,7 +47,7 @@ public class Usp_Bbsappvalu_Maintenance  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String user, String server) {
+	public Map getResults(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceName, String user, String server) {
 		
 		Map inParms = new HashMap();
 		
@@ -60,9 +62,11 @@ public class Usp_Bbsappvalu_Maintenance  extends StoredProcedure {
 		inParms.put("p_document_Path"   ,     documentPath);   
 		inParms.put("p_note_1"          ,     note1);   
 		inParms.put("p_note_2"          ,     note2);
+		inParms.put("p_seq_Name"        ,     sequenceName);
 		inParms.put("p_user"            ,     user);   
 				
-		inParms.put("p_count"           ,     0);   
+		inParms.put("p_count"           ,     0);
+		inParms.put("p_nextSequence"    ,     0);   
 				
 		inParms.put("SQL_STATUS"          , 0);
 		inParms.put("SQL_MSGID"           , 0);

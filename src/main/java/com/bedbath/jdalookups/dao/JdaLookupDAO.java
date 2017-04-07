@@ -39,6 +39,6 @@ public interface JdaLookupDAO {
 	public List<StateProvince> getStates(String sql, String server) throws Exception;
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception;
 	public String getLookupName(String sql, String server) throws Exception;
-	public Map maintainApplicationTableValues(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String user, String server) throws Exception;
+	public Map maintainApplicationTableValues(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceNumber, String user, String server) throws Exception;
 			
 }
