@@ -226,21 +226,21 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}		
 	
-	public Map getZones(int zoneNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+	public Map getZones(int zoneNumber, String zoneName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
-		return jdaLookupDAO.getZones(zoneNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
-		
-	}
-	
-	public Map getRegions(int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
-		
-		return jdaLookupDAO.getRegions(regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		return jdaLookupDAO.getZones(zoneNumber, zoneName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 		
 	}
 	
-	public Map getDistricts(int districtNumber, int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+	public Map getRegions(int regionNumber, String regionName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
-		return jdaLookupDAO.getDistricts(districtNumber, regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		return jdaLookupDAO.getRegions(regionNumber, regionName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getDistricts(int districtNumber, int regionNumber, String districtName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getDistricts(districtNumber, regionNumber, districtName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 		
 	}
 	

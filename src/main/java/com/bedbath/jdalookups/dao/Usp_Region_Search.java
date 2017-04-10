@@ -25,7 +25,8 @@ public class Usp_Region_Search  extends StoredProcedure {
 		
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));
 		
-		declareParameter(new SqlParameter("p_region_number" , Types.NUMERIC));      
+		declareParameter(new SqlParameter("p_region_number" , Types.NUMERIC));
+		declareParameter(new SqlParameter("p_region_name" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_sort_Fields" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_existence_Column" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_append_To_Whr_Clause" , Types.VARCHAR));
@@ -40,11 +41,12 @@ public class Usp_Region_Search  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) {
+	public Map getResults(int regionNumber, String regionName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) {
 		
 		Map inParms = new HashMap();
 
 		inParms.put("p_region_number"        , regionNumber);
+		inParms.put("p_region_name"          , regionName);
 		inParms.put("p_sort_Fields"          , sortFields);
 		inParms.put("p_existence_Column"     , existenceColumn);
 		inParms.put("p_append_To_Whr_Clause" , appendToWhereClause);

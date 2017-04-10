@@ -588,6 +588,7 @@ public class JdaLookupController {
 	public @ResponseBody
 	Map<String, ? extends Object> getDistrict(@RequestParam int districtNumber,
 			                                  @RequestParam int regionNumber,
+			                                  @RequestParam String districtName,
 											  @RequestParam String sortFields,
 											  @RequestParam String existenceColumn,	
 											  @RequestParam String appendToWhereClause,
@@ -599,7 +600,7 @@ public class JdaLookupController {
 		
 		try {
 			
-			Map map = jdaLookupService.getDistricts(districtNumber, regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+			Map map = jdaLookupService.getDistricts(districtNumber, regionNumber, districtName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
@@ -637,7 +638,8 @@ public class JdaLookupController {
 
 	@RequestMapping(value = "/jdalookups/regionlookup.action")
 	public @ResponseBody
-	Map<String, ? extends Object> getDistrict(@RequestParam int regionNumber,
+	Map<String, ? extends Object> getRegions( @RequestParam int regionNumber,
+			                                  @RequestParam String regionName,
 											  @RequestParam String sortFields,
 											  @RequestParam String existenceColumn,	
 											  @RequestParam String appendToWhereClause,
@@ -649,7 +651,7 @@ public class JdaLookupController {
 		
 		try {
 			
-			Map map = jdaLookupService.getRegions(regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+			Map map = jdaLookupService.getRegions(regionNumber, regionName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
@@ -688,18 +690,19 @@ public class JdaLookupController {
 	@RequestMapping(value = "/jdalookups/zonelookupn.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getZones(@RequestParam int zoneNumber,
-											@RequestParam String sortFields,
-											@RequestParam String existenceColumn,	
-											@RequestParam String appendToWhereClause,
-											@RequestParam String server,
-											@RequestParam int start,
-											@RequestParam int limit) {
+			                               @RequestParam String zoneName,
+										   @RequestParam String sortFields,
+										   @RequestParam String existenceColumn,	
+										   @RequestParam String appendToWhereClause,
+										   @RequestParam String server,
+										   @RequestParam int start,
+										   @RequestParam int limit) {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);
 		
 		try {
 			
-			Map map = jdaLookupService.getZones(zoneNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+			Map map = jdaLookupService.getZones(zoneNumber, zoneName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			
