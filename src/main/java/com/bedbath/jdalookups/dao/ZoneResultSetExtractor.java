@@ -18,6 +18,16 @@ public class ZoneResultSetExtractor implements ResultSetExtractor{
 		zone.setZoneDescription(rs.getString("ZONNAM"));
 		zone.setShortDescription(rs.getString("ZONSHT"));
 		
+		try{
+			
+			zone.setCountryCode(rs.getString("ZNCTRYCOD"));
+			zone.setConversionRate(rs.getDouble("ZNCNVRAT"));
+			zone.setCurrencyCode(rs.getString("ZNCURCOD"));
+			
+		} catch (Exception e) {
+			
+		}
+						
 		return zone;		
 	}				
 	

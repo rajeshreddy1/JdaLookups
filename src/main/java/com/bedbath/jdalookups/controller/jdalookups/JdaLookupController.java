@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Concept;
+import com.bedbath.jdalookups.model.District;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
+import com.bedbath.jdalookups.model.Region;
 import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
@@ -582,7 +584,157 @@ public class JdaLookupController {
 				
 	}
 
+	@RequestMapping(value = "/jdalookups/districtlookup.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getDistrict(@RequestParam int districtNumber,
+			                                  @RequestParam int regionNumber,
+											  @RequestParam String sortFields,
+											  @RequestParam String existenceColumn,	
+											  @RequestParam String appendToWhereClause,
+											  @RequestParam String server,
+											  @RequestParam int start,
+											  @RequestParam int limit) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getDistricts(districtNumber, regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getDistricts" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<District> districts = new ArrayList();
+				districts.addAll((Collection<? extends District>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", districts);
+				
+				if(districts.size()>0) {
+					modelMap.put("total", districts.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+
+	@RequestMapping(value = "/jdalookups/regionlookup.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getDistrict(@RequestParam int regionNumber,
+											  @RequestParam String sortFields,
+											  @RequestParam String existenceColumn,	
+											  @RequestParam String appendToWhereClause,
+											  @RequestParam String server,
+											  @RequestParam int start,
+											  @RequestParam int limit) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getRegions(regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getRegions" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Region> regions = new ArrayList();
+				regions.addAll((Collection<? extends Region>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", regions);
+				
+				if(regions.size()>0) {
+					modelMap.put("total", regions.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+				
+	@RequestMapping(value = "/jdalookups/zonelookupn.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getZones(@RequestParam int zoneNumber,
+											@RequestParam String sortFields,
+											@RequestParam String existenceColumn,	
+											@RequestParam String appendToWhereClause,
+											@RequestParam String server,
+											@RequestParam int start,
+											@RequestParam int limit) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getZones(zoneNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getZones" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Zone> zones = new ArrayList();
+				zones.addAll((Collection<? extends Zone>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", zones);
+				
+				if(zones.size()>0) {
+					modelMap.put("total", zones.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+		
 	@RequestMapping(value = "/jdalookups/storelookupn.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getStores(@RequestParam int storeNumber,

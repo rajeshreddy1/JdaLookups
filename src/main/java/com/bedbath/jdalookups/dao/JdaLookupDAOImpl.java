@@ -44,7 +44,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		groupHeader =  select.query(sql, new ProductGroupHeaderRowMapper());
 		return groupHeader;
 	}
-		
+		 
 	public List<Hierarchy> getHierarchy(String sql, String server) throws Exception {	
 
 		List<Hierarchy> hierarchy = new ArrayList();
@@ -210,6 +210,41 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 
 		zones =  select.query(sql, new ZoneRowMapper());
 		return zones;
+	}
+
+	public Map getZones(int zoneNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Zone_Search zoneSearch = new Usp_Zone_Search(select);
+		return zoneSearch.getResults(zoneNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+				
+	}
+
+
+	public Map getRegions(int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Region_Search regionSearch = new Usp_Region_Search(select);
+		return regionSearch.getResults(regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+				
+	}
+
+
+	public Map getDistricts(int districtNumber, int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_District_Search districtSearch = new Usp_District_Search(select);
+		return districtSearch.getResults(districtNumber, regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+				
 	}
 
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception {	

@@ -225,7 +225,25 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getPriceGroups(sql, server);
 		
 	}		
-	 
+	
+	public Map getZones(int zoneNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getZones(zoneNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getRegions(int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getRegions(regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getDistricts(int districtNumber, int regionNumber, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getDistricts(districtNumber, regionNumber, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception	{
 
 		return jdaLookupDAO.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
