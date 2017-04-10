@@ -26,7 +26,7 @@ public class Usp_Zone_Search  extends StoredProcedure {
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));
 
 		declareParameter(new SqlParameter("p_zone_number" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_zone_Name" , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_zone_name" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_sort_Fields" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_existence_Column" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_append_To_Whr_Clause" , Types.VARCHAR));

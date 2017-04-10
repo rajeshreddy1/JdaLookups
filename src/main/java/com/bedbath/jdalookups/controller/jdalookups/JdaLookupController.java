@@ -586,7 +586,7 @@ public class JdaLookupController {
 
 	@RequestMapping(value = "/jdalookups/districtlookup.action")
 	public @ResponseBody
-	Map<String, ? extends Object> getDistrict(@RequestParam int districtNumber,
+	Map<String, ? extends Object> getDistricts(@RequestParam int districtNumber,
 			                                  @RequestParam int regionNumber,
 			                                  @RequestParam String districtName,
 											  @RequestParam String sortFields,
