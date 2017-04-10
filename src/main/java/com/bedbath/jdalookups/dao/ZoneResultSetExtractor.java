@@ -15,7 +15,16 @@ public class ZoneResultSetExtractor implements ResultSetExtractor{
 		Zone zone = new Zone();
 		
 		zone.setZoneNumber(rs.getInt("ZONNUM"));
-		zone.setZoneDescription(rs.getString("ZONNAM"));
+		
+		try{
+			zone.setZoneDescription(rs.getString("ZONNAM"));	
+		} catch(Exception e) {
+			zone.setZoneDescription(rs.getString("ZONE_NAME"));
+		}
+		
+		
+		
+		
 		zone.setShortDescription(rs.getString("ZONSHT"));
 		
 		try{
