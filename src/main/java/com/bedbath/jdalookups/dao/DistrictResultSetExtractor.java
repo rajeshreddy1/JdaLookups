@@ -18,6 +18,7 @@ public class DistrictResultSetExtractor implements ResultSetExtractor{
 		district.setDistrictName(rs.getString("DISTRICT_NAME"));
 		district.setShortName(rs.getString("DSTSHT"));
 		district.setRegionNumber(rs.getInt("REGNUM"));
+		district.setTotalRows(rs.getDouble("TOTAL_ROWS"));
 		
 		return district;		
 	}				

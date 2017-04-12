@@ -21,10 +21,7 @@ public class ZoneResultSetExtractor implements ResultSetExtractor{
 		} catch(Exception e) {
 			zone.setZoneDescription(rs.getString("ZONE_NAME"));
 		}
-		
-		
-		
-		
+				
 		zone.setShortDescription(rs.getString("ZONSHT"));
 		
 		try{
@@ -32,6 +29,7 @@ public class ZoneResultSetExtractor implements ResultSetExtractor{
 			zone.setCountryCode(rs.getString("ZNCTRYCOD"));
 			zone.setConversionRate(rs.getDouble("ZNCNVRAT"));
 			zone.setCurrencyCode(rs.getString("ZNCURCOD"));
+			zone.setTotalRows(rs.getDouble("TOTAL_ROWS"));
 			
 		} catch (Exception e) {
 			

@@ -19,6 +19,7 @@ public class RegionResultSetExtractor implements ResultSetExtractor{
 		region.setRegionManager(rs.getString("REGION_MANAGER"));
 		region.setPhoneNumber(rs.getLong("REGPHN"));
 		region.setShortName(rs.getString("REGSHT"));
+		region.setTotalRows(rs.getDouble("TOTAL_ROWS"));
 		
 		return region;
 		
