@@ -222,13 +222,13 @@ public class JdaLookupController {
 
 	@RequestMapping(value = "/jdalookups/conceptlookup.action")
 	public @ResponseBody 
-	Map<String, ? extends Object> getConcepts(@RequestParam String server) throws Exception {
+	Map<String, ? extends Object> getConcepts(@RequestParam String existenceColumn, @RequestParam String appendToWhrClause, @RequestParam String server) throws Exception {
 
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);
 		
 		try {
 			
-			Map map = jdaLookupService.getConcepts(server);
+			Map map = jdaLookupService.getConcepts(existenceColumn, appendToWhrClause, server);
 
 			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
 			

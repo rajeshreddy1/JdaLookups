@@ -19,29 +19,30 @@ import com.bedbath.jdalookups.model.Zone;
 public interface JdaLookupDAO {
 	
 	public List<SkuLookup> getLookupSkus(String sql, String server) throws Exception;
-	public List<ProductGroupHeader> getLookupProductGroups(String sql, String server) throws Exception;
-	
+	public List<ProductGroupHeader> getLookupProductGroups(String sql, String server) throws Exception;	
 	public List<Hierarchy> getHierarchy(String sql, String server) throws Exception;
 	public List<Vendor> getVendors(String sql, String server) throws Exception;
 	public List<Color> getColors(String sql, String server) throws Exception;
 	public List<Size> getSizes(String sql, String server) throws Exception;
 	public List<MerchandiseGroup> getMerchandiseGroups(String sql, String server) throws Exception;
 	public List<PriceGroup> getPriceGroups(String sql, String server) throws Exception;	
+	public List<Store> getStores(String sql, String server) throws Exception;
+	public List<Zone> getZones(String sql, String server) throws Exception;
+	public List<StateProvince> getStates(String sql, String server) throws Exception;
+
+	public String getLookupName(String sql, String server) throws Exception;
+	
 	public Map getTitles(String action, String server) throws Exception;
 	public Map getManagers(String action, String title, String server) throws Exception;
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
-	public Map getConcepts(String server) throws Exception;
+	public Map getConcepts(String existenceColumn, String appendToWhrClause, String server) throws Exception;
 	public Map getInvCal(String inputDate, String server) throws Exception;
 	public Map getUserLevelBbsUsrM(String user, String applicationCode, int store, String server) throws Exception;
-	public List<Store> getStores(String sql, String server) throws Exception;
-	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
-	public List<Zone> getZones(String sql, String server) throws Exception;
+	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;	
 	public Map getZones(int zoneNumber, String zoneName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getRegions(int regionNumber, String regionName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
-	public Map getDistricts(int districtNumber, int regionNumber, String districtName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
-	public List<StateProvince> getStates(String sql, String server) throws Exception;
+	public Map getDistricts(int districtNumber, int regionNumber, String districtName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;	
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception;
-	public String getLookupName(String sql, String server) throws Exception;
 	public Map maintainApplicationTableValues(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceNumber, String user, String server) throws Exception;
 			
 }

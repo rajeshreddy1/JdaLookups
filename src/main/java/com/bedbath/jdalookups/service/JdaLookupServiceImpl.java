@@ -262,9 +262,9 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 
-	public Map getConcepts(String server) throws Exception {
+	public Map getConcepts(String existenceColumn, String appendToWhrClause, String server) throws Exception {
 		
-		return jdaLookupDAO.getConcepts(server);
+		return jdaLookupDAO.getConcepts(existenceColumn, appendToWhrClause, server);
 		
 	}
 	

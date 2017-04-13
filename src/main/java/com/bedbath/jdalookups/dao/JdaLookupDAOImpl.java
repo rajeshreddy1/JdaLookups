@@ -156,14 +156,14 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}	
 
-	public Map getConcepts(String server) throws Exception {	
+	public Map getConcepts(String existenceColumn, String appendToWhrClause, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		 
 		Usp_Concept_Result_Set concepts = new Usp_Concept_Result_Set(select);
-		return concepts.getResults(); 
+		return concepts.getResults(existenceColumn, appendToWhrClause); 
 				
 	}
 		

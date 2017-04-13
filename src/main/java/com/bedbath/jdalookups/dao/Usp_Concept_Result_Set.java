@@ -27,6 +27,8 @@ public class Usp_Concept_Result_Set  extends StoredProcedure {
 		
 		declareParameter(new SqlParameter("p_company_number" , Types.NUMERIC));      
 		declareParameter(new SqlParameter("p_dns_name" , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_existence_Column" , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_append_To_Whr_Clause" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_offset_Row" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));		
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
@@ -38,17 +40,19 @@ public class Usp_Concept_Result_Set  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults() {
+	public Map getResults(String existenceColumn, String appendToWhrClause) {
 		
 		Map inParms = new HashMap();
 
-		inParms.put("p_company_number"    , 0);
-		inParms.put("p_dns_name"          , "");
-		inParms.put("p_offset_Row"        , 0);
-		inParms.put("p_number_Of_Rows"    , 2000);
-		inParms.put("SQL_STATUS"          , 0);
-		inParms.put("SQL_MSGID"           , 0);
-		inParms.put("SQL_MSGTXT"          , "");
+		inParms.put("p_company_number"       , 0);
+		inParms.put("p_dns_name"             , "");
+		inParms.put("p_existence_Column"     , existenceColumn);
+		inParms.put("p_append_To_Whr_Clause" , appendToWhrClause);
+		inParms.put("p_offset_Row"           , 0);
+		inParms.put("p_number_Of_Rows"       , 2000);
+		inParms.put("SQL_STATUS"             , 0);
+		inParms.put("SQL_MSGID"              , 0);
+		inParms.put("SQL_MSGTXT"             , "");
 		Map out = execute(inParms);				
 		
 		return out;		
