@@ -14,13 +14,13 @@ public class StoreResultSetExtractor implements ResultSetExtractor{
 
 		Store store = new Store();
 		
-		store.setAddress1(rs.getString("STADD1"));
-		store.setAddress2(rs.getString("STADD2"));
-		store.setCity(rs.getString("STADD3"));
+		store.setAddress1(rs.getString("STADD1").trim());
+		store.setAddress2(rs.getString("STADD2").trim());
+		store.setCity(rs.getString("STADD3").trim());
 		store.setCompanyNumber(rs.getInt("STCMP"));
 		store.setCountry(rs.getString("STCNTR"));
 		store.setDistrict(rs.getInt("STRDST"));
-		store.setName(rs.getString("STRNAM"));
+		store.setName(rs.getString("STRNAM").trim());
 		store.setPhoneNumber(rs.getLong("STPHON"));
 		store.setRegion(rs.getInt("REGNUM"));
 		store.setStateProvince(rs.getString("STPVST"));
