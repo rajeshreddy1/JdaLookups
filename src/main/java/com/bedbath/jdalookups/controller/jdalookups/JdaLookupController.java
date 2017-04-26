@@ -222,7 +222,7 @@ public class JdaLookupController {
 
 	@RequestMapping(value = "/jdalookups/conceptlookup.action")
 	public @ResponseBody 
-	Map<String, ? extends Object> getConcepts(@RequestParam String existenceColumn, @RequestParam String appendToWhrClause, @RequestParam String server) throws Exception {
+	Map<String, ? extends Object> getConcepts(@RequestParam String existenceColumn, @RequestParam String appendToWhrClause, @RequestParam String includeAll, @RequestParam String server) throws Exception {
 
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);
 		
@@ -244,9 +244,20 @@ public class JdaLookupController {
 				
 				List<Concept> concepts = new ArrayList();
 				concepts.addAll((Collection<? extends Concept>) map.get("RESULT_LIST"));
-								
-				modelMap.put("data", concepts);
-				
+		
+				if(includeAll.equalsIgnoreCase("Y")) {					
+					Concept concept = new Concept();
+					concept.setConceptName("ALL");
+					concept.setConceptNumber(0);
+					concept.setDnsName("");
+					List<Concept> con = new ArrayList();
+					con.add(concept);
+					con.addAll(concepts);
+					modelMap.put("data", con);					
+				} else {
+					modelMap.put("data", concepts);	
+				}
+												
 				if(concepts.size()>0) {
 					modelMap.put("total", 0);	
 				} else {
