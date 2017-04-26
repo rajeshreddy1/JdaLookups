@@ -247,7 +247,7 @@ public class JdaLookupController {
 		
 				if(includeAll.equalsIgnoreCase("Y")) {					
 					Concept concept = new Concept();
-					concept.setConceptName("ALL");
+					concept.setConceptName("*ALL");
 					concept.setConceptNumber(0);
 					concept.setDnsName("");
 					List<Concept> con = new ArrayList();
