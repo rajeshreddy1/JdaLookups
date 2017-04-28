@@ -869,12 +869,12 @@ public class JdaLookupController {
 	public @ResponseBody
 	Map<String, ? extends Object> getHierarchy(@RequestParam String level,
 											   @RequestParam int department,
-											   @RequestParam int subDepartment,
-											   @RequestParam int classa,
-											   @RequestParam String description,
+											   @RequestParam(value = "subDepartment", required = false, defaultValue = "0") int subDepartment,
+											   @RequestParam(value = "classa", required = false, defaultValue = "0") int classa,
+											   @RequestParam(value = "description", required = false, defaultValue = "")  String description,
 											   @RequestParam String server,
-											   @RequestParam int start,
-											   @RequestParam int limit) {
+											   @RequestParam(value = "start", required = false, defaultValue = "0")  int start,
+											   @RequestParam(value = "limit", required = false, defaultValue = "1")  int limit) {
 		
 		try {
 			
