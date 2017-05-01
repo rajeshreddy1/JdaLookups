@@ -18,9 +18,9 @@ import com.bedbath.jdalookups.model.Zone;
 
 public interface JdaLookupDAO {
 	
-	public List<SkuLookup> getLookupSkus(String sql, String server) throws Exception;
-	public List<ProductGroupHeader> getLookupProductGroups(String sql, String server) throws Exception;	
+	public List<SkuLookup> getLookupSkus(String sql, String server) throws Exception;		
 	public List<Hierarchy> getHierarchy(String sql, String server) throws Exception;
+	public List<ProductGroupHeader> getLookupProductGroups(String sql, String server) throws Exception;
 	public List<Vendor> getVendors(String sql, String server) throws Exception;
 	public List<Color> getColors(String sql, String server) throws Exception;
 	public List<Size> getSizes(String sql, String server) throws Exception;
@@ -29,9 +29,10 @@ public interface JdaLookupDAO {
 	public List<Store> getStores(String sql, String server) throws Exception;
 	public List<Zone> getZones(String sql, String server) throws Exception;
 	public List<StateProvince> getStates(String sql, String server) throws Exception;
-
 	public String getLookupName(String sql, String server) throws Exception;
-	
+
+	public Map getLookupSkus(int departmentNumber, int subDepartmentNumber, int classNumber, int vendorNumber, String vendorPartNumber, Long skuNumber, Long upcNumber, String skuDescription, String statuses, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
+	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception;	
 	public Map getTitles(String action, String server) throws Exception;
 	public Map getManagers(String action, String title, String server) throws Exception;
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;

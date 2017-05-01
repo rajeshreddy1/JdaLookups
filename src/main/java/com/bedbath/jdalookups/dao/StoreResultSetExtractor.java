@@ -41,13 +41,7 @@ public class StoreResultSetExtractor implements ResultSetExtractor{
 		} catch(Exception e) {
 			
 		}
-		
-		try{
-			store.setTotalRows(rs.getDouble("TOTAL_ROWS"));
-		} catch(Exception e) {
-			
-		}		
-		
+				
 		return store;		
 	}				
 	

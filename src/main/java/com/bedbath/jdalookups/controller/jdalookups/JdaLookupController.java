@@ -17,6 +17,7 @@ import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Concept;
 import com.bedbath.jdalookups.model.District;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceEvent;
@@ -437,6 +438,67 @@ public class JdaLookupController {
 				
 				if(priceEvents.size()>0) {
 					modelMap.put("total", priceEvents.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+				
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+
+	@RequestMapping(value = "/jdalookups/getlookupskusnew.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getLookupSkus(
+			@RequestParam(value = "departmentNumber", required = false, defaultValue = "0") int departmentNumber,
+			@RequestParam(value = "subDepartmentNumber", required = false, defaultValue = "0") int subDepartmentNumber,
+			@RequestParam(value = "classNumber", required = false, defaultValue = "0") int classNumber,
+			@RequestParam(value = "vendorNumber", required = false, defaultValue = "0") int vendorNumber,			
+			@RequestParam(value = "vendorPartNumber", required = false, defaultValue = "") String vendorPartNumber,
+			@RequestParam(value = "skuNumber", required = false, defaultValue = "0") Long skuNumber,
+			@RequestParam(value = "upcNumber", required = false, defaultValue = "0") Long upcNumber,
+			@RequestParam(value = "skuDescription", required = false, defaultValue = "") String skuDescription,			
+			@RequestParam(value = "statuses", required = false, defaultValue = "") String statuses,
+			@RequestParam(value = "colorCode", required = false, defaultValue = "0") int colorCode,
+			@RequestParam(value = "sizeCode", required = false, defaultValue = "") String sizeCode,
+			@RequestParam(value = "merchandiseGroup", required = false, defaultValue = "") String merchandiseGroup,
+			@RequestParam(value = "priceGroup", required = false, defaultValue = "") String priceGroup,
+			@RequestParam(value = "sortFields", required = false, defaultValue = "") String sortFields,			
+			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
+			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
+			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
+			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
+			@RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);				
+		
+		try {
+			
+			Map map = jdaLookupService.getLookupSkus(departmentNumber, subDepartmentNumber, classNumber, vendorNumber, vendorPartNumber, skuNumber, upcNumber, skuDescription, statuses, colorCode, sizeCode, merchandiseGroup, priceGroup, sortFields, existenceColumn, appendToWhereClause, start, limit, server);			
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());  
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getLookupSkus" + " - " + sqlErrText);
+				return modelMap;
+								
+			} else {
+
+				List<SkuLookup> skuLookup = new ArrayList();		
+				skuLookup.addAll((Collection<? extends SkuLookup>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", skuLookup);	
+				
+				if(skuLookup.size()>0) {
+					modelMap.put("total", skuLookup.get(0).getTotalRows());	
 				} else {
 					modelMap.put("total", 0);
 				}
@@ -895,6 +957,60 @@ public class JdaLookupController {
 				
 	}
 
+
+	@RequestMapping(value = "/jdalookups/gethierarchynew.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getHierarchy(
+			@RequestParam String action,
+			@RequestParam(value = "departmentNumber", required = false, defaultValue = "0") int departmentNumber,
+			@RequestParam(value = "subDepartmentNumber", required = false, defaultValue = "0") int subDepartmentNumber,
+			@RequestParam(value = "classNumber", required = false, defaultValue = "0") int classNumber,
+			@RequestParam(value = "hierarchyName", required = false, defaultValue = "") String hierarchyName,			
+			@RequestParam(value = "sortFields", required = false, defaultValue = "") String sortFields,			
+			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
+			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
+			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
+			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
+			@RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);				
+		
+		try {
+			
+			Map map = jdaLookupService.getHierarchy(action, departmentNumber, subDepartmentNumber, classNumber, hierarchyName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());  
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getHierarchy" + " - " + sqlErrText);
+				return modelMap;
+								
+			} else {
+
+				List<HierarchyNew> hierarchy = new ArrayList();		
+				hierarchy.addAll((Collection<? extends HierarchyNew>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", hierarchy);	
+				
+				if(hierarchy.size()>0) {
+					modelMap.put("total", hierarchy.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+				
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
+	
 	@RequestMapping(value = "/jdalookups/getcolors.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getColors(@RequestParam int colorCode,

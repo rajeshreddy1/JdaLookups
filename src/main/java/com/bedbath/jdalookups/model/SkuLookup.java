@@ -14,6 +14,8 @@ public class SkuLookup {
 	private String merchandiseGroup;
 	private int color;
 	private String priceGroup;
+	private Double totalRows;
+	private Double existenceColumn;
 	
 	public Long getSku() {
 		return sku;
@@ -86,6 +88,18 @@ public class SkuLookup {
 	}
 	public void setPriceGroup(String priceGroup) {
 		this.priceGroup = priceGroup;
+	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
+	public Double getExistenceColumn() {
+		return existenceColumn;
+	}
+	public void setExistenceColumn(Double existenceColumn) {
+		this.existenceColumn = existenceColumn;
 	}
 			
 }

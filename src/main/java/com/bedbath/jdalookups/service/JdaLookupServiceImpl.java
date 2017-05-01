@@ -226,6 +226,18 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}		
 	
+	public Map getLookupSkus(int departmentNumber, int subDepartmentNumber, int classNumber, int vendorNumber, String vendorPartNumber, Long skuNumber, Long upcNumber, String skuDescription, String statuses, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getLookupSkus(departmentNumber, subDepartmentNumber, classNumber, vendorNumber, vendorPartNumber, skuNumber, upcNumber, skuDescription, statuses, colorCode, sizeCode, merchandiseGroup, priceGroup, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getHierarchy(action, departmentNumber, subDepartmentNumber, classNumber, hierarchyName, sortFields, existenceColumn, appendToWhrClause, start, limit, server);
+		
+	}		
+			
 	public Map getZones(int zoneNumber, String zoneName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
 		return jdaLookupDAO.getZones(zoneNumber, zoneName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);

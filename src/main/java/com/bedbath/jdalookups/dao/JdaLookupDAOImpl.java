@@ -112,6 +112,28 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return priceGroups;
 	}
 	
+	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Hierarchy_Search hierarchySearch = new Usp_Hierarchy_Search(select);
+		return hierarchySearch.getResults(action, departmentNumber, subDepartmentNumber, classNumber, hierarchyName, sortFields, existenceColumn, appendToWhrClause, start, limit);
+				
+	}
+	
+	public Map getLookupSkus(int departmentNumber, int subDepartmentNumber, int classNumber, int vendorNumber, String vendorPartNumber, Long skuNumber, Long upcNumber, String skuDescription, String statuses, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Sku_Search skuSearch = new Usp_Sku_Search(select);
+		return skuSearch.getResults(departmentNumber, subDepartmentNumber, classNumber, vendorNumber, vendorPartNumber, skuNumber, upcNumber, skuDescription, statuses, colorCode, sizeCode, merchandiseGroup, priceGroup, sortFields, existenceColumn, appendToWhereClause, start, limit);
+				
+	}
+	
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	
