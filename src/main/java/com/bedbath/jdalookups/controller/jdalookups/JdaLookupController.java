@@ -468,7 +468,7 @@ public class JdaLookupController {
 			@RequestParam(value = "sizeCode", required = false, defaultValue = "") String sizeCode,
 			@RequestParam(value = "merchandiseGroup", required = false, defaultValue = "") String merchandiseGroup,
 			@RequestParam(value = "priceGroup", required = false, defaultValue = "") String priceGroup,
-			@RequestParam(value = "sortFields", required = false, defaultValue = "") String sortFields,			
+			@RequestParam(value = "sortFields", required = false, defaultValue = "INUMBR") String sortFields,			
 			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
 			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
 			@RequestParam(value = "start", required = false, defaultValue = "0") int start,

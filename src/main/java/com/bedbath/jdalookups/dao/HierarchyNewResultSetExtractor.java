@@ -21,8 +21,13 @@ public class HierarchyNewResultSetExtractor implements ResultSetExtractor{
 		hierarchy.setClassa(rs.getInt("Class"));
 		hierarchy.setClassDescription(rs.getString("ClassName"));
 		hierarchy.setTotalRows(rs.getDouble("TOTAL_ROWS"));
-		hierarchy.setExistenceColumn(rs.getDouble("EXISTCT"));		
 		
+		try {
+			hierarchy.setExistenceColumn(rs.getDouble("EXISTCT"));	
+		} catch(Exception e) {
+			
+		}
+								
 		return hierarchy;		
 	}				
 	
