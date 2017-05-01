@@ -455,11 +455,11 @@ public class JdaLookupController {
 	@RequestMapping(value = "/jdalookups/getlookupskusnew.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> getLookupSkus(
-			@RequestParam(value = "departmentNumber", required = false, defaultValue = "0") int departmentNumber,
-			@RequestParam(value = "subDepartmentNumber", required = false, defaultValue = "0") int subDepartmentNumber,
-			@RequestParam(value = "classNumber", required = false, defaultValue = "0") int classNumber,
-			@RequestParam(value = "vendorNumber", required = false, defaultValue = "0") int vendorNumber,			
-			@RequestParam(value = "vendorPartNumber", required = false, defaultValue = "") String vendorPartNumber,
+			@RequestParam(value = "department", required = false, defaultValue = "0") int departmentNumber,
+			@RequestParam(value = "subDepartment", required = false, defaultValue = "0") int subDepartmentNumber,
+			@RequestParam(value = "classa", required = false, defaultValue = "0") int classNumber,
+			@RequestParam(value = "vendor", required = false, defaultValue = "0") int vendorNumber,			
+			@RequestParam(value = "partNumber", required = false, defaultValue = "") String vendorPartNumber,
 			@RequestParam(value = "skuNumber", required = false, defaultValue = "0") Long skuNumber,
 			@RequestParam(value = "upcNumber", required = false, defaultValue = "0") Long upcNumber,
 			@RequestParam(value = "skuDescription", required = false, defaultValue = "") String skuDescription,			
