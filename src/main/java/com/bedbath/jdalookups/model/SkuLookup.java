@@ -13,6 +13,7 @@ public class SkuLookup {
 	private String vendorPartNumber;
 	private String merchandiseGroup;
 	private int color;
+	private String size;
 	private String priceGroup;
 	private Double totalRows;
 	private Double existenceColumn;
@@ -79,6 +80,13 @@ public class SkuLookup {
 	}
 	public int getColor() {
 		return color;
+	}
+	
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
 	}
 	public String getPriceGroup() {
 		return priceGroup;

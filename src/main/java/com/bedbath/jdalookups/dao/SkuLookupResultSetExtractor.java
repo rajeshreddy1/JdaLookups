@@ -27,8 +27,14 @@ public class SkuLookupResultSetExtractor implements ResultSetExtractor{
 		skuLookup.setColor(rs.getInt("ISCOLR"));
 		skuLookup.setPriceGroup(rs.getString("ICORGP"));
 		
+		try {
+			skuLookup.setSize(rs.getString("ISSIZE"));
+		} catch(Exception e) {
+			
+		}
+		
 		try{
-			skuLookup.setTotalRows(rs.getDouble("TOTAL_ROWS"));
+			skuLookup.setTotalRows(rs.getDouble("TOTAL_ROWS"));			
 		} catch(Exception e) {
 			
 		}
