@@ -4,7 +4,9 @@ public class PriceGroup {
 
 	private String priceGroupCode;
 	private String priceGroupDescription;
-	
+	private Double totalRows;
+	private Double existenceColumn;
+		
 	public String getPriceGroupCode() {		
 		return priceGroupCode;
 	}
@@ -16,6 +18,18 @@ public class PriceGroup {
 	}
 	public void setPriceGroupDescription(String priceGroupDescription) {
 		this.priceGroupDescription = priceGroupDescription;
+	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
+	public Double getExistenceColumn() {
+		return existenceColumn;
+	}
+	public void setExistenceColumn(Double existenceColumn) {
+		this.existenceColumn = existenceColumn;
 	}
 			
 }

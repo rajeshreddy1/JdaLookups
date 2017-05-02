@@ -5,7 +5,9 @@ public class Color {
 	private int colorCode;
 	private String colorDescription;
 	private String shortDescription;
-	
+	private Double totalRows;
+	private Double existenceColumn;
+		
 	public int getColorCode() {
 		return colorCode;
 	}
@@ -23,6 +25,18 @@ public class Color {
 	}
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
+	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
+	public Double getExistenceColumn() {
+		return existenceColumn;
+	}
+	public void setExistenceColumn(Double existenceColumn) {
+		this.existenceColumn = existenceColumn;
 	}		
 	
 }

@@ -1010,6 +1010,91 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 	}	
+
+	// Color , Merchandise Group , Price Group , Size Codes
+	
+	@RequestMapping(value = "/jdalookups/getcodes.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getCodes(
+			@RequestParam String codeType,
+			@RequestParam(value = "code", required = false, defaultValue = "") String code,
+			@RequestParam(value = "codeDescription", required = false, defaultValue = "") String codeDescription,
+			@RequestParam(value = "sortFields", required = false, defaultValue = "") String sortFields,			
+			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
+			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
+			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
+			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
+			@RequestParam String server) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);				
+		
+		try {
+			
+			Map map = jdaLookupService.getCodes(codeType, code, codeDescription, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());  
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getCodes" + " - " + sqlErrText);
+				return modelMap;
+								
+			} else {
+
+				switch(codeType) {
+				
+				case "color" :
+					List<Color> color = new ArrayList();
+					color.addAll((Collection<? extends Color>) map.get("RESULT_LIST"));
+					modelMap.put("data", color);
+					if(color.size()>0) {
+						modelMap.put("total", color.get(0).getTotalRows());
+					} else {
+						modelMap.put("total", 0);
+					}
+					
+				case "size" :
+					List<Size> size = new ArrayList();
+					size.addAll((Collection<? extends Size>) map.get("RESULT_LIST"));
+					modelMap.put("data", size);
+					if(size.size()>0) {
+						modelMap.put("total", size.get(0).getTotalRows());
+					} else {
+						modelMap.put("total", 0);
+					}
+					
+				case "pattern" :
+					List<MerchandiseGroup> merchandiseGroup = new ArrayList();
+					merchandiseGroup.addAll((Collection<? extends MerchandiseGroup>) map.get("RESULT_LIST"));
+					modelMap.put("data", merchandiseGroup);
+					if(merchandiseGroup.size()>0) {
+						modelMap.put("total", merchandiseGroup.get(0).getTotalRows());
+					} else {
+						modelMap.put("total", 0);
+					}
+					
+				case "pricegroup" :
+					List<PriceGroup> priceGroup = new ArrayList();
+					priceGroup.addAll((Collection<? extends PriceGroup>) map.get("RESULT_LIST"));
+					modelMap.put("data", priceGroup);
+					if(priceGroup.size()>0) {
+						modelMap.put("total", priceGroup.get(0).getTotalRows());
+					} else {
+						modelMap.put("total", 0);
+					}
+								
+				}
+																
+				modelMap.put("success", true);			
+				return modelMap;																													
+			}
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}	
 	
 	@RequestMapping(value = "/jdalookups/getcolors.action")
 	public @ResponseBody

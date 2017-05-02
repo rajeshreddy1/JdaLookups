@@ -485,6 +485,13 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getStores(zoneNumber, storeNumber, storeName, state, city, storeType, priceEvent, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 		
 	}
+	
+	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getCodes(codeType, code, codeDescription, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
+	
 	public List<Store> getStores(String storeType, int storeNumber, String storeName, String city, String state, int zoneNumber, String server, int start, int limit) throws Exception	{
 
 		String sql="Select StrNum, Trim(StrNam) StrNam, Trim(StAdd1) StAdd1, Trim(StAdd2) StAdd2, Trim(StAdd3) StAdd3, StPvSt, StZip, StPhon, StCntr, RegNum, StrDst, ZonNum, StCmp, StrTyp, StrHdo From TblStr Inner Join StpCmp On StrNum=StStor  " +	   
