@@ -16,7 +16,24 @@ public class ColorResultSetExtractor implements ResultSetExtractor{
 		
 		color.setColorCode(rs.getInt("COLCOD"));
 		color.setColorDescription(rs.getString("COLDSC"));
-		color.setShortDescription(rs.getString("COLSHT"));
+		
+		try {
+			color.setShortDescription(rs.getString("COLSHT"));	
+		} catch(Exception e) {
+			
+		}
+						
+		try{
+			color.setTotalRows(rs.getDouble("TOTAL_ROWS"));
+		} catch(Exception e) {
+			
+		}
+		
+		try{
+			color.setExistenceColumn(rs.getDouble("EXISTCT"));
+		} catch(Exception e) {
+			
+		}
 		
 		return color;		
 	}				
