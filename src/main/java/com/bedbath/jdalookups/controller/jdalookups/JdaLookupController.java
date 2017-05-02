@@ -1055,6 +1055,8 @@ public class JdaLookupController {
 						modelMap.put("total", 0);
 					}
 					
+					break;
+					
 				case "size" :
 					List<Size> size = new ArrayList();
 					size.addAll((Collection<? extends Size>) map.get("RESULT_LIST"));
@@ -1064,6 +1066,8 @@ public class JdaLookupController {
 					} else {
 						modelMap.put("total", 0);
 					}
+
+					break;
 					
 				case "pattern" :
 					List<MerchandiseGroup> merchandiseGroup = new ArrayList();
@@ -1075,6 +1079,8 @@ public class JdaLookupController {
 						modelMap.put("total", 0);
 					}
 					
+					break;
+					
 				case "pricegroup" :
 					List<PriceGroup> priceGroup = new ArrayList();
 					priceGroup.addAll((Collection<? extends PriceGroup>) map.get("RESULT_LIST"));
@@ -1084,7 +1090,9 @@ public class JdaLookupController {
 					} else {
 						modelMap.put("total", 0);
 					}
-								
+							
+					break;
+					
 				}
 																
 				modelMap.put("success", true);			
