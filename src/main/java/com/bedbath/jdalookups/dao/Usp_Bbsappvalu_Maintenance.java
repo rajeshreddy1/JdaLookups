@@ -21,7 +21,9 @@ public class Usp_Bbsappvalu_Maintenance  extends StoredProcedure {
 		
 		super(jdbcTemplate, "Usp_Bbsappvalu_Maintenance");
 				
-		declareParameter(new SqlParameter("p_action" , Types.VARCHAR));      
+		declareParameter(new SqlParameter("p_action" , Types.VARCHAR));   
+		declareParameter(new SqlParameter("p_update_Keys" , Types.VARCHAR));
+		declareParameter(new SqlParameter("p_update_Fields" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_application_Key" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_char_Value_1"    , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_char_Value_2"    , Types.VARCHAR));
@@ -47,11 +49,13 @@ public class Usp_Bbsappvalu_Maintenance  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceName, String user, String server) {
+	public Map getResults(String action, String updateKeys, String updateFields, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceName, String user, String server) {
 		
 		Map inParms = new HashMap();
 		
 		inParms.put("p_action"          ,     action);   
+		inParms.put("p_update_Keys"     ,     updateKeys);
+		inParms.put("p_update_Fields"   ,     updateFields);
 		inParms.put("p_application_Key" ,     applicationKey);   
 		inParms.put("p_char_Value_1"    ,     charValue1);   
 		inParms.put("p_char_Value_2"    ,     charValue2); 

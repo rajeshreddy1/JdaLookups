@@ -318,14 +318,14 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		
 	}
 	
-	public Map maintainApplicationTableValues(String action, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceName, String user, String server) throws Exception {
+	public Map maintainApplicationTableValues(String action, String updateKeys, String updateFields, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, Long numValue2, Long numValue3, String documentPath, String note1, String note2, String sequenceName, String user, String server) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		
 		Usp_Bbsappvalu_Maintenance appValue = new Usp_Bbsappvalu_Maintenance(select);
-		Map zz = appValue.getResults(action, applicationKey, charValue1, charValue2, charValue3, numValue1, numValue2, numValue3, documentPath, note1, note2, sequenceName, user, server);
+		Map zz = appValue.getResults(action, updateKeys, updateFields, applicationKey, charValue1, charValue2, charValue3, numValue1, numValue2, numValue3, documentPath, note1, note2, sequenceName, user, server);
 		
 		return zz;
 	}
