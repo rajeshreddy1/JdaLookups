@@ -486,6 +486,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
+	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getVendors(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhrClause, start, limit, server);
+		
+	}
+	
 	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
 		return jdaLookupDAO.getCodes(codeType, code, codeDescription, sortFields, existenceColumn, appendToWhereClause, start, limit, server);

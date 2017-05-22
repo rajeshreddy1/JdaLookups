@@ -6,6 +6,10 @@ public class Vendor {
 	private String vendorName;
 	private String vendorType;
 	private String buyerNumber;
+	private String importFlag;
+	private String scacCode;
+	private Double totalRows;
+	private Double existenceColumn;
 	
 	public int getVendorNumber() {
 		return vendorNumber;
@@ -30,6 +34,30 @@ public class Vendor {
 	}
 	public void setBuyerNumber(String buyerNumber) {
 		this.buyerNumber = buyerNumber;
+	}
+	public String getImportFlag() {
+		return importFlag;
+	}
+	public void setImportFlag(String importFlag) {
+		this.importFlag = importFlag;
+	}
+	public String getScacCode() {
+		return scacCode;
+	}
+	public void setScacCode(String scacCode) {
+		this.scacCode = scacCode;
+	}
+	public Double getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Double totalRows) {
+		this.totalRows = totalRows;
+	}
+	public Double getExistenceColumn() {
+		return existenceColumn;
+	}
+	public void setExistenceColumn(Double existenceColumn) {
+		this.existenceColumn = existenceColumn;
 	}
 			
 }

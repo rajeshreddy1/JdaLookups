@@ -19,6 +19,16 @@ public class VendorResultSetExtractor implements ResultSetExtractor{
 		vendor.setBuyerNumber(rs.getString("ASBUYR"));
 		vendor.setVendorType(rs.getString("ASTYPE"));
 				
+		try {
+			vendor.setImportFlag(rs.getString("IMPORT_FLAG"));
+			vendor.setScacCode(rs.getString("SCAC_NAME"));
+			vendor.setExistenceColumn(rs.getDouble("EXISTCT"));
+			vendor.setTotalRows(rs.getDouble("TOTAL_ROWS"));
+			
+		} catch(Exception e) {
+			
+		}
+		
 		return vendor;
 		
 	}				

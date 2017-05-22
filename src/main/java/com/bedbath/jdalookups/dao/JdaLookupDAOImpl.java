@@ -289,6 +289,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		Usp_Jda_Code_Search codeSearch = new Usp_Jda_Code_Search(select, codeType);
 		return codeSearch.getResults(codeType, code, codeDescription, sortFields, existenceColumn, appendToWhereClause, start, limit);				
 	}
+
+
+	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode,  String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Vendor_Search vendorSearch = new Usp_Vendor_Search(select);
+		return vendorSearch.getResults(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhereClause, start, limit, server);				
+	}
 	
 	public List<StateProvince> getStates(String sql, String server) throws Exception {	
 
