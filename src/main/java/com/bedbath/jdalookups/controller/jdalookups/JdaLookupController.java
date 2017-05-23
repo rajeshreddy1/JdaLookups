@@ -813,19 +813,20 @@ public class JdaLookupController {
 		
 	@RequestMapping(value = "/jdalookups/storelookupn.action")
 	public @ResponseBody
-	Map<String, ? extends Object> getStores(@RequestParam int storeNumber,
-											@RequestParam String storeName,			                                 
-			                                 @RequestParam String city,
-											 @RequestParam String state,
-											 @RequestParam int zoneNumber,
-											 @RequestParam String storeType,
-											 @RequestParam int priceEvent,
-											 @RequestParam String sortFields,
-											 @RequestParam String existenceColumn,	
-											 @RequestParam String appendToWhereClause,
-											 @RequestParam String server,
-											 @RequestParam int start,
-											 @RequestParam int limit) {
+	Map<String, ? extends Object> getStores(					
+			@RequestParam(value = "storeNumber", required = false,  defaultValue = "0") int storeNumber,
+			@RequestParam(value = "storeName", required = false, defaultValue = "") String storeName,			                                 
+			@RequestParam(value = "city", required = false, defaultValue = "") String city,
+			@RequestParam(value = "state", required = false, defaultValue = "") String state,
+			@RequestParam(value = "zoneNumber", required = false, defaultValue = "0") int zoneNumber,
+			@RequestParam(value = "storeType", required = false, defaultValue = "S") String storeType,
+			@RequestParam(value = "priceEvent", required = false, defaultValue = "0") int priceEvent,
+			@RequestParam(value = "sortFields", required = false, defaultValue = "STRNUM")  String sortFields,
+			@RequestParam(value = "existenceColumn", required = false, defaultValue = "")  String existenceColumn,	
+			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "")  String appendToWhereClause,
+			@RequestParam String server,
+			@RequestParam(value = "start", required = false, defaultValue = "0")  int start,
+			@RequestParam(value = "limit", required = false, defaultValue = "1")  int limit) {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);
 		
