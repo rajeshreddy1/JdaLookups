@@ -1019,7 +1019,7 @@ public class JdaLookupController {
 			@RequestParam(value = "subDepartmentNumber", required = false, defaultValue = "0") int subDepartmentNumber,
 			@RequestParam(value = "classNumber", required = false, defaultValue = "0") int classNumber,
 			@RequestParam(value = "hierarchyName", required = false, defaultValue = "") String hierarchyName,			
-			@RequestParam(value = "sortFields", required = false, defaultValue = "") String sortFields,			
+			@RequestParam(value = "sortFields", required = false, defaultValue = "Department,SubDepartment,Class") String sortFields,			
 			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
 			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
 			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
