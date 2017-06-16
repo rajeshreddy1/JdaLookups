@@ -41,6 +41,24 @@ public class Usp_Get_Jda_InvCal  extends StoredProcedure {
 		declareParameter(new SqlOutParameter("o_previous_Day_Of_Week" , Types.NUMERIC));
 		declareParameter(new SqlOutParameter("o_previous_Long_Form" , Types.VARCHAR));
 
+		declareParameter(new SqlOutParameter("o_yesterday_Date" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Fiscal_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Fiscal_Period" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Fiscal_Week_Of_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Fiscal_Week_Of_Period" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Fiscal_Day_Of_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Day_Of_Week" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_yesterday_Long_Form" , Types.VARCHAR));
+
+		declareParameter(new SqlOutParameter("o_tomorrow_Date" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Fiscal_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Fiscal_Period" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Fiscal_Week_Of_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Fiscal_Week_Of_Period" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Fiscal_Day_Of_Year" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Day_Of_Week" , Types.NUMERIC));
+		declareParameter(new SqlOutParameter("o_tomorrow_Long_Form" , Types.VARCHAR));
+		
 		declareParameter(new SqlOutParameter("o_invdat_Date" , Types.NUMERIC));
 		declareParameter(new SqlOutParameter("o_nextdate_Date" , Types.NUMERIC));
 		
@@ -77,6 +95,24 @@ public class Usp_Get_Jda_InvCal  extends StoredProcedure {
 		inParms.put("o_previous_Day_Of_Week" , 0);
 		inParms.put("o_previous_Long_Form" , "");
 
+		inParms.put("o_yesterday_Date" , 0);
+		inParms.put("o_yesterday_Fiscal_Year" , 0);
+		inParms.put("o_yesterday_Fiscal_Period" , 0);
+		inParms.put("o_yesterday_Fiscal_Week_Of_Year" , 0);
+		inParms.put("o_yesterday_Fiscal_Week_Of_Period" , 0);
+		inParms.put("o_yesterday_Fiscal_Day_Of_Year" , 0);
+		inParms.put("o_yesterday_Day_Of_Week" , 0);
+		inParms.put("o_yesterday_Long_Form" , "");
+
+		inParms.put("o_tomorrow_Date" , 0);
+		inParms.put("o_tomorrow_Fiscal_Year" , 0);
+		inParms.put("o_tomorrow_Fiscal_Period" , 0);
+		inParms.put("o_tomorrow_Fiscal_Week_Of_Year" , 0);
+		inParms.put("o_tomorrow_Fiscal_Week_Of_Period" , 0);
+		inParms.put("o_tomorrow_Fiscal_Day_Of_Year" , 0);
+		inParms.put("o_tomorrow_Day_Of_Week" , 0);
+		inParms.put("o_tomorrow_Long_Form" , "");
+		
 		inParms.put("o_invdat_Date" , 0);
 		inParms.put("o_nextdate_Date" , 0);
 		
