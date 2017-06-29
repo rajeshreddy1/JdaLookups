@@ -16,8 +16,25 @@ public class SizeResultSetExtractor implements ResultSetExtractor{
 		
 		size.setSizeCode(rs.getString("SIZCOD"));
 		size.setSizeDescription(rs.getString("SIZDSC"));
-		size.setSizeShortDescription(rs.getString("SIZSHT"));
 		
+		try {
+			size.setSizeShortDescription(rs.getString("SIZSHT"));	
+		} catch(Exception e) {
+			
+		}
+		
+		try{
+			size.setTotalRows(rs.getDouble("TOTAL_ROWS"));
+		} catch(Exception e) {
+			
+		}
+		
+		try{
+			size.setExistenceColumn(rs.getDouble("EXISTCT"));
+		} catch(Exception e) {
+			
+		}
+				
 		return size;		
 	}				
 	

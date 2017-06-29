@@ -21,10 +21,15 @@ public class VendorResultSetExtractor implements ResultSetExtractor{
 				
 		try {
 			vendor.setImportFlag(rs.getString("IMPORT_FLAG"));
-			vendor.setScacCode(rs.getString("SCAC_NAME"));
-			vendor.setExistenceColumn(rs.getDouble("EXISTCT"));
+			vendor.setScacCode(rs.getString("SCAC_NAME"));			
 			vendor.setTotalRows(rs.getDouble("TOTAL_ROWS"));
 			
+		} catch(Exception e) {
+			
+		}
+		
+		try{
+			vendor.setExistenceColumn(rs.getDouble("EXISTCT"));
 		} catch(Exception e) {
 			
 		}
