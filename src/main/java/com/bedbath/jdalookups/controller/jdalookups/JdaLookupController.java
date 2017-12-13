@@ -20,6 +20,7 @@ import com.bedbath.jdalookups.model.District;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
+import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
@@ -1065,7 +1066,58 @@ public class JdaLookupController {
 							
 	}
 
-
+	@RequestMapping(value = "/jdalookups/getmastereventheaders.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getMasterEventHeaders(
+			@RequestParam(value = "masterEventNumber", required = false, defaultValue = "") String masterEventNumber,
+			@RequestParam(value = "eventDescription", required = false, defaultValue = "") String eventDescription,
+			@RequestParam(value = "applicationId", required = false, defaultValue = "") String applicationId,
+			@RequestParam(value = "eventType", required = false, defaultValue = "") String eventTypes,
+			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
+			@RequestParam(value = "sortFields", required = false, defaultValue = "Master_Event_Number") String sortFields,			
+			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
+			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
+			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
+            @RequestParam String server									
+			) throws Exception {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getMasterEventHeaders(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit, server);
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupController.getMasterEventHeaders" + " - " + sqlErrText);
+				return modelMap;
+								
+			} else {
+				
+				List<MasterEventHeader> master = new ArrayList();
+				master.addAll( (Collection<? extends MasterEventHeader>) map.get("RESULT_LIST"));
+				
+				modelMap.put("data", master);
+				
+				if(master.size()>0) {
+					modelMap.put("total", master.get(0).getTotalRows());
+				} else {
+					modelMap.put("total", 0);
+				}
+			}
+			
+			return modelMap;
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+							
+	}
+	
 	@RequestMapping(value = "/jdalookups/getstorebracketheaders.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getStoreBracketHeaders(

@@ -311,6 +311,16 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return circularSearch.getResults(circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit);			
 	}
 	
+	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Pace_Master_Event_Search eventSearch = new Usp_Pace_Master_Event_Search(select);
+		return eventSearch.getResults(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit);			
+	}
+		
 	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	

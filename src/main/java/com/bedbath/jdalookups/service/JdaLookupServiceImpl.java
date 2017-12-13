@@ -503,6 +503,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getStoreBracketHeaders(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit, server);
 		
 	}
+
+	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getMasterEventHeaders(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit, server);
+		
+	}
 	
 	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
