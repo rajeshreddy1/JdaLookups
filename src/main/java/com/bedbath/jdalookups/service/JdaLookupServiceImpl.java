@@ -492,6 +492,18 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
+	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getCircularHeaders(action, circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getStoreBracketHeaders(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit, server);
+		
+	}
+	
 	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
 		return jdaLookupDAO.getCodes(codeType, code, codeDescription, sortFields, existenceColumn, appendToWhereClause, start, limit, server);

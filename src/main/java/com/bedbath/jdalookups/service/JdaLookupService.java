@@ -64,5 +64,6 @@ public interface JdaLookupService {
 	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatuses, String sortFields, int start, int limit, String server) throws Exception;
 	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception;
-	
+	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception;
+	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception;
 }

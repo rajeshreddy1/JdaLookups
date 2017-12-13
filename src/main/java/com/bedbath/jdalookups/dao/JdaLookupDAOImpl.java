@@ -301,6 +301,26 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return vendorSearch.getResults(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhereClause, start, limit, server);				
 	}
 	
+	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Circular_Search circularSearch = new Usp_Circular_Search(select, action);
+		return circularSearch.getResults(circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit);			
+	}
+	
+	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Pace_Store_Bracket_Hdr_Selection bracketSearch = new Usp_Pace_Store_Bracket_Hdr_Selection(select);
+		return bracketSearch.getResults(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit);			
+	}
+
 	public List<StateProvince> getStates(String sql, String server) throws Exception {	
 
 		List<StateProvince> states = new ArrayList();
