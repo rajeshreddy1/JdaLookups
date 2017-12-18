@@ -144,6 +144,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return tblfld.getResults(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 				
 	}
+	
+	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception {
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Pace_Evtmgr_Evtsum_Selection campaigns = new Usp_Pace_Evtmgr_Evtsum_Selection(select);
+		return campaigns.getResults(campaignId, campaignName, sortField, start, limit);
+				
+	}
 
 	public Map getTitles(String action, String server) throws Exception {	
 
@@ -301,36 +312,6 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return vendorSearch.getResults(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhereClause, start, limit, server);				
 	}
 	
-	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {	
-
-		GetDataSource getDataSource = new GetDataSource();	
-		JdbcTemplate select = new JdbcTemplate();
-		select = new JdbcTemplate(getDataSource.getDataSource(server));
-		
-		Usp_Circular_Search circularSearch = new Usp_Circular_Search(select, action);
-		return circularSearch.getResults(circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit);			
-	}
-	
-	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {	
-
-		GetDataSource getDataSource = new GetDataSource();	
-		JdbcTemplate select = new JdbcTemplate();
-		select = new JdbcTemplate(getDataSource.getDataSource(server));
-		
-		Usp_Pace_Master_Event_Search eventSearch = new Usp_Pace_Master_Event_Search(select);
-		return eventSearch.getResults(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit);			
-	}
-		
-	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {	
-
-		GetDataSource getDataSource = new GetDataSource();	
-		JdbcTemplate select = new JdbcTemplate();
-		select = new JdbcTemplate(getDataSource.getDataSource(server));
-		
-		Usp_Pace_Store_Bracket_Hdr_Selection bracketSearch = new Usp_Pace_Store_Bracket_Hdr_Selection(select);
-		return bracketSearch.getResults(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit);			
-	}
-
 	public List<StateProvince> getStates(String sql, String server) throws Exception {	
 
 		List<StateProvince> states = new ArrayList();

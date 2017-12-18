@@ -261,6 +261,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 		
 	}	
+	
+	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception	{
+
+		return jdaLookupDAO.getCampaigns(campaignId, campaignName, sortField, start, limit, server);
+		
+	}
 
 	public Map getTitles(String action, String server) throws Exception {
 		
@@ -489,24 +495,6 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception {
 		
 		return jdaLookupDAO.getVendors(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhrClause, start, limit, server);
-		
-	}
-	
-	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
-		
-		return jdaLookupDAO.getCircularHeaders(action, circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit, server);
-		
-	}
-	
-	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {
-		
-		return jdaLookupDAO.getStoreBracketHeaders(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit, server);
-		
-	}
-
-	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
-		
-		return jdaLookupDAO.getMasterEventHeaders(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit, server);
 		
 	}
 	

@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bedbath.common.util.CreateExceptionMap;
-import com.bedbath.jdalookups.model.CircularHeader;
+import com.bedbath.jdalookups.model.Campaign;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Concept;
 import com.bedbath.jdalookups.model.District;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
-import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
@@ -30,7 +29,6 @@ import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
-import com.bedbath.jdalookups.model.StoreBracketHeader;
 import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
@@ -222,7 +220,56 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 	}	
+	
+	// Retrieves Campaign Id's that are not in Campaign header file
+	@RequestMapping(value = "/jdalookups/campaignslookup.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getCampaigns(
+			@RequestParam(value = "campaignId", required = false, defaultValue = "0") int campaignId,
+			@RequestParam (value = "campaignName", required = false, defaultValue = "") String campaignName,
+			@RequestParam (value = "sortFields", required = false, defaultValue = "") String sortField,
+			@RequestParam int start,
+			@RequestParam int limit,			
+			@RequestParam String server) throws Exception {
 
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getCampaigns(campaignId, campaignName, sortField, start, limit, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getCampaigns" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Campaign> campaigns = new ArrayList();
+				campaigns.addAll((Collection<? extends Campaign>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", campaigns);
+				
+				if(campaigns.size()>0) {
+					modelMap.put("total", 0);	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}
 
 	@RequestMapping(value = "/jdalookups/conceptlookup.action")
 	public @ResponseBody 
@@ -281,10 +328,10 @@ public class JdaLookupController {
 	@RequestMapping(value = "/jdalookups/gettblfldentries.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> getTblFldEntries(@RequestParam String keyValue,
-			@RequestParam String searchValue,
-			@RequestParam String searchDescription,
-			@RequestParam String ignoreBlankValue,
-			@RequestParam String sortField,
+			@RequestParam(value = "searchValue", required = false, defaultValue = "") String searchValue,
+			@RequestParam(value = "searchDescription", required = false, defaultValue = "") String searchDescription,
+			@RequestParam(value = "ignoreBlankValue", required = false, defaultValue = "Y") String ignoreBlankValue,
+			@RequestParam(value = "sortField", required = false, defaultValue = "TBLDSC") String sortField,
 			@RequestParam String server,
 			@RequestParam int limit,
 			@RequestParam int start
@@ -969,7 +1016,7 @@ public class JdaLookupController {
 			@RequestParam(value = "vendorName", required = false, defaultValue = "") String vendorName,
 			@RequestParam(value = "vendorType", required = false, defaultValue = "") String vendorType,
 			@RequestParam(value = "scacCode", required = false, defaultValue = "") String scacCode,			
-			@RequestParam(value = "sortFields", required = false, defaultValue = "AsNum") String sortFields,			
+			@RequestParam(value = "sortFields", required = false, defaultValue = "ASNAME") String sortFields,			
 			@RequestParam(value = "existenceColumn", required = false, defaultValue = "") String existenceColumn,
 			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhrClause,
 			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
@@ -1001,160 +1048,6 @@ public class JdaLookupController {
 				
 				if(vendor.size()>0) {
 					modelMap.put("total", vendor.get(0).getTotalRows());
-				} else {
-					modelMap.put("total", 0);
-				}
-			}
-			
-			return modelMap;
-			
-		} catch(Exception e) {
-			return createMap.getExceptionMap(e);
-		}
-							
-	}
-
-	@RequestMapping(value = "/jdalookups/getcircularheaders.action")
-	public @ResponseBody
-	Map<String, ? extends Object> getCircularHeaders(
-			@RequestParam String action,
-			@RequestParam(value = "circularId", required = false, defaultValue = "0") Long circularId,
-			@RequestParam(value = "circularName", required = false, defaultValue = "") String circularName,
-			@RequestParam(value = "circularType", required = false, defaultValue = "") String circularType,
-			@RequestParam(value = "inHomeDate", required = false, defaultValue = "") String inHomeDate,
-			@RequestParam(value = "sortFields", required = false, defaultValue = "a.Circular_Id|Circular_Id") String sortFields,			
-			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
-			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
-			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
-            @RequestParam String server									
-			) throws Exception {
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		
-		try {
-			
-			Map map = jdaLookupService.getCircularHeaders(action, circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit, server);
-			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId = map.get("SQL_STATUS").toString();
-				String sqlErrText = map.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupController.getCircularHeaders" + " - " + sqlErrText);
-				return modelMap;
-								
-			} else {
-				
-				List<CircularHeader> circular = new ArrayList();
-				circular.addAll( (Collection<? extends CircularHeader>) map.get("RESULT_LIST"));
-				
-				modelMap.put("data", circular);
-				
-				if(circular.size()>0) {
-					modelMap.put("total", circular.get(0).getTotalRows());
-				} else {
-					modelMap.put("total", 0);
-				}
-			}
-			
-			return modelMap;
-			
-		} catch(Exception e) {
-			return createMap.getExceptionMap(e);
-		}
-							
-	}
-
-	@RequestMapping(value = "/jdalookups/getmastereventheaders.action")
-	public @ResponseBody
-	Map<String, ? extends Object> getMasterEventHeaders(
-			@RequestParam(value = "masterEventNumber", required = false, defaultValue = "") String masterEventNumber,
-			@RequestParam(value = "eventDescription", required = false, defaultValue = "") String eventDescription,
-			@RequestParam(value = "applicationId", required = false, defaultValue = "") String applicationId,
-			@RequestParam(value = "eventType", required = false, defaultValue = "") String eventTypes,
-			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
-			@RequestParam(value = "sortFields", required = false, defaultValue = "Master_Event_Number") String sortFields,			
-			@RequestParam(value = "appendToWhereClause", required = false, defaultValue = "") String appendToWhereClause,
-			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
-			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
-            @RequestParam String server									
-			) throws Exception {
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		
-		try {
-			
-			Map map = jdaLookupService.getMasterEventHeaders(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit, server);
-			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId = map.get("SQL_STATUS").toString();
-				String sqlErrText = map.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupController.getMasterEventHeaders" + " - " + sqlErrText);
-				return modelMap;
-								
-			} else {
-				
-				List<MasterEventHeader> master = new ArrayList();
-				master.addAll( (Collection<? extends MasterEventHeader>) map.get("RESULT_LIST"));
-				
-				modelMap.put("data", master);
-				
-				if(master.size()>0) {
-					modelMap.put("total", master.get(0).getTotalRows());
-				} else {
-					modelMap.put("total", 0);
-				}
-			}
-			
-			return modelMap;
-			
-		} catch(Exception e) {
-			return createMap.getExceptionMap(e);
-		}
-							
-	}
-	
-	@RequestMapping(value = "/jdalookups/getstorebracketheaders.action")
-	public @ResponseBody
-	Map<String, ? extends Object> getStoreBracketHeaders(
-			@RequestParam(value = "bracketNumber", required = false, defaultValue = "0") int bracketNumber,
-			@RequestParam(value = "bracketDescription", required = false, defaultValue = "") String bracketDescription,
-			@RequestParam(value = "bracketSource", required = false, defaultValue = "") String bracketSource,
-			@RequestParam(value = "bracketType", required = false, defaultValue = "") String bracketType,
-			@RequestParam(value = "sortFields", required = false, defaultValue = "Store_Bracket_Number") String sortFields,					
-			@RequestParam(value = "start", required = false, defaultValue = "0") int start,
-			@RequestParam(value = "limit", required = false, defaultValue = "1") int limit,
-            @RequestParam String server									
-			) throws Exception {
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		
-		try {
-			
-			Map map = jdaLookupService.getStoreBracketHeaders(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit, server);
-			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId = map.get("SQL_STATUS").toString();
-				String sqlErrText = map.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupController.getStoreBracketHeaders" + " - " + sqlErrText);
-				return modelMap;
-								
-			} else {
-				
-				List<StoreBracketHeader> bracket = new ArrayList();
-				bracket.addAll( (Collection<? extends StoreBracketHeader>) map.get("RESULT_LIST"));
-				
-				modelMap.put("data", bracket);
-				
-				if(bracket.size()>0) {
-					modelMap.put("total", bracket.get(0).getTotalRows());
 				} else {
 					modelMap.put("total", 0);
 				}
