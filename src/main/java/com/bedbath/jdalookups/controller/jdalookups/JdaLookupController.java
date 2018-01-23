@@ -867,7 +867,7 @@ public class JdaLookupController {
 	}
 
 
-	@RequestMapping(value = "/jdalookups/buyers.action")
+	@RequestMapping(value = "/jdalookups/getbuyers.action")
 	public @ResponseBody
 	Map<String, ? extends Object> getBuyers(							               
 			@RequestParam(value = "buyerNumber", required = false,  defaultValue = "") String buyerNumber,
