@@ -249,6 +249,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		return jdaLookupDAO.getRegions(regionNumber, regionName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
 		
 	}
+
+	public Map getBuyers(String buyerNumber, String buyerName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getBuyers(buyerNumber, buyerName, sortFields, existenceColumn, appendToWhereClause, start, limit, server);
+		
+	}
 	
 	public Map getDistricts(int districtNumber, int regionNumber, String districtName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {
 		
@@ -495,6 +501,24 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception {
 		
 		return jdaLookupDAO.getVendors(vendorNumber, vendorName, vendorType, scacCode, sortFields, existenceColumn, appendToWhrClause, start, limit, server);
+		
+	}
+	
+	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getCircularHeaders(action, circularId, circularName, circularType, inHomeDate, sortFields, appendToWhereClause, start, limit, server);
+		
+	}
+	
+	public Map getStoreBracketHeaders(int bracketNumber, String bracketDescription, String bracketSource, String bracketType, String sortFields, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getStoreBracketHeaders(bracketNumber, bracketDescription, bracketSource, bracketType, sortFields, start, limit, server);
+		
+	}
+
+	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception {
+		
+		return jdaLookupDAO.getMasterEventHeaders(masterEventNumber, eventDescription, startDate, eventTypes, applicationId, sortFields, appendToWhereClause, start, limit, server);
 		
 	}
 	
