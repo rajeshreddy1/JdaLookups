@@ -37,6 +37,8 @@ public class Usp_Jda_Code_Search  extends StoredProcedure {
 		case "pattern" :
 			rowMapper = new MerchandiseGroupRowMapper();
 			break;
+		case "mixmatch" :
+			rowMapper = new MixMatchCategoryRowMapper();
 		}
 		
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));

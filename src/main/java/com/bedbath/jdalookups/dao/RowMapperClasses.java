@@ -19,3 +19,14 @@ class BuyerRowMapper implements RowMapper {
 	}
 	
 }
+
+class MixMatchCategoryRowMapper implements RowMapper {
+	
+	public Object mapRow(ResultSet rs, int line) throws SQLException {
+		
+		MixMatchCategoryResultSetExtractor extractor = new MixMatchCategoryResultSetExtractor();
+		return extractor.extractData(rs);
+		
+	}
+	
+}
