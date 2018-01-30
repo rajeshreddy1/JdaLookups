@@ -24,6 +24,7 @@ import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.MixMatchCategory;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
@@ -1409,6 +1410,20 @@ public class JdaLookupController {
 
 					break;
 
+
+				case "mixmatch" :
+					List<MixMatchCategory> mixMatchCategory = new ArrayList();
+					mixMatchCategory.addAll((Collection<? extends MixMatchCategory>) map.get("RESULT_LIST"));
+					modelMap.put("data", mixMatchCategory);
+					if(mixMatchCategory.size()>0) {
+						modelMap.put("total", mixMatchCategory.get(0).getTotalRows());
+					} else {
+						modelMap.put("total", 0);
+					}
+
+					break;
+
+					
 				}
 
 				modelMap.put("success", true);			
