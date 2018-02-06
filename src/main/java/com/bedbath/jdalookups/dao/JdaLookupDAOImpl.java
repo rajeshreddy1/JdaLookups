@@ -404,6 +404,16 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		Map zz = appValue.getResults(action, updateKeys, updateFields, applicationKey, charValue1, charValue2, charValue3, numValue1, numValue2String, numValue2Length, numValue3, documentPath, note1, note2, sequenceName, user, server);
 		
 		return zz;
-	}	
+	}
+	
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) {
+		
+		GetDataSource getDataSource = new GetDataSource();
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Att_Pdm pdmAttr = new Usp_Att_Pdm(select);
+		return pdmAttr.getResults(type, description, server, start, limit);
+	}
 	
 }

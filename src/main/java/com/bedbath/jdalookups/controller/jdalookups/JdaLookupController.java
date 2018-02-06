@@ -25,6 +25,7 @@ import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.MixMatchCategory;
+import com.bedbath.jdalookups.model.PdmAttribute;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
@@ -1601,6 +1602,50 @@ public class JdaLookupController {
 		modelMap.put("total", (jdaLookupService.getRowCount(sql,server)));
 		modelMap.put("success", true);
 		return modelMap;
+	}
+	
+	@RequestMapping(value = "/jdalookups/searchPdmAttribute.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> searchPdmAttribute(@RequestParam String type,
+			@RequestParam(value = "description", required = false, defaultValue = "") String description,
+			@RequestParam String server,
+			@RequestParam int start,
+			@RequestParam int limit
+			) throws Exception {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
+		
+		try {
+			
+			Map<String, ? extends Object> resMap = jdaLookupService.searchPdmAttribute(type, description, server, start, limit);
+			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {			
+
+				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "LookupController.searchPdmAttribute" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				@SuppressWarnings("unchecked")
+				List<PdmAttribute> attributes = (List<PdmAttribute>) resMap.get("RESULT_LIST");
+				
+				modelMap.put("data", attributes);															
+				modelMap.put("success", true);
+				if(attributes.size()>0) {
+					modelMap.put("total", attributes.get(0).getTotal());	
+				} else {
+					modelMap.put("total", 0);
+				}
+				return modelMap;																									
+			}				
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+				
 	}
 
 }

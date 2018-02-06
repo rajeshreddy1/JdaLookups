@@ -12,7 +12,6 @@ import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
-import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
 
@@ -70,5 +69,7 @@ public interface JdaLookupService {
 	public Map getMasterEventHeaders(String masterEventNumber, String eventDescription, String startDate, String eventTypes, String applicationId, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit,
 			String server) throws Exception;
+	
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit);
 	
 }

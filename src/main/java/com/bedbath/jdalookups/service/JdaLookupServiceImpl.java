@@ -16,7 +16,6 @@ import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
-import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
 
@@ -680,6 +679,11 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 						
 		return sqlWhere;
 		
+	}
+	
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) {
+		
+		 return jdaLookupDAO.searchPdmAttribute(type, description, server, start, limit);
 	}
 	
 }
