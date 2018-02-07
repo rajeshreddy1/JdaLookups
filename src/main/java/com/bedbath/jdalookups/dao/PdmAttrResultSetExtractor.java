@@ -19,7 +19,7 @@ public class PdmAttrResultSetExtractor implements ResultSetExtractor<List<PdmAtt
         while(rs.next()){  
         	PdmAttribute attr = new PdmAttribute();  
         	attr.setAttrVal(rs.getString("ATTRIBUTE_VALUE"));  
-        	//attr.setTotal(rs.getInt("ATTRIBUTE_VALUE"));  
+        	attr.setTotal(rs.getInt("TOTAL_ROWS"));  
         	attrs.add(attr);
         } 
 		

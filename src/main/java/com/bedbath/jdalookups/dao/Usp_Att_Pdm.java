@@ -19,9 +19,9 @@ public class Usp_Att_Pdm  extends StoredProcedure {
 		declareParameter(new SqlReturnResultSet("RESULT_LIST", new PdmAttrResultSetExtractor()));
 		
 		declareParameter(new SqlParameter("P_DYNAMIC_ATTRIBUTE", Types.VARCHAR));
-		//declareParameter(new SqlParameter("P_ATTRIBUTE_DESC", Types.VARCHAR));
-		//declareParameter(new SqlParameter("P_OFFSET_ROW", Types.NUMERIC));
-		//declareParameter(new SqlParameter("P_NUMBER_OF_ROWS", Types.NUMERIC));
+		declareParameter(new SqlParameter("P_ATTRIBUTE_VALUE", Types.VARCHAR));
+		declareParameter(new SqlParameter("P_OFFSET_ROW", Types.NUMERIC));
+		declareParameter(new SqlParameter("P_NUMBER_OF_ROWS", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGID", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_MSGTXT", Types.VARCHAR));
@@ -36,9 +36,9 @@ public class Usp_Att_Pdm  extends StoredProcedure {
 		Map<String, Object> inParms = new HashMap<String, Object>();
 
 		inParms.put("P_DYNAMIC_ATTRIBUTE", type);
-		//inParms.put("P_ATTRIBUTE_DESC", description);
-		//inParms.put("P_OFFSET_ROW", start);
-		//inParms.put("P_NUMBER_OF_ROWS", limit);
+		inParms.put("P_ATTRIBUTE_VALUE", description);
+		inParms.put("P_OFFSET_ROW", start);
+		inParms.put("P_NUMBER_OF_ROWS", limit);
 		inParms.put("SQL_STATUS", 0);
 		inParms.put("SQL_MSGID", 0);
 		inParms.put("SQL_MSGTXT", "");

@@ -10,6 +10,7 @@ import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
+import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Title;
@@ -54,6 +55,7 @@ public interface JdaLookupDAO {
 	public Map maintainApplicationTableValues(String action, String updateKeys, String updateFields, String applicationKey, String charValue1, String charValue2, String charValue3, Long numValue1, String numValue2String, int numValue2Length, Long numValue3, String documentPath, String note1, String note2, String sequenceNumber, String user, String server) throws Exception;
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception;
 	
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit);
+	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) throws Exception;;
+	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
 	
 }

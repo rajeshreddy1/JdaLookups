@@ -15,6 +15,7 @@ import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
+import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
@@ -406,7 +407,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return zz;
 	}
 	
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) {
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();
 		JdbcTemplate select = new JdbcTemplate();
@@ -414,6 +415,16 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		
 		Usp_Att_Pdm pdmAttr = new Usp_Att_Pdm(select);
 		return pdmAttr.getResults(type, description, server, start, limit);
+	}
+	
+	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(req.getServer()));
+		
+		Usp_Sku_Upc_Search sku = new Usp_Sku_Upc_Search(select);
+		return sku.getResults(req);
 	}
 	
 }

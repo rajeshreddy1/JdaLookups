@@ -14,6 +14,7 @@ import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
+import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
@@ -681,9 +682,14 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) {
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit)  throws Exception {
 		
 		 return jdaLookupDAO.searchPdmAttribute(type, description, server, start, limit);
+	}
+	
+	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
+		
+		return jdaLookupDAO.searchSkuOrUpc(req);
 	}
 	
 }

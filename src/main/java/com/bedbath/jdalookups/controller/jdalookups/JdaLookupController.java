@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +33,8 @@ import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Region;
 import com.bedbath.jdalookups.model.Size;
 import com.bedbath.jdalookups.model.SkuLookup;
+import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
+import com.bedbath.jdalookups.model.SkuOrUpcSearchRes;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.StoreBracketHeader;
@@ -1631,6 +1634,46 @@ public class JdaLookupController {
 				
 				@SuppressWarnings("unchecked")
 				List<PdmAttribute> attributes = (List<PdmAttribute>) resMap.get("RESULT_LIST");
+				
+				modelMap.put("data", attributes);															
+				modelMap.put("success", true);
+				if(attributes.size()>0) {
+					modelMap.put("total", attributes.get(0).getTotal());	
+				} else {
+					modelMap.put("total", 0);
+				}
+				return modelMap;																									
+			}				
+			
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+				
+	}
+	
+	@RequestMapping(value = "/jdalookups/searchSkuOrUpc.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> searchSkuOrUpc(@ModelAttribute SkuOrUpcSearchReq req
+			) throws Exception {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
+		
+		try {
+			
+			Map<String, ? extends Object> resMap = jdaLookupService.searchSkuOrUpc(req);
+			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {			
+
+				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "LookupController.searchPdmAttribute" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				@SuppressWarnings("unchecked")
+				List<SkuOrUpcSearchRes> attributes = (List<SkuOrUpcSearchRes>) resMap.get("RESULT_LIST");
 				
 				modelMap.put("data", attributes);															
 				modelMap.put("success", true);
