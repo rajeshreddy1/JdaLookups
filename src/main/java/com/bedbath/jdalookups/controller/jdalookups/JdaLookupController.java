@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -1651,10 +1652,8 @@ public class JdaLookupController {
 				
 	}
 	
-	@RequestMapping(value = "/jdalookups/searchSkuOrUpc.action")
-	public @ResponseBody 
-	Map<String, ? extends Object> searchSkuOrUpc(@ModelAttribute SkuOrUpcSearchReq req
-			) throws Exception {
+	@RequestMapping(value = "/jdalookups/searchSkuOrUpc.action", method = RequestMethod.POST) 
+	public @ResponseBody Map<String, ? extends Object> searchSkuOrUpc(@ModelAttribute SkuOrUpcSearchReq req) {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
 		
@@ -1662,7 +1661,7 @@ public class JdaLookupController {
 			
 			Map<String, ? extends Object> resMap = jdaLookupService.searchSkuOrUpc(req);
 			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
-			
+
 			if(sqlStatus!=0) {			
 
 				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
@@ -1677,7 +1676,7 @@ public class JdaLookupController {
 				
 				modelMap.put("data", attributes);															
 				modelMap.put("success", true);
-				if(attributes.size()>0) {
+				if(attributes.size() > 0) {
 					modelMap.put("total", attributes.get(0).getTotal());	
 				} else {
 					modelMap.put("total", 0);

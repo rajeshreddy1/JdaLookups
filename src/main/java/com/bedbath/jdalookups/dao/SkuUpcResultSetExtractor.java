@@ -31,6 +31,7 @@ public class SkuUpcResultSetExtractor implements ResultSetExtractor<List<SkuOrUp
         	sku.setRetailPrice(rs.getDouble("RETAIL"));
         	sku.setBuyer(rs.getString("BUYER_NAME"));
         	sku.setPriceGroup(rs.getString("PRICE_GROUP"));
+        	sku.setTotal(rs.getLong("TOTAL_ROWS"));
         	skus.add(sku);
         } 
 		
