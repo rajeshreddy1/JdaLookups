@@ -16,7 +16,8 @@ public class PriceEventResultSetExtractor implements ResultSetExtractor{
 		
 		priceEvent.setEventDescription(rs.getString("EVHDSC"));
 		priceEvent.setEndDate(rs.getInt("EVHEDT"));
-		priceEvent.setEventNumber(rs.getInt("EVENT"));
+		//priceEvent.setEventNumber(rs.getInt("EVENT"));
+		priceEvent.setEventNumber(rs.getString("EVENT"));
 		priceEvent.setEventLevel(rs.getString("EVHSEL"));
 		priceEvent.setEventStatus(rs.getString("EVHSTS"));
 		priceEvent.setEventType(rs.getString("EVHTYP"));

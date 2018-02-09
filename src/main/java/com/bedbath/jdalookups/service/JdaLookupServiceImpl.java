@@ -25,7 +25,7 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
  	
 	@Autowired
 	private JdaLookupDAO jdaLookupDAO;
-			
+		 	
 	public List<SkuLookup> getLookupSkus(Long groupNumber, int department, int subDepartment, int classa, int vendor, String partNumber, Long skuNumber, Long upcNumber, String skuDescription, String shortDescription, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup , String itemStatus, String server, int start, int limit) throws Exception	{
 
 		String sql="Select INUMBR , Trim(IDESCR) IDESCR , IDSCCD, PMREGU, IDEPT, ISDEPT, ICLAS, ASNUM, IVNDP#, IFINLN, ISCOLR, ICORGP From INSVMST Inner Join PMPPRCMSC On INSVMST.INUMBR=PMPPRCMSC.PMSKU " +				   
@@ -486,10 +486,10 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 				
 	}
 	
-	public Map getPriceEvents(String eventTypes,int eventNumber,String eventDescription,int startDate,	String eventStatuses,String sortFields,	int start,int limit,String server)	throws Exception {
+	public Map getPriceEvents(String eventTypes,/*int eventNumber*/ String eventNumber,String eventDescription,int startDate,	String eventStatuses,String sortFields,	int start,int limit,String server)	throws Exception {
 
 		return jdaLookupDAO.getPriceEvents(eventTypes, eventNumber, eventDescription, startDate, eventStatuses, sortFields, start, limit, server);
-		
+		 
 	}
 			
 	public Map getStores(int zoneNumber, int storeNumber, String storeName, String state, String city, String storeType, int priceEvent, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception {

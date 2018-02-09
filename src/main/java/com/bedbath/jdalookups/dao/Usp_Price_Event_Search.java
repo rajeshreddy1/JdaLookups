@@ -42,7 +42,7 @@ public class Usp_Price_Event_Search  extends StoredProcedure {
 	}
 	
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public Map getResults(String eventType,int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) {
+	public Map getResults(String eventType,/*int*/ String eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) {
 		
 		Map inParms = new HashMap();
 

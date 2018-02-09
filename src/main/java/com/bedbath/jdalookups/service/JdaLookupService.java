@@ -48,7 +48,7 @@ public interface JdaLookupService {
 	public String getZoneName(int zoneNumber, String server) throws Exception;        
 	public String formatSql(String sql, String orderBy, int start, int limit);
 	public int getRowCount(String sql, String server) throws Exception;
-	
+	 
 	public Map getLookupSkus(int departmentNumber, int subDepartmentNumber, int classNumber, int vendorNumber, String vendorPartNumber, Long skuNumber, Long upcNumber, String skuDescription, String statuses, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception;		
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
@@ -62,7 +62,7 @@ public interface JdaLookupService {
 	public Map getRegions(int regionNumber, String regionName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
     public Map getDistricts(int districtNumber, int regionNumber, String districtName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
     public Map getBuyers(String buyerNumber, String buyerName, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
-	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatuses, String sortFields, int start, int limit, String server) throws Exception;
+	public Map getPriceEvents(String eventType, /*int eventNumber */ String eventNumber, String eventDescription, int startDate, String eventStatuses, String sortFields, int start, int limit, String server) throws Exception;
 	public Map getCodes(String codeType, String code, String codeDescription, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception;
 	public Map getCircularHeaders(String action, Long circularId, String circularName, String circularType, String inHomeDate, String sortFields, String appendToWhereClause, int start, int limit, String server) throws Exception;

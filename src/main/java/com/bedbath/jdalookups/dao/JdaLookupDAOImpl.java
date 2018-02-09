@@ -292,7 +292,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}
 	
-	public Map getPriceEvents(String eventType, int eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception {	
+	public Map getPriceEvents(String eventType, /*int*/ String eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	
 		JdbcTemplate select = new JdbcTemplate();
@@ -364,7 +364,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		states =  select.query(sql, new StateProvinceRowMapper());
 		return states;
 	}
-		
+		 
 	public String getLookupName(String sql, String server) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();

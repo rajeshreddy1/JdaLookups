@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class PriceEvent {
 
-	private int eventNumber;
+	private /*int*/ String eventNumber;
 	private String eventDescription;
 	private String eventType;
 	private int startDate;
@@ -31,7 +31,7 @@ public class PriceEvent {
 	public void setEventReason(String eventReason) {
 		this.eventReason = eventReason;
 	}
-	public int getEventNumber() {
+	public /*int*/ String getEventNumber() {
 		return eventNumber;
 	}
 	public String getEventDescription() {
@@ -52,7 +52,7 @@ public class PriceEvent {
 	public String getEventLevel() {
 		return eventLevel;
 	}
-	public void setEventNumber(int eventNumber) {
+	public void setEventNumber(/*int*/ String eventNumber) {
 		this.eventNumber = eventNumber;
 	}
 	public void setEventDescription(String eventDescription) {
