@@ -2,6 +2,7 @@ package com.bedbath.jdalookups.model;
 
 public class SkuOrUpcSearchReq {
 
+	private int searchListNo;
 	private String type;
 	private int department;
 	private int subDepartment;
@@ -43,8 +44,15 @@ public class SkuOrUpcSearchReq {
 	private int limit;
 	private String server;
 	
+	public int getSearchListNo() {
+		return searchListNo;
+	}
 
-	
+	public void setSearchListNo(int searchListNo) {
+		this.searchListNo = searchListNo;
+	}
+
+
 	public String getType() {
 		return type;
 	}
@@ -527,18 +535,18 @@ public class SkuOrUpcSearchReq {
 
 	@Override
 	public String toString() {
-		return "SkuOrUpcSearchReq [type=" + type + ", department=" + department + ", subDepartment=" + subDepartment
-				+ ", classa=" + classa + ", colorCode=" + colorCode + ", sizeCode=" + sizeCode + ", webProduct="
-				+ webProduct + ", webCollection=" + webCollection + ", season=" + season + ", theme=" + theme
-				+ ", region=" + region + ", lifeStyle=" + lifeStyle + ", itemStatus=" + itemStatus + ", skuNumber="
-				+ skuNumber + ", upcNumber=" + upcNumber + ", itemDescription=" + itemDescription + ", vendor=" + vendor
-				+ ", partNumber=" + partNumber + ", vdc=" + vdc + ", vendorCollection=" + vendorCollection
-				+ ", vendorStyle=" + vendorStyle + ", ecomBrand=" + ecomBrand + ", productType=" + productType
-				+ ", listNumber=" + listNumber + ", merchandiseGroup=" + merchandiseGroup + ", priceGroup=" + priceGroup
-				+ ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom=" + mapFrom + ", mapTo=" + mapTo
-				+ ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer + ", exclusivity=" + exclusivity
-				+ ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph=" + eph + ", start=" + start
-				+ ", limit=" + limit + ", server=" + server + "]";
+		return "SkuOrUpcSearchReq [searchListNo=" + searchListNo + ", type=" + type + ", department=" + department
+				+ ", subDepartment=" + subDepartment + ", classa=" + classa + ", colorCode=" + colorCode + ", sizeCode="
+				+ sizeCode + ", webProduct=" + webProduct + ", webCollection=" + webCollection + ", season=" + season
+				+ ", theme=" + theme + ", region=" + region + ", lifeStyle=" + lifeStyle + ", itemStatus=" + itemStatus
+				+ ", skuNumber=" + skuNumber + ", upcNumber=" + upcNumber + ", itemDescription=" + itemDescription
+				+ ", vendor=" + vendor + ", partNumber=" + partNumber + ", vdc=" + vdc + ", vendorCollection="
+				+ vendorCollection + ", vendorStyle=" + vendorStyle + ", ecomBrand=" + ecomBrand + ", productType="
+				+ productType + ", listNumber=" + listNumber + ", merchandiseGroup=" + merchandiseGroup
+				+ ", priceGroup=" + priceGroup + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
+				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
+				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
+				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + "]";
 	}
 
 			
