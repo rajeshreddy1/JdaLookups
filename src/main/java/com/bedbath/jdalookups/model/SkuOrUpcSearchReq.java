@@ -43,6 +43,7 @@ public class SkuOrUpcSearchReq {
 	private int start;
 	private int limit;
 	private String server;
+	private int zone;
 	
 	public int getSearchListNo() {
 		return searchListNo;
@@ -531,7 +532,13 @@ public class SkuOrUpcSearchReq {
 		this.server = server;
 	}
 
+	public int getZone() {
+		return zone;
+	}
 
+	public void setZone(int zone) {
+		this.zone = zone;
+	}
 
 	@Override
 	public String toString() {
@@ -546,7 +553,7 @@ public class SkuOrUpcSearchReq {
 				+ ", priceGroup=" + priceGroup + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
-				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + "]";
+				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone + "]";
 	}
 
 			
