@@ -266,7 +266,13 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 
 		return jdaLookupDAO.getTblFldEntries(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
 		
-	}	
+	}
+	
+	public Map getTblFldReasons(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception	{
+
+		return jdaLookupDAO.getTblFldReasons(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
+		
+	}
 	
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception	{
 
