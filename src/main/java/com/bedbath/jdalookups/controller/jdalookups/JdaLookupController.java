@@ -385,6 +385,57 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 	}	
+	
+	@RequestMapping(value = "/jdalookups/getTblFldReasons.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getTblFldReasons(@RequestParam String keyValue,
+			@RequestParam(value = "searchValue", required = false, defaultValue = "") String searchValue,
+			@RequestParam(value = "searchDescription", required = false, defaultValue = "") String searchDescription,
+			@RequestParam(value = "ignoreBlankValue", required = false, defaultValue = "Y") String ignoreBlankValue,
+			@RequestParam(value = "sortField", required = false, defaultValue = "") String sortField,
+			@RequestParam String server,
+			@RequestParam int limit,
+			@RequestParam int start
+			) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getTblFldReasons(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getTblFldReasons" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<TblFld> tblfld = new ArrayList();
+				tblfld.addAll((Collection<? extends TblFld>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", tblfld);
+				
+				if(tblfld.size()>0) {
+					modelMap.put("total", tblfld.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}
 
 	@RequestMapping(value = "/jdalookups/getinvcal.action")
 	public @ResponseBody 
