@@ -413,8 +413,20 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		JdbcTemplate select = new JdbcTemplate();
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		
-		Usp_Att_Pdm pdmAttr = new Usp_Att_Pdm(select);
-		return pdmAttr.getResults(type, description, server, start, limit);
+		if(type.equalsIgnoreCase("ecom brand")) {
+			
+			Usp_Ecom_Brand_Search pdmAttr = new Usp_Ecom_Brand_Search(select);
+			return pdmAttr.getResults(type, description, server, start, limit);
+			
+		} else if(type.equalsIgnoreCase("eph")) {
+			
+			Usp_Eph_Search pdmAttr = new Usp_Eph_Search(select);
+			return pdmAttr.getResults(type, description, server, start, limit);
+		} else {
+			
+			Usp_Att_Pdm pdmAttr = new Usp_Att_Pdm(select);
+			return pdmAttr.getResults(type, description, server, start, limit);
+		}
 	}
 	
 	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
