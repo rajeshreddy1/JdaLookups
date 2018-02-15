@@ -18,7 +18,8 @@ public class EcomBrandResultSetExtractor implements ResultSetExtractor<List<PdmA
 		
         while(rs.next()) {
         	
-        	PdmAttribute attr = new PdmAttribute();  
+        	PdmAttribute attr = new PdmAttribute();
+        	attr.setAttrCode(rs.getString("ECOM_BRAND_CODE"));
         	attr.setAttrVal(rs.getString("ECOM_BRAND_DESCRIPTION") == null? "": rs.getString("ECOM_BRAND_DESCRIPTION").trim());  
         	attr.setTotal(rs.getInt("TOTAL_ROWS"));  
         	attrs.add(attr);

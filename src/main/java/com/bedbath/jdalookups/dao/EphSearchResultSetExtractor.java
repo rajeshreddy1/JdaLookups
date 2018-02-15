@@ -18,7 +18,8 @@ public class EphSearchResultSetExtractor implements ResultSetExtractor<List<PdmA
 		
         while(rs.next()) {
         	
-        	PdmAttribute attr = new PdmAttribute();  
+        	PdmAttribute attr = new PdmAttribute();
+        	attr.setAttrCode(rs.getString("EPH_NODE_ID"));
         	attr.setAttrVal(rs.getString("EPH_NODE_NAME") == null? "": rs.getString("EPH_NODE_NAME").trim());  
         	attr.setTotal(rs.getInt("TOTAL_ROWS"));  
         	attrs.add(attr);
