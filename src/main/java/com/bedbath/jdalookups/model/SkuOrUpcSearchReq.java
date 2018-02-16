@@ -44,6 +44,7 @@ public class SkuOrUpcSearchReq {
 	private int limit;
 	private String server;
 	private int zone;
+	private String sortBy = "inumbr|SKU";
 	
 	public int getSearchListNo() {
 		return searchListNo;
@@ -539,6 +540,15 @@ public class SkuOrUpcSearchReq {
 	public void setZone(int zone) {
 		this.zone = zone;
 	}
+	
+	
+	public String getSortBy() {
+		return sortBy;
+	}
+
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
 
 	@Override
 	public String toString() {
@@ -553,7 +563,8 @@ public class SkuOrUpcSearchReq {
 				+ ", priceGroup=" + priceGroup + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
-				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone + "]";
+				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone + ", sortBy="
+				+ sortBy + "]";
 	}
 
 			
