@@ -53,6 +53,7 @@ public interface JdaLookupService {
 	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception;		
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
 	public Map getTblFldReasons(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
+	public Map getNextMstEvntNum(String sql_statement, String server) throws Exception;
 	public Map getTitles(String action, String server) throws Exception;
 	public Map getManagers(String action, String title, String server) throws Exception;
 	public Map getConcepts(String existenceColumn, String appendToWhrClause, String server) throws Exception;
@@ -74,5 +75,6 @@ public interface JdaLookupService {
 	
 	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) throws Exception;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
+	
 	
 }

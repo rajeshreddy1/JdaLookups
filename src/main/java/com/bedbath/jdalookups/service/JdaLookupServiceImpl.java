@@ -274,6 +274,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
+	public Map getNextMstEvntNum(String sql_statement, String server) throws Exception	{
+
+		return jdaLookupDAO.getNextMstEvntNum(sql_statement, server);
+		
+	}
+	
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception	{
 
 		return jdaLookupDAO.getCampaigns(campaignId, campaignName, sortField, start, limit, server);

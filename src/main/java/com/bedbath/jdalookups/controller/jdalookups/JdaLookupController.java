@@ -27,6 +27,7 @@ import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.MixMatchCategory;
+import com.bedbath.jdalookups.model.MstrEvntNum;
 import com.bedbath.jdalookups.model.PdmAttribute;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
@@ -423,6 +424,52 @@ public class JdaLookupController {
 				
 				if(tblfld.size()>0) {
 					modelMap.put("total", tblfld.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}
+	
+	@RequestMapping(value = "/jdalookups/getNextMstEvntNum.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getNextMstEvntNum(
+			@RequestParam(value = "sql_statement") String sql_statement,
+			@RequestParam String server
+			) throws Exception {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getNextMstEvntNum(sql_statement, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getNextMstEvntNum" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<MstrEvntNum> mstrEvntNum = new ArrayList();
+				mstrEvntNum.addAll((Collection<? extends MstrEvntNum>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", mstrEvntNum);
+				
+				if(mstrEvntNum.size()>0) {
+					modelMap.put("total", 1);	
 				} else {
 					modelMap.put("total", 0);
 				}
