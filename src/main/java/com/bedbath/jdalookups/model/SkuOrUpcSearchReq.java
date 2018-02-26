@@ -44,7 +44,7 @@ public class SkuOrUpcSearchReq {
 	private int limit;
 	private String server;
 	private int zone;
-	private String sortBy = "inumbr|SKU";
+	private String sortBy = "a.inumbr|SKU";
 	
 	public int getSearchListNo() {
 		return searchListNo;
