@@ -45,6 +45,7 @@ public class SkuOrUpcSearchReq {
 	private String server;
 	private int zone;
 	private String sortBy = "a.inumbr|SKU";
+	private String whereClause = "";
 	
 	public int getSearchListNo() {
 		return searchListNo;
@@ -549,6 +550,16 @@ public class SkuOrUpcSearchReq {
 	public void setSortBy(String sortBy) {
 		this.sortBy = sortBy;
 	}
+	
+	
+
+	public String getWhereClause() {
+		return whereClause;
+	}
+
+	public void setWhereClause(String whereClause) {
+		this.whereClause = whereClause;
+	}
 
 	@Override
 	public String toString() {
@@ -564,7 +575,7 @@ public class SkuOrUpcSearchReq {
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
 				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone + ", sortBy="
-				+ sortBy + "]";
+				+ sortBy + ", whereClause=" + whereClause + "]";
 	}
 
 			

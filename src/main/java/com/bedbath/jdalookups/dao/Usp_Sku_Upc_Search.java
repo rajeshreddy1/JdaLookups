@@ -113,7 +113,7 @@ public class Usp_Sku_Upc_Search  extends StoredProcedure {
 	    inParms.put("P_EPH",	req.getEph());
 	    inParms.put("P_SORT_FIELDS",	req.getSortBy());
 	    inParms.put("P_EXISTENCE_COLUMN",	"");
-	    inParms.put("P_APPEND_TO_WHR_CLAUSE",	"");
+	    inParms.put("P_APPEND_TO_WHR_CLAUSE",	req.getWhereClause());
 	    inParms.put("P_OFFSET_ROW",	req.getStart());
 	    inParms.put("P_NUMBER_OF_ROWS",	req.getLimit());
 		inParms.put("SQL_STATUS", 0);
