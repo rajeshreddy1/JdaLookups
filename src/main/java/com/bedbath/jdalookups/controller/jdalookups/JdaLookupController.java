@@ -1732,7 +1732,6 @@ public class JdaLookupController {
 				
 			} else {
 				
-				@SuppressWarnings("unchecked")
 				List<PdmAttribute> attributes = (List<PdmAttribute>) resMap.get("RESULT_LIST");
 				
 				modelMap.put("data", attributes);															
@@ -1765,12 +1764,11 @@ public class JdaLookupController {
 
 				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
 				modelMap.put("success", false);
-				modelMap.put("exception", "LookupController.searchPdmAttribute" + " - " + sqlErrText);
+				modelMap.put("exception", "LookupController.searchSkuOrUpc" + " - " + sqlErrText);
 				return modelMap;
 				
 			} else {
 				
-				@SuppressWarnings("unchecked")
 				List<SkuOrUpcSearchRes> attributes = (List<SkuOrUpcSearchRes>) resMap.get("RESULT_LIST");
 				
 				modelMap.put("data", attributes);															
