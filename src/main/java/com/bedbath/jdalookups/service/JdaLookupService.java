@@ -73,7 +73,7 @@ public interface JdaLookupService {
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit,
 			String server) throws Exception;
 	
-	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) throws Exception;
+	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
 	
 	

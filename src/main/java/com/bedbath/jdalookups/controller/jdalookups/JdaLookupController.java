@@ -1713,14 +1713,15 @@ public class JdaLookupController {
 			@RequestParam(value = "description", required = false, defaultValue = "") String description,
 			@RequestParam String server,
 			@RequestParam int start,
-			@RequestParam int limit
+			@RequestParam int limit,
+			@RequestParam(value = "feature", required = false, defaultValue = "false") boolean feature
 			) throws Exception {
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
 		
 		try {
 			
-			Map<String, ? extends Object> resMap = jdaLookupService.searchPdmAttribute(type, description, server, start, limit);
+			Map<String, ? extends Object> resMap = jdaLookupService.searchPdmAttribute(type, description, server, start, limit, feature);
 			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
 			
 			if(sqlStatus!=0) {			

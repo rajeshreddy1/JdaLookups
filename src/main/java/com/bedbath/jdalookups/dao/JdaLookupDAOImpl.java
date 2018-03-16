@@ -429,7 +429,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		return zz;
 	}
 	
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit) throws Exception {
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();
 		JdbcTemplate select = new JdbcTemplate();
@@ -444,6 +444,12 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 			
 			Usp_Eph_Search pdmAttr = new Usp_Eph_Search(select);
 			return pdmAttr.getResults(type, description, server, start, limit);
+			
+		} else if(feature) {
+			
+			Usp_Ftr_Pdm pdmAttr = new Usp_Ftr_Pdm(select);
+			return pdmAttr.getResults(type, description, server, start, limit); 
+			
 		} else {
 			
 			Usp_Att_Pdm pdmAttr = new Usp_Att_Pdm(select);
