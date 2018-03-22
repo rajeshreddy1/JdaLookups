@@ -977,7 +977,7 @@ public class JdaLookupController {
 	Map<String, ? extends Object> getBuyers(							               
 			@RequestParam(value = "buyerNumber", required = false,  defaultValue = "") String buyerNumber,
 			@RequestParam(value = "zoneName", required = false,  defaultValue = "") String buyerName,
-			@RequestParam(value = "sortFields", required = false,  defaultValue = "BYRNUM") String sortFields,
+			@RequestParam(value = "sortFields", required = false,  defaultValue = "BYRNAM") String sortFields,
 			@RequestParam(value = "existenceColumn", required = false,  defaultValue = "") String existenceColumn,
 			@RequestParam(value = "appendToWhereClause", required = false,  defaultValue = "") String appendToWhereClause,
 			@RequestParam String server,
