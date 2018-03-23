@@ -38,6 +38,7 @@ public interface JdaLookupDAO {
 	public Map getTitles(String action, String server) throws Exception;
 	public Map getManagers(String action, String title, String server) throws Exception;
 	public Map getTblFldEntries(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
+	public Map gettblfldInnersltentries(String action, String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
 	public Map getTblFldReasons(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception;
 	public Map getNextMstEvntNum(String sql_statement, String server) throws Exception;
 	public Map getConcepts(String existenceColumn, String appendToWhrClause, String server) throws Exception;

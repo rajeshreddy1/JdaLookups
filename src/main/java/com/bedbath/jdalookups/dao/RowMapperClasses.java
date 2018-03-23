@@ -19,6 +19,7 @@ class MstrEvntNumRowMapper implements RowMapper {
 	}
 	
 }
+
 class BuyerRowMapper implements RowMapper {
 	
 	public Object mapRow(ResultSet rs, int line) throws SQLException {

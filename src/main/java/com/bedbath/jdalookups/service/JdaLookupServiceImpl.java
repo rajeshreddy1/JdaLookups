@@ -268,6 +268,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
+	public Map gettblfldInnersltentries(String action, String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception	{
+
+		return jdaLookupDAO.gettblfldInnersltentries(action, keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
+		
+	}
+	
 	public Map getTblFldReasons(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception	{
 
 		return jdaLookupDAO.getTblFldReasons(keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);

@@ -146,6 +146,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 				
 	}
 	
+	public Map gettblfldInnersltentries(String action, String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception {	
+
+		GetDataSource getDataSource = new GetDataSource();	
+		JdbcTemplate select = new JdbcTemplate();	
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		 
+		Usp_Tblfld_Innerslt_Result_Set tblfld = new Usp_Tblfld_Innerslt_Result_Set(select);
+		return tblfld.getResults(action, keyValue, searchValue, searchDescription, ignoreBlankValue, sortField, start, limit, server);
+				
+	}
+	
 	public Map getTblFldReasons(String keyValue, String searchValue, String searchDescription, String ignoreBlankValue, String sortField, int start, int limit, String server) throws Exception {	
 
 		GetDataSource getDataSource = new GetDataSource();	
