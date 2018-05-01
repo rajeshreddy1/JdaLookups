@@ -15,6 +15,7 @@ public class SkuOrUpcSearchRes {
 	private Double retailPrice;
 	private String buyer;
 	private String priceGroup;
+	private Double currCost;
 	private Long total;
 	
 	public Long getSku() {
@@ -100,6 +101,12 @@ public class SkuOrUpcSearchRes {
 	}
 	public void setTotal(Long total) {
 		this.total = total;
+	}	
+	public Double getCurrCost() {
+		return currCost;
+	}
+	public void setCurrCost(Double currCost) {
+		this.currCost = currCost;
 	}
 	
 	@Override
@@ -107,7 +114,8 @@ public class SkuOrUpcSearchRes {
 		return "SkuOrUpcSearchRes [sku=" + sku + ", upc=" + upc + ", skuDescription=" + skuDescription + ", dept="
 				+ dept + ", deptDesc=" + deptDesc + ", subDept=" + subDept + ", subDeptDesc=" + subDeptDesc
 				+ ", classa=" + classa + ", classaDesc=" + classaDesc + ", status=" + status + ", retailPrice="
-				+ retailPrice + ", buyer=" + buyer + ", priceGroup=" + priceGroup + ", total=" + total + "]";
+				+ retailPrice + ", buyer=" + buyer + ", priceGroup=" + priceGroup + ", currCost=" + currCost
+				+ ", total=" + total + "]";
 	}
 			
 }
