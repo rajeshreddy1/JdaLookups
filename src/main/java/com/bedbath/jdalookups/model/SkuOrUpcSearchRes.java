@@ -16,6 +16,7 @@ public class SkuOrUpcSearchRes {
 	private String buyer;
 	private String priceGroup;
 	private Double currCost;
+	private int vendor;
 	private Long total;
 	
 	public Long getSku() {
@@ -107,6 +108,12 @@ public class SkuOrUpcSearchRes {
 	}
 	public void setCurrCost(Double currCost) {
 		this.currCost = currCost;
+	}	
+	public int getVendor() {
+		return vendor;
+	}
+	public void setVendor(int vendor) {
+		this.vendor = vendor;
 	}
 	
 	@Override
@@ -115,7 +122,7 @@ public class SkuOrUpcSearchRes {
 				+ dept + ", deptDesc=" + deptDesc + ", subDept=" + subDept + ", subDeptDesc=" + subDeptDesc
 				+ ", classa=" + classa + ", classaDesc=" + classaDesc + ", status=" + status + ", retailPrice="
 				+ retailPrice + ", buyer=" + buyer + ", priceGroup=" + priceGroup + ", currCost=" + currCost
-				+ ", total=" + total + "]";
+				+ ", vendor=" + vendor + ", total=" + total + "]";
 	}
 			
 }
