@@ -29,7 +29,10 @@ public class Usp_Price_Event_Search  extends StoredProcedure {
 		declareParameter(new SqlParameter("p_event_Description" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_event_Statuses" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_event_Start_Date" , Types.NUMERIC));
-		declareParameter(new SqlParameter("p_event_Number" , Types.NUMERIC));
+
+		//declareParameter(new SqlParameter("p_event_Number" , Types.NUMERIC));
+		declareParameter(new SqlParameter("p_event_Number" , Types.CHAR));
+		
 		declareParameter(new SqlParameter("p_sort_Fields" , Types.VARCHAR));
 		declareParameter(new SqlParameter("p_offset_Row" , Types.NUMERIC));
 		declareParameter(new SqlParameter("p_number_Of_Rows" , Types.NUMERIC));		
@@ -45,12 +48,20 @@ public class Usp_Price_Event_Search  extends StoredProcedure {
 	public Map getResults(String eventType,/*int*/ String eventNumber, String eventDescription, int startDate, String eventStatus, String sortFields, int start, int limit, String server) {
 		
 		Map inParms = new HashMap();
-
+		
+		//String eventNumberString="";
+		//if(eventNumber!=0) {
+		//	eventNumberString = Integer.toString(eventNumber);	
+		//}
+											
 		inParms.put("p_event_Types"       , eventType);
 		inParms.put("p_event_Description" , eventDescription);
 		inParms.put("p_event_Statuses"    , eventStatus);
 		inParms.put("p_event_Start_Date"  , startDate);
+		
+		//inParms.put("p_event_Number"      , eventNumber);
 		inParms.put("p_event_Number"      , eventNumber);
+		
 		inParms.put("p_sort_Fields"       , sortFields);
 		inParms.put("p_offset_Row"        , start);
 		inParms.put("p_number_Of_Rows"    , limit);
