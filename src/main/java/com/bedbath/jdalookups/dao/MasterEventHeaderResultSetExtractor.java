@@ -15,8 +15,9 @@ public class MasterEventHeaderResultSetExtractor implements ResultSetExtractor{
 		MasterEventHeader master = new MasterEventHeader();
 		
 		master.setMasterEventNumber(rs.getString("Master_Event_Number"));
-		master.setEventDescription(rs.getString("Master_Event_Desc"));
+		master.setEventDescription(rs.getString("Subject_Description"));
 		master.setApplicationId(rs.getString("Application_Id"));
+		master.setSequenceNumber(rs.getInt("Sequence_Number"));
 		master.setEventType(rs.getString("Event_Type"));
 		master.setStartDate(rs.getString("Start_Date"));
 		master.setEndDate(rs.getString("End_Date"));

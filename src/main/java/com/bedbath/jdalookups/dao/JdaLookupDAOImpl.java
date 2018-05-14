@@ -174,7 +174,7 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		JdbcTemplate select = new JdbcTemplate();	
 		select = new JdbcTemplate(getDataSource.getDataSource(server));
 		 
-		Usp_Generic_Sql_Result_Set tblfld = new Usp_Generic_Sql_Result_Set(select);
+		Usp_Generic_Sql_Result_Set tblfld = new Usp_Generic_Sql_Result_Set(select, "nextmstevt");
 		return tblfld.getResults(sql_statement);
 				
 	}

@@ -17,12 +17,20 @@ import com.bedbath.jdalookups.dao.StoreRowMapper;
 public class Usp_Generic_Sql_Result_Set  extends StoredProcedure {
 
 	@SuppressWarnings("rawtypes")
-	public Usp_Generic_Sql_Result_Set(JdbcTemplate jdbcTemplate) {
+	public Usp_Generic_Sql_Result_Set(JdbcTemplate jdbcTemplate, String action) {
 		
 		super(jdbcTemplate, "Usp_Generic_Sql_Result_Set");
 		
-		RowMapper rowMapper = new MstrEvntNumRowMapper();
+		RowMapper rowMapper=null;
 		
+		switch (action) {
+		
+		case "nextmstevt" :
+			rowMapper = new MstrEvntNumRowMapper();
+			break;
+			
+		}
+						
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));
 		
 		declareParameter(new SqlParameter("p_sql_statement" , Types.VARCHAR));
