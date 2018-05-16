@@ -468,6 +468,17 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		}
 	}
 	
+	public Map<String, ? extends Object> getBbsUsrmUsers(String action, String sqlStatement, String server) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(server));
+		
+		Usp_Generic_Sql_Result_Set sql = new Usp_Generic_Sql_Result_Set(select, action);
+		return sql.getResults(sqlStatement);
+				
+	}
+	
 	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
 		
 		GetDataSource getDataSource = new GetDataSource();

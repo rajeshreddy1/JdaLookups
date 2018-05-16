@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bedbath.common.util.CreateExceptionMap;
+import com.bedbath.jdalookups.model.BbsUsrmUser;
 import com.bedbath.jdalookups.model.Buyer;
 import com.bedbath.jdalookups.model.Campaign;
 import com.bedbath.jdalookups.model.CircularHeader;
@@ -489,6 +490,52 @@ public class JdaLookupController {
 		} catch(Exception e) {
 			return createMap.getExceptionMap(e);
 		}
+	}
+	
+	@RequestMapping(value = "/jdalookups/getbbsusrmusers.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getBbsUsrmUsers(@RequestParam String action,
+			                                      @RequestParam String sqlStatement,
+			                                      @RequestParam String server) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			
+			Map map = jdaLookupService.getBbsUsrmUsers(action, sqlStatement, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getBbsUsrmUsers" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<BbsUsrmUser> users = new ArrayList();
+				users.addAll((Collection<? extends BbsUsrmUser>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", users);
+				
+				if(users.size()>0) {
+					modelMap.put("total", 1);	
+				} else {
+					modelMap.put("total", 0);
+				}
+								
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+				
 	}
 	
 	@RequestMapping(value = "/jdalookups/getNextMstEvntNum.action")

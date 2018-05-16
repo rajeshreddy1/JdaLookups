@@ -29,6 +29,10 @@ public class Usp_Generic_Sql_Result_Set  extends StoredProcedure {
 			rowMapper = new MstrEvntNumRowMapper();
 			break;
 			
+		case "bbsusrmusers" :
+			rowMapper = new BbsUsrmUserRowMapper();
+			break;
+			
 		}
 						
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));

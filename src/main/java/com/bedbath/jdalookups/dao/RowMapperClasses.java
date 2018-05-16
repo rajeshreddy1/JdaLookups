@@ -31,6 +31,17 @@ class BuyerRowMapper implements RowMapper {
 	
 }
 
+class BbsUsrmUserRowMapper implements RowMapper {
+	
+	public Object mapRow(ResultSet rs, int line) throws SQLException {
+		
+		BbsUsrmUserResultSetExtractor extractor = new BbsUsrmUserResultSetExtractor();
+		return extractor.extractData(rs);
+		
+	}
+	
+}
+
 class MixMatchCategoryRowMapper implements RowMapper {
 	
 	public Object mapRow(ResultSet rs, int line) throws SQLException {

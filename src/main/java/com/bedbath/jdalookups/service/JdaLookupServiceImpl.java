@@ -700,6 +700,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	}
 	
+	
+	public Map<String, ? extends Object> getBbsUsrmUsers(String action, String sqlStatement, String server) throws Exception {
+		
+		return jdaLookupDAO.getBbsUsrmUsers(action, sqlStatement, server);
+		
+	}
 	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature)  throws Exception {
 		
 		 return jdaLookupDAO.searchPdmAttribute(type, description, server, start, limit, feature);
