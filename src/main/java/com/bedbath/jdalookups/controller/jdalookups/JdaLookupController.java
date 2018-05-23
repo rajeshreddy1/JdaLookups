@@ -378,7 +378,8 @@ public class JdaLookupController {
 					modelMap.put("total", 0);
 				}
 
-				modelMap.put("success", true);			
+				modelMap.put("success", true);
+				modelMap.put("exception","NoException");
 				return modelMap;																					
 
 			}									
@@ -482,7 +483,8 @@ public class JdaLookupController {
 					modelMap.put("total", 0);
 				}
 								
-				modelMap.put("success", true);			
+				modelMap.put("success", true);
+				modelMap.put("exception","NoException");
 				return modelMap;																					
 								
 			}									
