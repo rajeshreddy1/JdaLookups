@@ -329,6 +329,13 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 				
 	}
 	
+	public Map<String, ? extends Object> getRowCount(String action, String sqlStatement, String server) throws Exception {
+		
+		Usp_Generic_Sql_Result_Set sql = new Usp_Generic_Sql_Result_Set(this.getJdbcTemplate(), action);
+		return sql.getResults(sqlStatement);
+				
+	}
+	
 	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
 		
 		Usp_Sku_Upc_Search sku = new Usp_Sku_Upc_Search(this.getJdbcTemplate());

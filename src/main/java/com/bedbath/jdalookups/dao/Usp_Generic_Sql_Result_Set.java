@@ -32,7 +32,11 @@ public class Usp_Generic_Sql_Result_Set  extends StoredProcedure {
 		case "bbsusrmusers" :
 			rowMapper = new BbsUsrmUserRowMapper();
 			break;
-			
+
+		case "count" :
+			rowMapper = new CountRowMapper();
+			break;
+
 		}
 						
 		declareParameter(new SqlReturnResultSet("RESULT_LIST",rowMapper));

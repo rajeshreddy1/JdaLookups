@@ -21,6 +21,7 @@ import com.bedbath.jdalookups.model.Campaign;
 import com.bedbath.jdalookups.model.CircularHeader;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Concept;
+import com.bedbath.jdalookups.model.Count;
 import com.bedbath.jdalookups.model.District;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.HierarchyNew;
@@ -539,7 +540,47 @@ public class JdaLookupController {
 		}
 				
 	}
+
 	
+	@RequestMapping(value = "/jdalookups/getrowcount.action")
+	public @ResponseBody
+	Map<String, ? extends Object> getRowCount(@RequestParam String action,
+			                                      @RequestParam String sqlStatement,
+			                                      @RequestParam String server) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(2);
+		
+		try {
+			
+			Map map = jdaLookupService.getRowCount(action, sqlStatement, server);
+
+			int sqlStatus = Integer.parseInt(map.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = map.get("SQL_STATUS").toString();
+				String sqlErrText = map.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getGetRowCount" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<Count> count = new ArrayList();
+				count.addAll((Collection<? extends Count>) map.get("RESULT_LIST"));
+								
+				modelMap.put("data", count);												
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}									
+
+		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+				
+	}
+		
 	@RequestMapping(value = "/jdalookups/getNextMstEvntNum.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> getNextMstEvntNum(

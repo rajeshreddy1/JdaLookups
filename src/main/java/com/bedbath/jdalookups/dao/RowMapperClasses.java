@@ -42,6 +42,17 @@ class BbsUsrmUserRowMapper implements RowMapper {
 	
 }
 
+class CountRowMapper implements RowMapper {
+	
+	public Object mapRow(ResultSet rs, int line) throws SQLException {
+		
+		CountResultSetExtractor extractor = new CountResultSetExtractor();
+		return extractor.extractData(rs);
+		
+	}
+	
+}
+
 class MixMatchCategoryRowMapper implements RowMapper {
 	
 	public Object mapRow(ResultSet rs, int line) throws SQLException {
