@@ -40,13 +40,50 @@ public class SkuOrUpcSearchReq {
 	private String chefCentral;
 	private String profile;
 	private String eph;
+	private String masterEvent;
+	private String jdaEvent;
+	private int mixMatchCategory;
 	private int start;
 	private int limit;
 	private String server;
 	private int zone;
 	private String sortBy = "a.inumbr|SKU";
 	private String whereClause = "";
+	private int seqNum;
 	
+	
+	public int getSeqNum() {
+		return seqNum;
+	}
+
+	public void setSeqNum(int seqNum) {
+		this.seqNum = seqNum;
+	}
+
+	public String getMasterEvent() {
+		return masterEvent;
+	}
+
+	public void setMasterEvent(String masterEvent) {
+		this.masterEvent = masterEvent;
+	}
+
+	public String getJdaEvent() {
+		return jdaEvent;
+	}
+
+	public void setJdaEvent(String jdaEvent) {
+		this.jdaEvent = jdaEvent;
+	}
+
+	public int getMixMatchCategory() {
+		return mixMatchCategory;
+	}
+
+	public void setMixMatchCategory(int mixMatchCategory) {
+		this.mixMatchCategory = mixMatchCategory;
+	}
+
 	public int getSearchListNo() {
 		return searchListNo;
 	}
@@ -574,9 +611,12 @@ public class SkuOrUpcSearchReq {
 				+ ", priceGroup=" + priceGroup + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
-				+ eph + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone + ", sortBy="
-				+ sortBy + ", whereClause=" + whereClause + "]";
+				+ eph + ", masterEvent=" + masterEvent + ", jdaEvent=" + jdaEvent + ", mixMatchCategory="
+				+ mixMatchCategory + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone
+				+ ", sortBy=" + sortBy + ", whereClause=" + whereClause + "]";
 	}
+
+	
 
 			
 }

@@ -57,6 +57,10 @@ public class Usp_Sku_Upc_Search  extends StoredProcedure {
 		declareParameter(new SqlParameter("P_CHEF_CENTRAL",	Types.VARCHAR));
 		declareParameter(new SqlParameter("P_PROFILE",	Types.VARCHAR));
 		declareParameter(new SqlParameter("P_EPH",	Types.VARCHAR));
+		declareParameter(new SqlParameter("P_MEVTNO",	Types.VARCHAR));
+		declareParameter(new SqlParameter("P_SEQNO",	Types.DECIMAL));
+		declareParameter(new SqlParameter("P_JDAEVTNO",	Types.VARCHAR));
+		declareParameter(new SqlParameter("P_MIXMATCH",	Types.DECIMAL));
 		declareParameter(new SqlParameter("P_SORT_FIELDS",	Types.VARCHAR));
 		declareParameter(new SqlParameter("P_EXISTENCE_COLUMN",	Types.VARCHAR));
 		declareParameter(new SqlParameter("P_APPEND_TO_WHR_CLAUSE",	Types.VARCHAR));
@@ -111,6 +115,10 @@ public class Usp_Sku_Upc_Search  extends StoredProcedure {
 	    inParms.put("P_CHEF_CENTRAL",	req.getChefCentral());
 	    inParms.put("P_PROFILE",	req.getProfile());
 	    inParms.put("P_EPH",	req.getEph());
+	    inParms.put("P_MEVTNO",	req.getMasterEvent());
+	    inParms.put("P_SEQNO",	req.getSeqNum());
+	    inParms.put("P_JDAEVTNO",	req.getJdaEvent());
+	    inParms.put("P_MIXMATCH",	req.getMixMatchCategory());
 	    inParms.put("P_SORT_FIELDS",	req.getSortBy());
 	    inParms.put("P_EXISTENCE_COLUMN",	"");
 	    inParms.put("P_APPEND_TO_WHR_CLAUSE",	req.getWhereClause());
