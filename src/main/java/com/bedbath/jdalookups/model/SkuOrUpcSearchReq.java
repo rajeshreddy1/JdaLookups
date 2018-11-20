@@ -43,6 +43,14 @@ public class SkuOrUpcSearchReq {
 	private String masterEvent;
 	private String jdaEvent;
 	private int mixMatchCategory;
+	private int casePack;
+	private int lastReceiptStart;
+	private int lastReceiptEnd;
+	private int agedDaysMin;
+	private int agedDaysMax;
+	private String adCode;
+	private String dealCode;
+	private String ctsSeason;
 	private int start;
 	private int limit;
 	private String server;
@@ -51,7 +59,70 @@ public class SkuOrUpcSearchReq {
 	private String whereClause = "";
 	private int seqNum;
 	
-	
+	public String getAdCode() {
+		return adCode;
+	}
+
+	public void setAdCode(String adCode) {
+		this.adCode = adCode;
+	}
+
+	public int getCasePack() {
+		return casePack;
+	}
+
+	public void setCasePack(int casePack) {
+		this.casePack = casePack;
+	}
+
+	public int getLastReceiptStart() {
+		return lastReceiptStart;
+	}
+
+	public void setLastReceiptStart(int lastReceiptStart) {
+		this.lastReceiptStart = lastReceiptStart;
+	}
+
+	public int getLastReceiptEnd() {
+		return lastReceiptEnd;
+	}
+
+	public void setLastReceiptEnd(int lastReceiptEnd) {
+		this.lastReceiptEnd = lastReceiptEnd;
+	}
+
+	public int getAgedDaysMin() {
+		return agedDaysMin;
+	}
+
+	public void setAgedDaysMin(int agedDaysMin) {
+		this.agedDaysMin = agedDaysMin;
+	}
+
+	public int getAgedDaysMax() {
+		return agedDaysMax;
+	}
+
+	public void setAgedDaysMax(int agedDaysMax) {
+		this.agedDaysMax = agedDaysMax;
+	}
+
+	public String getDealCode() {
+		return dealCode;
+	}
+
+	public void setDealCode(String dealCode) {
+		this.dealCode = dealCode;
+	}
+
+	public String getCtsSeason() {
+		return ctsSeason;
+	}
+
+	public void setCtsSeason(String ctsSeason) {
+		this.ctsSeason = ctsSeason;
+	}
+
 	public int getSeqNum() {
 		return seqNum;
 	}
@@ -612,11 +683,11 @@ public class SkuOrUpcSearchReq {
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
 				+ eph + ", masterEvent=" + masterEvent + ", jdaEvent=" + jdaEvent + ", mixMatchCategory="
-				+ mixMatchCategory + ", start=" + start + ", limit=" + limit + ", server=" + server + ", zone=" + zone
-				+ ", sortBy=" + sortBy + ", whereClause=" + whereClause + "]";
+				+ mixMatchCategory + ", casePack=" + casePack + ", lastReceiptStart=" + lastReceiptStart
+				+ ", lastReceiptEnd=" + lastReceiptEnd + ", agedDaysMin=" + agedDaysMin + ", agedDaysMax=" + agedDaysMax
+				+ ", adCode=" + adCode + ", dealCode=" + dealCode + ", ctsSeason=" + ctsSeason + ", start=" + start
+				+ ", limit=" + limit + ", server=" + server + ", zone=" + zone + ", sortBy=" + sortBy + ", whereClause="
+				+ whereClause + ", seqNum=" + seqNum + "]";
 	}
-
-	
-
-			
+		
 }
