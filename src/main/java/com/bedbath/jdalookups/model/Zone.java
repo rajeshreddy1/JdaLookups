@@ -8,6 +8,7 @@ public class Zone {
 	private String countryCode;
 	private Double conversionRate;
 	private String currencyCode;
+	private boolean hasPacDtl;
 	private Double totalRows;
 	
 	public int getZoneNumber() {
@@ -51,6 +52,12 @@ public class Zone {
 	}
 	public void setTotalRows(Double totalRows) {
 		this.totalRows = totalRows;
+	}
+	public boolean hasPacDtl() {
+		return hasPacDtl;
+	}
+	public void setHasPacDtl(boolean hasPacDtl) {
+		this.hasPacDtl = hasPacDtl;
 	}	
 	
 }
