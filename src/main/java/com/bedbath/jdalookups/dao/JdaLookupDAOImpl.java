@@ -310,6 +310,11 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 			Usp_Eph_Search pdmAttr = new Usp_Eph_Search(this.getJdbcTemplate());
 			return pdmAttr.getResults(type, description, server, start, limit);
 			
+		} else if(type.equalsIgnoreCase("product type")) {
+			
+			Usp_PRD_TYP pdmAttr = new Usp_PRD_TYP(this.getJdbcTemplate());
+			return pdmAttr.getResults(description, server, start, limit);
+			
 		} else if(feature) {
 			
 			Usp_Ftr_Pdm pdmAttr = new Usp_Ftr_Pdm(this.getJdbcTemplate());
