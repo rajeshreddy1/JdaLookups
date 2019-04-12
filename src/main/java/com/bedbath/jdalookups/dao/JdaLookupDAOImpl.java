@@ -298,7 +298,7 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		return zz;
 	}
 	
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception {
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception {
 		
 		if(type.equalsIgnoreCase("ecom brand")) {
 			
@@ -313,7 +313,7 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		} else if(type.equalsIgnoreCase("product type")) {
 			
 			Usp_PRD_TYP pdmAttr = new Usp_PRD_TYP(this.getJdbcTemplate());
-			return pdmAttr.getResults(description, server, start, limit);
+			return pdmAttr.getResults(description, code, server, start, limit);
 			
 		} else if(feature) {
 			

@@ -20,6 +20,7 @@ public class Usp_PRD_TYP  extends StoredProcedure {
 		declareParameter(new SqlReturnResultSet("RESULT_LIST", new PdmFtrAttrResultSetExtractor()));
 		
 		declareParameter(new SqlParameter("p_Feature_Value", Types.VARCHAR));
+		declareParameter(new SqlParameter("p_Code", Types.VARCHAR));
 		declareParameter(new SqlParameter("p_offset_Row", Types.NUMERIC));
 		declareParameter(new SqlParameter("p_number_Of_Rows", Types.NUMERIC));
 		declareParameter(new SqlInOutParameter("SQL_STATUS", Types.NUMERIC));
@@ -32,11 +33,12 @@ public class Usp_PRD_TYP  extends StoredProcedure {
 	}
 	
 
-	public Map<String, ? extends Object> getResults(String description, String server, int start, int limit) {
+	public Map<String, ? extends Object> getResults(String description, String code, String server, int start, int limit) {
 				
 		Map<String, Object> inParms = new HashMap<String, Object>();
 
 		inParms.put("p_Feature_Value", description);
+		inParms.put("p_Code", code);
 		inParms.put("p_offset_Row", start);
 		inParms.put("p_number_Of_Rows", limit);
 		inParms.put("SQL_STATUS", 0);

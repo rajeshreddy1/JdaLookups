@@ -712,9 +712,9 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	
 	}
 
-	public Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature)  throws Exception {
+	public Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature)  throws Exception {
 		
-		 return jdaLookupDAO.searchPdmAttribute(type, description, server, start, limit, feature);
+		 return jdaLookupDAO.searchPdmAttribute(type, code, description, server, start, limit, feature);
 	}
 	
 	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {

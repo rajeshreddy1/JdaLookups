@@ -1853,6 +1853,7 @@ public class JdaLookupController {
 	@RequestMapping(value = "/jdalookups/searchPdmAttribute.action")
 	public @ResponseBody 
 	Map<String, ? extends Object> searchPdmAttribute(@RequestParam String type,
+			@RequestParam(value = "code", required = false, defaultValue = "") String code,
 			@RequestParam(value = "description", required = false, defaultValue = "") String description,
 			@RequestParam String server,
 			@RequestParam int start,
@@ -1864,7 +1865,7 @@ public class JdaLookupController {
 		
 		try {
 			
-			Map<String, ? extends Object> resMap = jdaLookupService.searchPdmAttribute(type, description, server, start, limit, feature);
+			Map<String, ? extends Object> resMap = jdaLookupService.searchPdmAttribute(type, code, description, server, start, limit, feature);
 			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
 			
 			if(sqlStatus!=0) {			

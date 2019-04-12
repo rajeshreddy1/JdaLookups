@@ -59,7 +59,7 @@ public interface JdaLookupDAO {
 	public Map getCampaigns(int campaignId, String campaignName, String sortField, int start, int limit, String server) throws Exception;
 	public Map getBbsUsrmUsers(String action, String sqlStatement, String server) throws Exception;	
 	public Map getRowCount(String action, String sqlStatement, String server) throws Exception;
-	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception;;
+	Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception;;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
 	
 	

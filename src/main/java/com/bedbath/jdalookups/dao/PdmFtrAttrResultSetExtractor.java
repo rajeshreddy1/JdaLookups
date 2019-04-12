@@ -17,7 +17,8 @@ public class PdmFtrAttrResultSetExtractor implements ResultSetExtractor<List<Pdm
 		List<PdmAttribute> attrs = new LinkedList<PdmAttribute>();
 		
         while(rs.next()){  
-        	PdmAttribute attr = new PdmAttribute();  
+        	PdmAttribute attr = new PdmAttribute();
+        	attr.setAttrCode(rs.getString("CODE"));
         	attr.setAttrVal(rs.getString("ANSWER_DESCRIPION") == null? "" : rs.getString("ANSWER_DESCRIPION").trim());  
         	attr.setTotal(rs.getInt("TOTAL_ROWS"));  
         	attrs.add(attr);
