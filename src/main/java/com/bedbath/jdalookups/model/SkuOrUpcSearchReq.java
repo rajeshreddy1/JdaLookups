@@ -28,7 +28,7 @@ public class SkuOrUpcSearchReq {
 	private String productType;
 	private int listNumber;
 	private String merchandiseGroup;
-	private String priceGroup;
+	private int priceFamily;
 	private float retailFrom;
 	private float retailTo;
 	private float mapFrom;
@@ -464,14 +464,14 @@ public class SkuOrUpcSearchReq {
 
 
 
-	public String getPriceGroup() {
-		return priceGroup;
+	public int getPriceFamily() {
+		return priceFamily;
 	}
 
 
 
-	public void setPriceGroup(String priceGroup) {
-		this.priceGroup = priceGroup;
+	public void setPriceGroup(int priceFamily) {
+		this.priceFamily = priceFamily;
 	}
 
 
@@ -679,7 +679,7 @@ public class SkuOrUpcSearchReq {
 				+ ", vendor=" + vendor + ", partNumber=" + partNumber + ", vdc=" + vdc + ", vendorCollection="
 				+ vendorCollection + ", vendorStyle=" + vendorStyle + ", ecomBrand=" + ecomBrand + ", productType="
 				+ productType + ", listNumber=" + listNumber + ", merchandiseGroup=" + merchandiseGroup
-				+ ", priceGroup=" + priceGroup + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
+				+ ", priceFamily=" + priceFamily + ", retailFrom=" + retailFrom + ", retailTo=" + retailTo + ", mapFrom="
 				+ mapFrom + ", mapTo=" + mapTo + ", msrpFrom=" + msrpFrom + ", msrpTo=" + msrpTo + ", buyer=" + buyer
 				+ ", exclusivity=" + exclusivity + ", chefCentral=" + chefCentral + ", profile=" + profile + ", eph="
 				+ eph + ", masterEvent=" + masterEvent + ", jdaEvent=" + jdaEvent + ", mixMatchCategory="

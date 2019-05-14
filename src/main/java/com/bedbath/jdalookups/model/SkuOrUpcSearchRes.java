@@ -14,7 +14,7 @@ public class SkuOrUpcSearchRes {
 	private String status;
 	private Double retailPrice;
 	private String buyer;
-	private String priceGroup;
+	private int priceFamily;
 	private Double currCost;
 	private int vendor;
 	private Long total;
@@ -91,11 +91,11 @@ public class SkuOrUpcSearchRes {
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
 	}
-	public String getPriceGroup() {
-		return priceGroup;
+	public int getPriceFamily() {
+		return priceFamily;
 	}
-	public void setPriceGroup(String priceGroup) {
-		this.priceGroup = priceGroup;
+	public void setPriceFamily(int priceFamily) {
+		this.priceFamily = priceFamily;
 	}
 	public Long getTotal() {
 		return total;
@@ -121,7 +121,7 @@ public class SkuOrUpcSearchRes {
 		return "SkuOrUpcSearchRes [sku=" + sku + ", upc=" + upc + ", skuDescription=" + skuDescription + ", dept="
 				+ dept + ", deptDesc=" + deptDesc + ", subDept=" + subDept + ", subDeptDesc=" + subDeptDesc
 				+ ", classa=" + classa + ", classaDesc=" + classaDesc + ", status=" + status + ", retailPrice="
-				+ retailPrice + ", buyer=" + buyer + ", priceGroup=" + priceGroup + ", currCost=" + currCost
+				+ retailPrice + ", buyer=" + buyer + ", priceGroup=" + priceFamily + ", currCost=" + currCost
 				+ ", vendor=" + vendor + ", total=" + total + "]";
 	}
 			
