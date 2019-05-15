@@ -14,7 +14,7 @@ public class SkuOrUpcSearchRes {
 	private String status;
 	private Double retailPrice;
 	private String buyer;
-	private int priceFamily;
+	private String priceFamily;
 	private Double currCost;
 	private int vendor;
 	private Long total;
@@ -91,10 +91,10 @@ public class SkuOrUpcSearchRes {
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
 	}
-	public int getPriceFamily() {
+	public String getPriceFamily() {
 		return priceFamily;
 	}
-	public void setPriceFamily(int priceFamily) {
+	public void setPriceFamily(String priceFamily) {
 		this.priceFamily = priceFamily;
 	}
 	public Long getTotal() {
