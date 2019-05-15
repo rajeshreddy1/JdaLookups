@@ -470,7 +470,7 @@ public class SkuOrUpcSearchReq {
 
 
 
-	public void setPriceGroup(int priceFamily) {
+	public void setPriceFamily(int priceFamily) {
 		this.priceFamily = priceFamily;
 	}
 
