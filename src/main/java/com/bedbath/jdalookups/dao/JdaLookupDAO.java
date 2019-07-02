@@ -9,6 +9,7 @@ import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
+import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
@@ -16,6 +17,7 @@ import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
+import com.bedbath.jdalookups.model.WebAppStatusReq;
 
 public interface JdaLookupDAO {
 	
@@ -61,6 +63,8 @@ public interface JdaLookupDAO {
 	public Map getRowCount(String action, String sqlStatement, String server) throws Exception;
 	Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception;;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
+	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
+	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
 	
 	
 }

@@ -16,12 +16,14 @@ import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
+import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
+import com.bedbath.jdalookups.model.WebAppStatusReq;
 
 @Repository
 public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
@@ -345,6 +347,21 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		
 		Usp_Sku_Upc_Search sku = new Usp_Sku_Upc_Search(this.getJdbcTemplate());
 		return sku.getResults(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req)
+			throws Exception {
+		
+		Usp_Web_App_Status status = new Usp_Web_App_Status(this.getJdbcTemplate());
+		return status.getResults(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception {
+		
+		Usp_PmsPacDtl_Record_Count result = new Usp_PmsPacDtl_Record_Count(this.getJdbcTemplate());
+		return result.getCount(req);
 	}
 	
 }

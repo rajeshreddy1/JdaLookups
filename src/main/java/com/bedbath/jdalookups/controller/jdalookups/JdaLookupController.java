@@ -36,6 +36,7 @@ import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Region;
 import com.bedbath.jdalookups.model.Size;
+import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchRes;
@@ -45,6 +46,8 @@ import com.bedbath.jdalookups.model.StoreBracketHeader;
 import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
+import com.bedbath.jdalookups.model.WebAppStatusReq;
+import com.bedbath.jdalookups.model.WebAppStatusRes;
 import com.bedbath.jdalookups.model.Zone;
 import com.bedbath.jdalookups.service.JdaLookupService;
 
@@ -1930,6 +1933,66 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 				
+	}
+	
+	@RequestMapping(value = "/jdalookups/getWebAppStatus.action", method = RequestMethod.POST)
+	public @ResponseBody
+	Map<String, ? extends Object> getWebAppStatus(@ModelAttribute WebAppStatusReq req){
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		
+		try {
+			Map<String, ? extends Object> resMap = jdaLookupService.WebAppStatusReq(req);
+			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {			
+
+				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupController.getWebAppStatus" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				
+				List<WebAppStatusRes> attributes = (List<WebAppStatusRes>) resMap.get("RESULT_LIST");
+				
+				modelMap.put("data", attributes);															
+				modelMap.put("success", true);
+				return modelMap;																									
+			}				
+		} catch (Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+	}
+	
+	@RequestMapping(value = "/jdalookups/getskucount.action", method = RequestMethod.POST)
+	public @ResponseBody
+	Map<String, ? extends Object> getSkuCount(@ModelAttribute SkuCount req){
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		try{
+			Map result = jdaLookupService.getSkuCount(req);
+			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = result.get("SQL_STATUS").toString();
+				String sqlErrText = result.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getSkuCount" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				int total = Integer.parseInt(result.get("p_recordcount").toString());
+				modelMap.put("data", total);												
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+		} catch (Exception e){
+			return createMap.getExceptionMap(e);
+		}
+		
 	}
 
 }
