@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bedbath.common.util.CreateExceptionMap;
+import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsAppValuRes;
 import com.bedbath.jdalookups.model.BbsUsrmUser;
 import com.bedbath.jdalookups.model.Buyer;
 import com.bedbath.jdalookups.model.Campaign;
@@ -1930,6 +1932,77 @@ public class JdaLookupController {
 			}				
 			
 		} catch(Exception e) {
+			return createMap.getExceptionMap(e);
+		}
+				
+	}
+		
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/jdalookups/getBbsAppValu.action")
+	public @ResponseBody 
+	Map<String, ? extends Object> getBbsAppValu(
+			
+			@RequestParam(value = "appKey"          , required = true) String appKey,            
+			@RequestParam(value = "charVal1"   , required = false, defaultValue = "") String charVal1, 
+			@RequestParam(value = "charVal2"   , required = false, defaultValue = "") String charVal2,
+			@RequestParam(value = "charVal3"   , required = false, defaultValue = "") String charVal3,						
+			@RequestParam(value = "numVal1"    , required = false, defaultValue = "0") Long numVal1,  
+			@RequestParam(value = "numVal2"    , required = false, defaultValue = "0") Long numVal2,
+			@RequestParam(value = "numVal3"    , required = false, defaultValue = "0") Long numVal3,
+			@RequestParam(value = "documentPath"   , required = false, defaultValue = "") String documentPath,
+			@RequestParam(value = "note1"   , required = false, defaultValue = "") String note1,
+			@RequestParam(value = "note2"   , required = false, defaultValue = "") String note2,
+			@RequestParam(value = "sortFields"   , required = false, defaultValue = "") String sortFields,
+			@RequestParam(value = "appendToWhereClause"   , required = false, defaultValue = "") String appendToWhereClause,
+			@RequestParam(value = "distinctResult"   , required = false, defaultValue = "") String distinctResult,
+			@RequestParam int start,
+			@RequestParam int limit,
+			@RequestParam String server) {	
+	
+		    BbsAppValuReq req = new BbsAppValuReq();
+		    req.setAppKey(appKey);
+		    req.setCharVal1(charVal1);
+		    req.setCharVal2(charVal2);
+		    req.setCharVal3(charVal3);
+		    req.setNumVal1(numVal1);
+		    req.setNumVal2(numVal2);
+		    req.setNumVal3(numVal3);
+		    req.setDocumentPath(documentPath);
+		    req.setNote1(note1);
+		    req.setNote2(note2);
+		    req.setSortFields(sortFields);
+		    req.setAppendToWhereClause(appendToWhereClause);
+		    req.setDistinctResult(distinctResult);
+		    req.setStart(start);
+		    req.setLimit(limit);
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
+		
+		try {
+			
+			Map<String, ? extends Object> workMap = jdaLookupService.getBbsAppValu(req);
+			int sqlStatus = Integer.parseInt(workMap.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				String sqlErrText = workMap.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupController.getBbsAppValu" + " - " + sqlErrText);				
+				return modelMap;						
+			} else {
+				
+				List<BbsAppValuRes> appValueResSet = (List<BbsAppValuRes>) workMap.get("RESULT_LIST");
+				modelMap.put("data", appValueResSet);
+				if(appValueResSet.size() > 0) {
+					modelMap.put("total", appValueResSet.get(0).getTotalRows());	
+				} else {
+					modelMap.put("total", 0);
+				}												
+				modelMap.put("success", true);			
+				return modelMap;																		
+			}				
+			
+		} catch(Exception e) {
+			
 			return createMap.getExceptionMap(e);
 		}
 				

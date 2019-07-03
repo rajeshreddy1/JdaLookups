@@ -3,6 +3,7 @@ package com.bedbath.jdalookups.service;
 import java.util.List;
 import java.util.Map;
 
+import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
@@ -81,8 +82,8 @@ public interface JdaLookupService {
 	
 	Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
+	Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception;
 	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
 	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
-	
 	
 }

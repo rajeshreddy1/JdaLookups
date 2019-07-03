@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bedbath.common.util.service.UtilityService;
 import com.bedbath.jdalookups.dao.JdaLookupDAO;
+import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
@@ -722,6 +723,10 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	public Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception {
 		
 		return jdaLookupDAO.searchSkuOrUpc(req);
+	}
+		
+	public Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception {
+		return jdaLookupDAO.getBbsAppValu(req);
 	}
 
 	@Override

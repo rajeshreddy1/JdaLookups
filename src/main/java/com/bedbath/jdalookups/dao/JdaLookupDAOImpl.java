@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
@@ -348,7 +349,7 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		Usp_Sku_Upc_Search sku = new Usp_Sku_Upc_Search(this.getJdbcTemplate());
 		return sku.getResults(req);
 	}
-
+		
 	@Override
 	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req)
 			throws Exception {
@@ -364,4 +365,11 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		return result.getCount(req);
 	}
 	
+	public Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception {
+		
+		Usp_BbsAppValu_Search appValues = new Usp_BbsAppValu_Search(this.getJdbcTemplate());
+		return appValues.getResults(req);
+	}
+	
+
 }
