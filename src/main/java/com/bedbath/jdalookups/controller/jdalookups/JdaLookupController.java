@@ -29,6 +29,7 @@ import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MasterEventHeader;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.MixMatchCategory;
 import com.bedbath.jdalookups.model.MstrEvntNum;
@@ -2058,6 +2059,36 @@ public class JdaLookupController {
 			} else {
 				int total = Integer.parseInt(result.get("p_recordcount").toString());
 				modelMap.put("data", total);												
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+		} catch (Exception e){
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/jdalookups/getNextMasterEvntNum.action", method = RequestMethod.POST)
+	public @ResponseBody
+	Map<String, ? extends Object> getNextMasterEvtNum(@ModelAttribute MasterEvtGenerator req){
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		try{
+			Map result = jdaLookupService.getNextMasterEvtNum(req);
+			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = result.get("SQL_STATUS").toString();
+				String sqlErrText = result.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getNextMasterEvtNum" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				int nextMasterSeq = Integer.parseInt(result.get("p_nextseqno").toString());
+				modelMap.put("data", nextMasterSeq);												
 				modelMap.put("success", true);			
 				return modelMap;																					
 								

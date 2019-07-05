@@ -6,6 +6,7 @@ import java.util.Map;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
@@ -66,5 +67,6 @@ public interface JdaLookupDAO {
 	Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception;
 	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
 	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
+	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception;
 	
 }

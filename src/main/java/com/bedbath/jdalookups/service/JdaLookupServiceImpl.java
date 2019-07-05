@@ -10,6 +10,7 @@ import com.bedbath.jdalookups.dao.JdaLookupDAO;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
@@ -740,6 +741,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception {
 		
 		return jdaLookupDAO.getSkuCount(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception {
+		
+		return jdaLookupDAO.getNextMasterEvtNum(req);
 	}
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
@@ -363,6 +364,13 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		
 		Usp_PmsPacDtl_Record_Count result = new Usp_PmsPacDtl_Record_Count(this.getJdbcTemplate());
 		return result.getCount(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception {
+		
+		Usp_Next_Sequence_Number result = new Usp_Next_Sequence_Number(this.getJdbcTemplate());
+		return result.getNextSeq(req);
 	}
 	
 	public Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception {
