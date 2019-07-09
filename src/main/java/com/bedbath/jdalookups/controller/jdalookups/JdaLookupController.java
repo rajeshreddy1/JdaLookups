@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.BbsAppValuRes;
+import com.bedbath.jdalookups.model.BbsUsrm;
+import com.bedbath.jdalookups.model.BbsUsrmRes;
 import com.bedbath.jdalookups.model.BbsUsrmUser;
 import com.bedbath.jdalookups.model.Buyer;
 import com.bedbath.jdalookups.model.Campaign;
@@ -2089,6 +2091,37 @@ public class JdaLookupController {
 			} else {
 				int nextMasterSeq = Integer.parseInt(result.get("p_nextseqno").toString());
 				modelMap.put("data", nextMasterSeq);												
+				modelMap.put("success", true);			
+				return modelMap;																					
+								
+			}
+		} catch (Exception e){
+			return createMap.getExceptionMap(e);
+		}
+		
+	}
+
+	@RequestMapping(value = "/jdalookups/getusersecurity.action", method = RequestMethod.GET)
+	public @ResponseBody
+	Map<String, ? extends Object> getUserSecurity(@ModelAttribute BbsUsrm req){
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);
+		try{
+			Map result = jdaLookupService.getUserSecurity(req);
+			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				
+				String sqlMsgId   = result.get("SQL_STATUS").toString();
+				String sqlErrText = result.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "JdaLookupContoller.getUserSecurity" + " - " + sqlErrText);
+				return modelMap;
+				
+			} else {
+				List<BbsUsrmRes> userSecurity = (List<BbsUsrmRes>) result.get("RESULT_LIST");
+				
+				modelMap.put("data", userSecurity);												
 				modelMap.put("success", true);			
 				return modelMap;																					
 								

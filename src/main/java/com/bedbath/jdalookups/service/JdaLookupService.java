@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MasterEvtGenerator;
@@ -87,5 +88,6 @@ public interface JdaLookupService {
 	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
 	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
 	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception;
+	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception;
 	
 }

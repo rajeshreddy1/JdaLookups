@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MasterEvtGenerator;
@@ -377,6 +378,13 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		
 		Usp_BbsAppValu_Search appValues = new Usp_BbsAppValu_Search(this.getJdbcTemplate());
 		return appValues.getResults(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception {
+		
+		Usp_User_Security_Master userSecurity = new Usp_User_Security_Master(this.getJdbcTemplate());
+		return userSecurity.getResults(req);
 	}
 	
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bedbath.common.util.service.UtilityService;
 import com.bedbath.jdalookups.dao.JdaLookupDAO;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MasterEvtGenerator;
@@ -747,6 +748,12 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception {
 		
 		return jdaLookupDAO.getNextMasterEvtNum(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception {
+		
+		return jdaLookupDAO.getUserSecurity(req);
 	}
 	
 }
