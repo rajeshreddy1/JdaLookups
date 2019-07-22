@@ -17,7 +17,7 @@ public class Usp_PRD_TYP  extends StoredProcedure {
 		super(jdbcTemplate, "USP_PRD_TYP");
 		
 		//declareParameter(new SqlReturnResultSet("RESULT_LIST", new EcomBrandResultSetExtractor()));
-		declareParameter(new SqlReturnResultSet("RESULT_LIST", new PdmFtrAttrResultSetExtractor()));
+		declareParameter(new SqlReturnResultSet("RESULT_LIST", new PdmProductTypeResultSetExtractor()));
 		
 		declareParameter(new SqlParameter("p_Feature_Value", Types.VARCHAR));
 		declareParameter(new SqlParameter("p_Code", Types.VARCHAR));

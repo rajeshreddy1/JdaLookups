@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.bedbath.jdalookups.model.PdmAttribute;
 
-public class PdmFtrAttrResultSetExtractor implements ResultSetExtractor<List<PdmAttribute>> {
+public class PdmProductTypeResultSetExtractor implements ResultSetExtractor<List<PdmAttribute>> {
 
 	public List<PdmAttribute> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
@@ -18,7 +18,7 @@ public class PdmFtrAttrResultSetExtractor implements ResultSetExtractor<List<Pdm
 		
         while(rs.next()){  
         	PdmAttribute attr = new PdmAttribute();
-     //   	attr.setAttrCode(rs.getString("CODE"));
+        	attr.setAttrCode(rs.getString("CODE"));
         	attr.setAttrVal(rs.getString("ANSWER_DESCRIPION") == null? "" : rs.getString("ANSWER_DESCRIPION").trim());  
         	attr.setTotal(rs.getInt("TOTAL_ROWS"));  
         	attrs.add(attr);
