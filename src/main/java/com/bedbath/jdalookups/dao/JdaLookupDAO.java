@@ -4,22 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import com.bedbath.jdalookups.model.BbsAppValuReq;
-import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
-import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
-import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
-import com.bedbath.jdalookups.model.WebAppStatusReq;
 
 public interface JdaLookupDAO {
 	
@@ -35,7 +31,7 @@ public interface JdaLookupDAO {
 	public List<Zone> getZones(String sql, String server) throws Exception;
 	public List<StateProvince> getStates(String sql, String server) throws Exception;
 	public String getLookupName(String sql, String server) throws Exception;
-
+ 
 	public Map getVendors(int vendorNumber, String vendorName, String vendorType, String scacCode, String sortFields, String existenceColumn,  String appendToWhrClause, int start, int limit, String server) throws Exception;
 	public Map getLookupSkus(int departmentNumber, int subDepartmentNumber, int classNumber, int vendorNumber, String vendorPartNumber, Long skuNumber, Long upcNumber, String skuDescription, String statuses, int colorCode, String sizeCode, String merchandiseGroup, String priceGroup, String sortFields, String existenceColumn, String appendToWhereClause, int start, int limit, String server) throws Exception;
 	public Map getHierarchy(String action, int departmentNumber, int subDepartmentNumber, int classNumber, String hierarchyName, String sortFields, String existenceColumn, String appendToWhrClause, int start, int limit, String server) throws Exception;	
@@ -66,9 +62,5 @@ public interface JdaLookupDAO {
 	Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception;;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
 	Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception;
-	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
-	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
-	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception;
-	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception;
 	
 }

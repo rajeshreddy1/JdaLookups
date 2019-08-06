@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bedbath.common.util.CreateExceptionMap;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
 import com.bedbath.jdalookups.model.BbsAppValuRes;
-import com.bedbath.jdalookups.model.BbsUsrm;
-import com.bedbath.jdalookups.model.BbsUsrmRes;
 import com.bedbath.jdalookups.model.BbsUsrmUser;
 import com.bedbath.jdalookups.model.Buyer;
 import com.bedbath.jdalookups.model.Campaign;
@@ -31,7 +29,6 @@ import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.HierarchyNew;
 import com.bedbath.jdalookups.model.Manager;
 import com.bedbath.jdalookups.model.MasterEventHeader;
-import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.MixMatchCategory;
 import com.bedbath.jdalookups.model.MstrEvntNum;
@@ -41,7 +38,6 @@ import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Region;
 import com.bedbath.jdalookups.model.Size;
-import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchRes;
@@ -51,8 +47,6 @@ import com.bedbath.jdalookups.model.StoreBracketHeader;
 import com.bedbath.jdalookups.model.TblFld;
 import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
-import com.bedbath.jdalookups.model.WebAppStatusReq;
-import com.bedbath.jdalookups.model.WebAppStatusRes;
 import com.bedbath.jdalookups.model.Zone;
 import com.bedbath.jdalookups.service.JdaLookupService;
 
@@ -2009,127 +2003,6 @@ public class JdaLookupController {
 			return createMap.getExceptionMap(e);
 		}
 				
-	}
-	
-	@RequestMapping(value = "/jdalookups/getWebAppStatus.action", method = RequestMethod.POST)
-	public @ResponseBody
-	Map<String, ? extends Object> getWebAppStatus(@ModelAttribute WebAppStatusReq req){
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		
-		try {
-			Map<String, ? extends Object> resMap = jdaLookupService.WebAppStatusReq(req);
-			int sqlStatus = Integer.parseInt(resMap.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {			
-
-				String sqlErrText = resMap.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupController.getWebAppStatus" + " - " + sqlErrText);
-				return modelMap;
-				
-			} else {
-				
-				List<WebAppStatusRes> attributes = (List<WebAppStatusRes>) resMap.get("RESULT_LIST");
-				
-				modelMap.put("data", attributes);															
-				modelMap.put("success", true);
-				return modelMap;																									
-			}				
-		} catch (Exception e) {
-			return createMap.getExceptionMap(e);
-		}
-	}
-	
-	@RequestMapping(value = "/jdalookups/getskucount.action", method = RequestMethod.POST)
-	public @ResponseBody
-	Map<String, ? extends Object> getSkuCount(@ModelAttribute SkuCount req){
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		try{
-			Map result = jdaLookupService.getSkuCount(req);
-			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId   = result.get("SQL_STATUS").toString();
-				String sqlErrText = result.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupContoller.getSkuCount" + " - " + sqlErrText);
-				return modelMap;
-				
-			} else {
-				int total = Integer.parseInt(result.get("p_recordcount").toString());
-				modelMap.put("data", total);												
-				modelMap.put("success", true);			
-				return modelMap;																					
-								
-			}
-		} catch (Exception e){
-			return createMap.getExceptionMap(e);
-		}
-		
-	}
-	
-	@RequestMapping(value = "/jdalookups/getNextMasterEvntNum.action", method = RequestMethod.POST)
-	public @ResponseBody
-	Map<String, ? extends Object> getNextMasterEvtNum(@ModelAttribute MasterEvtGenerator req){
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		try{
-			Map result = jdaLookupService.getNextMasterEvtNum(req);
-			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId   = result.get("SQL_STATUS").toString();
-				String sqlErrText = result.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupContoller.getNextMasterEvtNum" + " - " + sqlErrText);
-				return modelMap;
-				
-			} else {
-				int nextMasterSeq = Integer.parseInt(result.get("p_nextseqno").toString());
-				modelMap.put("data", nextMasterSeq);												
-				modelMap.put("success", true);			
-				return modelMap;																					
-								
-			}
-		} catch (Exception e){
-			return createMap.getExceptionMap(e);
-		}
-		
-	}
-
-	@RequestMapping(value = "/jdalookups/getusersecurity.action", method = RequestMethod.GET)
-	public @ResponseBody
-	Map<String, ? extends Object> getUserSecurity(@ModelAttribute BbsUsrm req){
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		try{
-			Map result = jdaLookupService.getUserSecurity(req);
-			int sqlStatus = Integer.parseInt(result.get("SQL_STATUS").toString());
-			
-			if(sqlStatus!=0) {
-				
-				String sqlMsgId   = result.get("SQL_STATUS").toString();
-				String sqlErrText = result.get("SQL_MSGTXT").toString();
-				modelMap.put("success", false);
-				modelMap.put("exception", "JdaLookupContoller.getUserSecurity" + " - " + sqlErrText);
-				return modelMap;
-				
-			} else {
-				List<BbsUsrmRes> userSecurity = (List<BbsUsrmRes>) result.get("RESULT_LIST");
-				
-				modelMap.put("data", userSecurity);												
-				modelMap.put("success", true);			
-				return modelMap;																					
-								
-			}
-		} catch (Exception e){
-			return createMap.getExceptionMap(e);
-		}
-		
 	}
 
 }

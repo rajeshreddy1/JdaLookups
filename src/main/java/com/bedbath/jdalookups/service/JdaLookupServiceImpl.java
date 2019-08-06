@@ -8,22 +8,18 @@ import org.springframework.stereotype.Service;
 import com.bedbath.common.util.service.UtilityService;
 import com.bedbath.jdalookups.dao.JdaLookupDAO;
 import com.bedbath.jdalookups.model.BbsAppValuReq;
-import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
-import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
-import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
-import com.bedbath.jdalookups.model.WebAppStatusReq;
 
 @Service
 public class JdaLookupServiceImpl extends UtilityService implements JdaLookupService {
@@ -729,31 +725,6 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 	public Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception {
 		return jdaLookupDAO.getBbsAppValu(req);
-	}
-
-	@Override
-	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req)
-			throws Exception {
-
-		return jdaLookupDAO.WebAppStatusReq(req);
-	}
-
-	@Override
-	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception {
-		
-		return jdaLookupDAO.getSkuCount(req);
-	}
-
-	@Override
-	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception {
-		
-		return jdaLookupDAO.getNextMasterEvtNum(req);
-	}
-
-	@Override
-	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception {
-		
-		return jdaLookupDAO.getUserSecurity(req);
 	}
 	
 }
