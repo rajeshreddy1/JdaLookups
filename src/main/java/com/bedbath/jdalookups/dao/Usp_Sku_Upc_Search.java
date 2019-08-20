@@ -45,7 +45,7 @@ public class Usp_Sku_Upc_Search  extends StoredProcedure {
 		declareParameter(new SqlParameter("P_PRODUCT_TYPE",	Types.VARCHAR));
 		declareParameter(new SqlParameter("P_SEARCH_LIST",	Types.DECIMAL));
 		declareParameter(new SqlParameter("P_MERCH_GROUP",	Types.VARCHAR));
-		declareParameter(new SqlParameter("P_PRICE_GROUP",Types.VARCHAR));
+		declareParameter(new SqlParameter("P_PRICE_FAMILY_CODE",Types.DECIMAL));
 		declareParameter(new SqlParameter("P_RETAIL_LOWEST",	Types.DECIMAL));
 		declareParameter(new SqlParameter("P_RETAIL_HIGHEST",	Types.DECIMAL));
 		declareParameter(new SqlParameter("P_MAP_LOWEST",	Types.DECIMAL));
@@ -111,8 +111,7 @@ public class Usp_Sku_Upc_Search  extends StoredProcedure {
 	    inParms.put("P_PRODUCT_TYPE",	req.getProductType());
 	    inParms.put("P_SEARCH_LIST",	req.getListNumber());
 	    inParms.put("P_MERCH_GROUP",	req.getMerchandiseGroup());
-	    //inParms.put("P_PRICE_FAMILY_CODE",	req.getPriceFamily());
-	    inParms.put("P_PRICE_GROUP",	"");
+	    inParms.put("P_PRICE_FAMILY_CODE",	req.getPriceFamily());
 	    inParms.put("P_RETAIL_LOWEST",	req.getRetailFrom());
 	    inParms.put("P_RETAIL_HIGHEST",	req.getRetailTo());
 	    inParms.put("P_MAP_LOWEST",	req.getMapFrom());
