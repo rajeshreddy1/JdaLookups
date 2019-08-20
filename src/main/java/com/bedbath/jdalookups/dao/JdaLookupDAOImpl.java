@@ -11,18 +11,22 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
+import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
+import com.bedbath.jdalookups.model.WebAppStatusReq;
 
 @Repository
 public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
@@ -317,7 +321,7 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 			return pdmAttr.getResults(description, code, server, start, limit);
 			
 		} else if(feature) {
-			
+			 
 			Usp_Ftr_Pdm pdmAttr = new Usp_Ftr_Pdm(this.getJdbcTemplate());
 			return pdmAttr.getResults(type, description, server, start, limit); 
 			
@@ -348,10 +352,40 @@ public class JdaLookupDAOImpl extends JdbcDaoSupport implements JdaLookupDAO {
 		return sku.getResults(req);
 	}
 			
+	@Override
+	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req)
+			throws Exception {
+		
+		Usp_Web_App_Status status = new Usp_Web_App_Status(this.getJdbcTemplate());
+		return status.getResults(req);
+	}
+	
+	@Override
+	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception {
+		
+		Usp_PmsPacDtl_Record_Count result = new Usp_PmsPacDtl_Record_Count(this.getJdbcTemplate());
+		return result.getCount(req);
+	}
+
+	@Override
+	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception {
+		
+		Usp_Next_Sequence_Number result = new Usp_Next_Sequence_Number(this.getJdbcTemplate());
+		return result.getNextSeq(req);
+	}
+	
 	public Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception {
 		
 		Usp_BbsAppValu_Search appValues = new Usp_BbsAppValu_Search(this.getJdbcTemplate());
 		return appValues.getResults(req);
-	}	
+	}
 
+	@Override
+	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception {
+		
+		Usp_User_Security_Master userSecurity = new Usp_User_Security_Master(this.getJdbcTemplate());
+		return userSecurity.getResults(req);
+	}
+	
+	
 }
