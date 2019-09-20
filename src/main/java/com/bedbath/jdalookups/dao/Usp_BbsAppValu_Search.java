@@ -70,7 +70,7 @@ public class Usp_BbsAppValu_Search  extends StoredProcedure {
 		inParms.put("SQL_MSGID"           , 0);
 		inParms.put("SQL_MSGTXT"          , "");	
 		Map<String, ? extends Object> out = execute(inParms);
-
+		con.close();
 		return out;		
 
 	}
