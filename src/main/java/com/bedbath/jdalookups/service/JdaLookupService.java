@@ -4,17 +4,21 @@ import java.util.List;
 import java.util.Map;
 
 import com.bedbath.jdalookups.model.BbsAppValuReq;
+import com.bedbath.jdalookups.model.BbsUsrm;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
+import com.bedbath.jdalookups.model.MasterEvtGenerator;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
+import com.bedbath.jdalookups.model.SkuCount;
 import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
 import com.bedbath.jdalookups.model.Vendor;
+import com.bedbath.jdalookups.model.WebAppStatusReq;
 import com.bedbath.jdalookups.model.Zone;
 
 public interface JdaLookupService {
@@ -81,5 +85,9 @@ public interface JdaLookupService {
 	Map<String, ? extends Object> searchPdmAttribute(String type, String code, String description, String server, int start, int limit, boolean feature) throws Exception;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
 	Map<String, ? extends Object> getBbsAppValu(BbsAppValuReq req) throws Exception;
+	public Map<String, ? extends Object> WebAppStatusReq(WebAppStatusReq req) throws Exception;
+	public Map<String, ? extends Object> getSkuCount(SkuCount req) throws Exception;
+	public Map<String, ? extends Object> getNextMasterEvtNum(MasterEvtGenerator req) throws Exception;
+	public Map<String, ? extends Object> getUserSecurity(BbsUsrm req) throws Exception;
 	
 }
