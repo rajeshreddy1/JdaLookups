@@ -6,6 +6,7 @@ import java.util.Map;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.OptionsReq;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
@@ -13,7 +14,6 @@ import com.bedbath.jdalookups.model.SkuLookup;
 import com.bedbath.jdalookups.model.SkuOrUpcSearchReq;
 import com.bedbath.jdalookups.model.StateProvince;
 import com.bedbath.jdalookups.model.Store;
-import com.bedbath.jdalookups.model.Title;
 import com.bedbath.jdalookups.model.Vendor;
 import com.bedbath.jdalookups.model.Zone;
 
@@ -60,6 +60,8 @@ public interface JdaLookupDAO {
 	public Map getBbsUsrmUsers(String action, String sqlStatement, String server) throws Exception;	
 	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception;;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
+	
+	Map<String, ? extends Object> getOptionsRecord(OptionsReq req) throws Exception;
 	
 	
 }

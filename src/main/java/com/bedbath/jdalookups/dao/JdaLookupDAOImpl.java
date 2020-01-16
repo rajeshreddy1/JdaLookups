@@ -11,6 +11,7 @@ import com.bedbath.common.util.GetDataSource;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.OptionsReq;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
@@ -488,5 +489,18 @@ public class JdaLookupDAOImpl implements JdaLookupDAO {
 		Usp_Sku_Upc_Search sku = new Usp_Sku_Upc_Search(select);
 		return sku.getResults(req);
 	}
+	
+	
+	@Override
+	public Map<String, ? extends Object> getOptionsRecord(OptionsReq req) throws Exception {
+		
+		GetDataSource getDataSource = new GetDataSource();
+		JdbcTemplate select = new JdbcTemplate();
+		select = new JdbcTemplate(getDataSource.getDataSource(req.getServer()));   
+				
+		Usp_Options_Selection optsRecord = new Usp_Options_Selection(select);
+		return optsRecord.getResults(req);
+	}
+
 	
 }

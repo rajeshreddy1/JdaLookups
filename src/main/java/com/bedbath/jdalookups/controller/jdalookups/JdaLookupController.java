@@ -29,6 +29,8 @@ import com.bedbath.jdalookups.model.MasterEventHeader;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
 import com.bedbath.jdalookups.model.MixMatchCategory;
 import com.bedbath.jdalookups.model.MstrEvntNum;
+import com.bedbath.jdalookups.model.OptionsReq;
+import com.bedbath.jdalookups.model.OptionsRes;
 import com.bedbath.jdalookups.model.PdmAttribute;
 import com.bedbath.jdalookups.model.PriceEvent;
 import com.bedbath.jdalookups.model.PriceGroup;
@@ -1889,5 +1891,45 @@ public class JdaLookupController {
 		}
 				
 	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/priceEvent/getOptionsRecord.action")
+	public	Map<String, ? extends Object> getOptionsRecord(
+			@ModelAttribute OptionsReq req) {
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>(3);	
+		
+		try {
+			
+			Map<String, ? extends Object> workMap = jdaLookupService.getOptionsRecord(req);
+			int sqlStatus = Integer.parseInt(workMap.get("SQL_STATUS").toString());
+			
+			if(sqlStatus!=0) {
+				String sqlErrText = workMap.get("SQL_MSGTXT").toString();
+				modelMap.put("success", false);
+				modelMap.put("exception", "jdaLookupService.getOptionsRecord" + " - " + sqlErrText);
+			//	logger.error("JdaLookupController.getOptionsRecord" + " - " + sqlErrText);
+				return modelMap;						
+			} else {
+				
+				List<OptionsRes> optsResSet = (List<OptionsRes>) workMap.get("RESULT_LIST");
+				modelMap.put("data", optsResSet);
+				if(optsResSet.size() > 0) {
+					modelMap.put("total", optsResSet.get(0).getTotal());	
+				} else {
+					modelMap.put("total", 0);
+				}												
+				modelMap.put("success", true);			
+				return modelMap;																		
+			}				
+			
+		} catch(Exception e) {
+			
+			//logger.error("jdaLookupService.getOptionsRecord - " + e.getMessage());
+			return createMap.getExceptionMap(e);
+		}
+				
+	}
+
 
 }

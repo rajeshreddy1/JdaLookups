@@ -6,6 +6,7 @@ import java.util.Map;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.OptionsReq;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
@@ -78,6 +79,8 @@ public interface JdaLookupService {
 	
 	Map<String, ? extends Object> searchPdmAttribute(String type, String description, String server, int start, int limit, boolean feature) throws Exception;
 	Map<String, ? extends Object> searchSkuOrUpc(SkuOrUpcSearchReq req) throws Exception;
+	
+	Map<String, ? extends Object> getOptionsRecord(OptionsReq req) throws Exception;
 	
 	
 }

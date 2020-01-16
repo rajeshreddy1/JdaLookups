@@ -10,6 +10,7 @@ import com.bedbath.jdalookups.dao.JdaLookupDAO;
 import com.bedbath.jdalookups.model.Color;
 import com.bedbath.jdalookups.model.Hierarchy;
 import com.bedbath.jdalookups.model.MerchandiseGroup;
+import com.bedbath.jdalookups.model.OptionsReq;
 import com.bedbath.jdalookups.model.PriceGroup;
 import com.bedbath.jdalookups.model.ProductGroupHeader;
 import com.bedbath.jdalookups.model.Size;
@@ -715,5 +716,9 @@ public class JdaLookupServiceImpl extends UtilityService implements JdaLookupSer
 		
 		return jdaLookupDAO.searchSkuOrUpc(req);
 	}
-	
+		
+	public Map<String, ? extends Object> getOptionsRecord(OptionsReq req) throws Exception {
+		return jdaLookupDAO.getOptionsRecord(req);
+	}
+
 }
